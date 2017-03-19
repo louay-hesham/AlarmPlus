@@ -133,9 +133,9 @@
     <AndroidResource Include="Resources\values\styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Extended_Alarm\Extended_Alarm.csproj">
-      <Project>{b8cbf449-f43c-4aa6-ad1e-575f3391b8d8}</Project>
-      <Name>Extended_Alarm</Name>
+    <ProjectReference Include="..\Extended_Alarm\ExtendedAlarm.csproj">
+      <Project>{831A6F22-CBB0-4AB6-9282-8ACE28C6B4E1}</Project>
+      <Name>ExtendedAlarm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

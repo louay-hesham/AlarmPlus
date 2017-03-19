@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extended_Alarm.Android", "Extended Alarm\Extended_Alarm.Android\Extended_Alarm.Android.csproj", "{C3253516-05E2-4FE5-B01B-21796710ADB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedAlarm.Android", "Extended Alarm\Extended_Alarm.Android\ExtendedAlarm.Android.csproj", "{C3253516-05E2-4FE5-B01B-21796710ADB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extended_Alarm", "Extended Alarm\Extended_Alarm\Extended_Alarm.csproj", "{831A6F22-CBB0-4AB6-9282-8ACE28C6B4E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedAlarm", "Extended Alarm\Extended_Alarm\ExtendedAlarm.csproj", "{831A6F22-CBB0-4AB6-9282-8ACE28C6B4E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extended_Alarm.UWP", "Extended Alarm\Extended_Alarm.UWP\Extended_Alarm.UWP.csproj", "{E37DC992-8F03-425B-B9FA-D211BD65B748}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedAlarm.UWP", "Extended Alarm\Extended_Alarm.UWP\ExtendedAlarm.UWP.csproj", "{E37DC992-8F03-425B-B9FA-D211BD65B748}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

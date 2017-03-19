@@ -13,7 +13,7 @@ namespace Extended_Alarm
         {
             InitializeComponent();
 
-            MainPage = new Extended_Alarm.MainPage();
+            MainPage = new Extended_Alarm.MainTabbedPage();
         }
 
         protected override void OnStart()
