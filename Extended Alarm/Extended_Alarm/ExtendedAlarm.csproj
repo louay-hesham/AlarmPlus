@@ -38,22 +38,22 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyAlarms.xaml.cs">
-      <DependentUpon>MyAlarms.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MainTabbedPage.xaml.cs">
+    <Compile Include="GUI\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewAlarm.xaml.cs">
+    <Compile Include="GUI\Tabs\MyAlarms.xaml.cs">
+      <DependentUpon>MyAlarms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Tabs\NewAlarm.xaml.cs">
       <DependentUpon>NewAlarm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.xaml.cs">
+    <Compile Include="GUI\Tabs\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyAlarms.xaml">
+    <EmbeddedResource Include="GUI\Tabs\MyAlarms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -80,19 +80,19 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainTabbedPage.xaml">
+    <EmbeddedResource Include="GUI\Tabs\NewAlarm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NewAlarm.xaml">
+    <EmbeddedResource Include="GUI\Tabs\Settings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Settings.xaml">
+    <EmbeddedResource Include="GUI\MainTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

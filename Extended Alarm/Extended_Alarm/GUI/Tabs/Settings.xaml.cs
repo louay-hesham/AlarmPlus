@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Extended_Alarm
+namespace Extended_Alarm.GUI.Tabs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
