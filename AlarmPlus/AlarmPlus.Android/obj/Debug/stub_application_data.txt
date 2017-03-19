@@ -1,0 +1,2 @@
+android.app.Application
+com.Lo2ay.AlarmPlus

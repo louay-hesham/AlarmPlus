@@ -1,0 +1,2 @@
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.UWP\AlarmPlus.UWP.csproj;x86
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus\AlarmPlus.csproj;neutral
