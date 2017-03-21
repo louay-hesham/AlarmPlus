@@ -1,5 +1,4 @@
 ﻿using System;
-using AlarmPlus;
 
 using Android.App;
 using Android.Content.PM;

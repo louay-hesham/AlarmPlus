@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C3253516-05E2-4FE5-B01B-21796710ADB8}</ProjectGuid>
+    <ProjectGuid>{E231ED64-99F8-4B8C-9FB1-411C7AA5413A}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AlarmPlus.Droid</RootNamespace>
-    <AssemblyName>Alarm Plus</AssemblyName>
+    <AssemblyName>AlarmPlus.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -56,9 +56,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ObjectModel">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v1.0\Facades\System.ObjectModel.dll</HintPath>
-    </Reference>
+    <Reference Include="System.ObjectModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -136,7 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlarmPlus\AlarmPlus.csproj">
-      <Project>{831a6f22-cbb0-4ab6-9282-8ace28c6b4e1}</Project>
+      <Project>{ff2481e6-8c96-41b9-99dc-765fb5b0fbfb}</Project>
       <Name>AlarmPlus</Name>
     </ProjectReference>
   </ItemGroup>
