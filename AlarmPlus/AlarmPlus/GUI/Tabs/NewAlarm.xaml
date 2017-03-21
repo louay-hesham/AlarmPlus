@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlarmPlus.GUI.Tabs.NewAlarm"
+             xmlns:local="clr-namespace:AlarmPlus.GUI.UIElements"
              Title="New Alarm">
 
     <TableView Intent="Form">
@@ -20,6 +21,11 @@
                     <StackLayout Orientation="Horizontal" x:Name="WeekDay" Margin="15,0,15,0">
                         <Label Text="Week day" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
                         <Picker x:Name="WeekDayPicker" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </ViewCell>
+                <ViewCell>
+                    <StackLayout>
+                        <local:DayPicker/>
                     </StackLayout>
                 </ViewCell>
                 <ViewCell>
