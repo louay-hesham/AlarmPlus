@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlarmPlus.GUI.UIElements.DayPicker">
 
-    <StackLayout Orientation="Horizontal">
+    <StackLayout Orientation="Horizontal" Margin="15,0,15,0">
         <Button Text="button1" HorizontalOptions="FillAndExpand"/>
         <Button Text="button2" HorizontalOptions="FillAndExpand"/>
     </StackLayout>
