@@ -20,19 +20,9 @@ namespace AlarmPlus.GUI.Tabs
 
         private void InitializeUIComponents()
         {
-            WeekDayPicker.Items.Add("Saturday");
-            WeekDayPicker.Items.Add("Sunday");
-            WeekDayPicker.Items.Add("Monday");
-            WeekDayPicker.Items.Add("Tuesday");
-            WeekDayPicker.Items.Add("Wednesday");
-            WeekDayPicker.Items.Add("Thursday");
-            WeekDayPicker.Items.Add("Friday");
-            WeekDayPicker.SelectedIndex = 0;
-
             WeekDay.IsVisible = AlarmRepeatStatus.On;
             RepeatitionWeeks.IsVisible = AlarmRepeatStatus.On;
-
-            WeeksLabel.Text = WeeksOfRepeatition.Text.Equals("1") ? "Week" : "Weeks";
+            WeeksLabel.Text = WeeksOfRepeatition.Text.Equals("1") ? "week" : "weeks";
         }
 
         private void RepeatStatusChanged(object sender, EventArgs e)
@@ -43,7 +33,7 @@ namespace AlarmPlus.GUI.Tabs
 
         private void WeekRepeatEntered(object sender, EventArgs e)
         {
-            WeeksLabel.Text = WeeksOfRepeatition.Text.Equals("1") ? "Week" : "Weeks";
+            WeeksLabel.Text = WeeksOfRepeatition.Text.Equals("1") ? "week" : "weeks";
         }
     }
 }

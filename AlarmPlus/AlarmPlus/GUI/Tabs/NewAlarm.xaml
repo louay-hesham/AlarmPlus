@@ -18,13 +18,7 @@
             <TableSection Title="Repeat status">
                 <SwitchCell x:Name="AlarmRepeatStatus" Text="Repeat?" OnChanged="RepeatStatusChanged"/>
                 <ViewCell>
-                    <StackLayout Orientation="Horizontal" x:Name="WeekDay" Margin="15,0,15,0">
-                        <Label Text="Week day" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
-                        <Picker x:Name="WeekDayPicker" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"/>
-                    </StackLayout>
-                </ViewCell>
-                <ViewCell>
-                    <StackLayout>
+                    <StackLayout x:Name="WeekDay">
                         <local:DayPicker/>
                     </StackLayout>
                 </ViewCell>
