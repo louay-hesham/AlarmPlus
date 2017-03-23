@@ -30,6 +30,14 @@
                     </StackLayout>
                 </ViewCell>
             </TableSection>
+            <TableSection Title="Nagging settings">
+                <SwitchCell x:Name="NaggingStatus" Text="Nag with several alarms?" OnChanged="NaggingStatus_OnChanged"/>
+                <ViewCell>
+                    <StackLayout x:Name="Nagging">
+                        <local:NaggingSettings/>
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
         </TableRoot>
     </TableView>
 

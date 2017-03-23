@@ -21,19 +21,25 @@ namespace AlarmPlus.GUI.Tabs
         private void InitializeUIComponents()
         {
             WeekDay.IsVisible = AlarmRepeatStatus.On;
-            RepeatitionWeeks.IsVisible = AlarmRepeatStatus.On;
+            RepeatitionWeeks.IsVisible = false; // AlarmRepeatStatus.On;
             WeeksLabel.Text = WeeksOfRepeatition.Text.Equals("1") ? "week" : "weeks";
+            Nagging.IsVisible = NaggingStatus.On;
         }
 
         private void RepeatStatusChanged(object sender, EventArgs e)
         {
             WeekDay.IsVisible = AlarmRepeatStatus.On;
-            RepeatitionWeeks.IsVisible = AlarmRepeatStatus.On;
+            RepeatitionWeeks.IsVisible = false; // AlarmRepeatStatus.On;
         }
 
         private void WeekRepeatEntered(object sender, EventArgs e)
         {
             WeeksLabel.Text = WeeksOfRepeatition.Text.Equals("1") ? "week" : "weeks";
+        }
+
+        private void NaggingStatus_OnChanged(object sender, ToggledEventArgs e)
+        {
+            Nagging.IsVisible = NaggingStatus.On;
         }
     }
 }

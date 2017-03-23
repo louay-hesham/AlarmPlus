@@ -53,6 +53,9 @@
     <Compile Include="GUI\UIElements\DayPicker.xaml.cs">
       <DependentUpon>DayPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\UIElements\NaggingSettings.xaml.cs">
+      <DependentUpon>NaggingSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GUI\Tabs\Settings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GUI\UIElements\NaggingSettings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
