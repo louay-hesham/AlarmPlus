@@ -22,13 +22,13 @@
                         <local:DayPicker/>
                     </StackLayout>
                 </ViewCell>
-                <ViewCell>
+                <!--<ViewCell>
                     <StackLayout Orientation="Horizontal" x:Name="RepeatitionWeeks" Margin="15,0,15,0">
                         <Label Text="Repeat every " HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
                         <Entry x:Name="WeeksOfRepeatition" Keyboard="Numeric" Text="1" Completed="WeekRepeatEntered" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"/>
                         <Label x:Name="WeeksLabel" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
                     </StackLayout>
-                </ViewCell>
+                </ViewCell>-->
             </TableSection>
             <TableSection Title="Nagging settings">
                 <SwitchCell x:Name="NaggingStatus" Text="Nag with several alarms?" OnChanged="NaggingStatus_OnChanged"/>
