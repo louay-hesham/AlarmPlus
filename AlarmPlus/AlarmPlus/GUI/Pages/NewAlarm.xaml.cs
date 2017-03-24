@@ -41,5 +41,15 @@ namespace AlarmPlus.GUI.Pages
         {
             Nagging.IsVisible = NaggingStatus.On;
         }
+
+        private void SaveButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+        }
+
+        private void CancelButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+        }
     }
 }

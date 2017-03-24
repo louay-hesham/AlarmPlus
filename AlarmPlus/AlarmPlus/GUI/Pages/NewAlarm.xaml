@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:AlarmPlus.GUI.UIElements"
              Title="New Alarm">
 
+    
     <TableView Intent="Form">
         <TableRoot>
             <TableSection Title="Basic alarm settings">
@@ -35,6 +36,14 @@
                 <ViewCell>
                     <StackLayout x:Name="Nagging">
                         <local:NaggingSettings/>
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+            <TableSection>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Margin="15,0,15,0">
+                        <Button x:Name="SaveButton" Clicked="SaveButton_Clicked" Text="Save" HorizontalOptions="FillAndExpand" />
+                        <Button x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="Cancel" HorizontalOptions="FillAndExpand" />
                     </StackLayout>
                 </ViewCell>
             </TableSection>

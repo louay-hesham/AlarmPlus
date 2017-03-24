@@ -44,7 +44,7 @@
     <Compile Include="GUI\Tabs\MyAlarms.xaml.cs">
       <DependentUpon>MyAlarms.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Tabs\NewAlarm.xaml.cs">
+    <Compile Include="GUI\Pages\NewAlarm.xaml.cs">
       <DependentUpon>NewAlarm.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Tabs\Settings.xaml.cs">
@@ -98,7 +98,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\Tabs\NewAlarm.xaml">
+    <EmbeddedResource Include="GUI\Pages\NewAlarm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
