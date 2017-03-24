@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AlarmPlus.GUI.MainTabbedPage"
              xmlns:pages="clr-namespace:AlarmPlus.GUI.Tabs;assembly=AlarmPlus"
-             Title="TabbedPage">
+             Title="Alarm+ - Dev version">
 
     <!--Pages can be added as references or inline-->
     <pages:MyAlarms/>
-
-    <pages:NewAlarm/>
 
     <pages:Settings/>
 

@@ -16,5 +16,10 @@ namespace AlarmPlus.GUI.Tabs
         {
             InitializeComponent();
         }
+
+        async private void NewAlarmsButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewAlarm(), true);
+        }
     }
 }
