@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace AlarmPlus.GUI.Tabs
+namespace AlarmPlus.GUI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewAlarm : ContentPage
