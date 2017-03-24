@@ -6,22 +6,18 @@
              Title="New Alarm">
 
     
-    <TableView Intent="Form">
+    <TableView Intent="Form" Margin="5">
         <TableRoot>
             <TableSection Title="Basic alarm settings">
                 <ViewCell>
-                    <StackLayout Margin="2">
-                        <TimePicker x:Name="AlarmTime" HorizontalOptions="CenterAndExpand" Scale="2.5"/>
-                    </StackLayout>
+                    <TimePicker x:Name="AlarmTime" HorizontalOptions="CenterAndExpand" Scale="2" Margin="2"/>
                 </ViewCell>
                 <EntryCell x:Name="AlarmName" Label="Alarm name   " HorizontalTextAlignment="Center"/>
             </TableSection>
             <TableSection Title="Repeat status">
                 <SwitchCell x:Name="AlarmRepeatStatus" Text="Repeat?" OnChanged="RepeatStatusChanged"/>
                 <ViewCell>
-                    <StackLayout x:Name="WeekDay">
-                        <local:DayPicker/>
-                    </StackLayout>
+                    <local:DayPicker x:Name="WeekDay"/>
                 </ViewCell>
                 <!--<ViewCell>
                     <StackLayout Orientation="Horizontal" x:Name="RepeatitionWeeks" Margin="15,0,15,0">
@@ -34,9 +30,7 @@
             <TableSection Title="Nagging settings">
                 <SwitchCell x:Name="NaggingStatus" Text="Nag with several alarms?" OnChanged="NaggingStatus_OnChanged"/>
                 <ViewCell>
-                    <StackLayout x:Name="Nagging">
-                        <local:NaggingSettings/>
-                    </StackLayout>
+                    <local:NaggingSettings x:Name="Nagging"/>
                 </ViewCell>
             </TableSection>
             <TableSection>
