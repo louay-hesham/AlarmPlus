@@ -35,9 +35,9 @@ namespace AlarmPlus.Core
             this.IsRepeated = IsRepeated;
             this.SelectedDays = SelectedDays;
             this.IsNagging = IsNagging;
-            this.AlarmsBefore = NaggingSettings[0];
-            this.AlarmsAfter = NaggingSettings[1];
-            this.Interval = NaggingSettings[2];
+            this.AlarmsBefore = NaggingSettings != null? NaggingSettings[0] : 0;
+            this.AlarmsAfter = NaggingSettings != null ? NaggingSettings[1] : 0;
+            this.Interval = NaggingSettings != null ? NaggingSettings[2] : 10;
         }
 
         public new string ToString
