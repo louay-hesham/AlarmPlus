@@ -12,8 +12,8 @@
             <ColumnDefinition Width="0.85*" />
             <ColumnDefinition Width="0.85*" />
         </Grid.ColumnDefinitions>
-        <Entry Keyboard="Numeric" Placeholder="Alarms before"       Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-        <Entry Keyboard="Numeric" Placeholder="Alarms after"        Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-        <Entry Keyboard="Numeric" Placeholder="Interval (minutes)"  Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        <Entry x:Name="Before" Keyboard="Numeric" Placeholder="Alarms before"       Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        <Entry x:Name="After" Keyboard="Numeric" Placeholder="Alarms after"        Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+        <Entry x:Name="Interval" Keyboard="Numeric" Placeholder="Interval (minutes)"  Grid.Row="0" Grid.Column="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
     </Grid>
 </ContentView>
