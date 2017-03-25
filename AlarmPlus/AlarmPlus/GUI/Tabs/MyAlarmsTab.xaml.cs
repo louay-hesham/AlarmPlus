@@ -12,11 +12,11 @@ using Xamarin.Forms.Xaml;
 namespace AlarmPlus.GUI.Tabs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MyAlarms : ContentPage
+    public partial class MyAlarmsTab : ContentPage
     {
         private int AlarmsCount;
 
-        public MyAlarms()
+        public MyAlarmsTab()
         {
             InitializeComponent();
             this.AlarmsCount = Alarm.Alarms.Count;

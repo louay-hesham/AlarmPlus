@@ -14,9 +14,9 @@ namespace AlarmPlus.GUI.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewAlarm : ContentPage
     {
-        private readonly MyAlarms MyAlarmsPage;
+        private readonly MyAlarmsTab MyAlarmsPage;
 
-        public NewAlarm(MyAlarms MyAlarmsPage)
+        public NewAlarm(MyAlarmsTab MyAlarmsPage)
         {
             InitializeComponent();
             InitializeUIComponents();
@@ -48,6 +48,7 @@ namespace AlarmPlus.GUI.Pages
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
             Alarm.Alarms.Add(alarm);
             MyAlarmsPage.AddAlarmToUI();
+
             Navigation.PopAsync(true);
         }
 

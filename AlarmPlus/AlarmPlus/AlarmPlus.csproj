@@ -42,14 +42,14 @@
     <Compile Include="GUI\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Tabs\MyAlarms.xaml.cs">
-      <DependentUpon>MyAlarms.xaml</DependentUpon>
+    <Compile Include="GUI\Tabs\MyAlarmsTab.xaml.cs">
+      <DependentUpon>MyAlarmsTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Pages\NewAlarm.xaml.cs">
       <DependentUpon>NewAlarm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Tabs\Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
+    <Compile Include="GUI\Tabs\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\UIElements\DayPicker.xaml.cs">
       <DependentUpon>DayPicker.xaml</DependentUpon>
@@ -83,7 +83,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\Tabs\MyAlarms.xaml">
+    <EmbeddedResource Include="GUI\Tabs\MyAlarmsTab.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -105,7 +105,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\Tabs\Settings.xaml">
+    <EmbeddedResource Include="GUI\Tabs\SettingsTab.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace AlarmPlus.GUI.Tabs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Settings : ContentPage
+    public partial class SettingsTab : ContentPage
     {
-        public Settings()
+        public SettingsTab()
         {
             InitializeComponent();
         }

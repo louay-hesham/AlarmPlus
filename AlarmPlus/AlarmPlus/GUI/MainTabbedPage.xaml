@@ -6,8 +6,8 @@
              Title="Alarm+ (Dev version)">
 
     <!--Pages can be added as references or inline-->
-    <pages:MyAlarms/>
+    <pages:MyAlarmsTab/>
 
-    <pages:Settings/>
+    <pages:SettingsTab/>
 
 </TabbedPage>
