@@ -10,7 +10,9 @@ namespace AlarmPlus.Core
     {
         private static int _NewAlarmCount = 0;
         public static List<Alarm> Alarms = new List<Alarm>();
+        private static int IdCount = 0;
 
+        private readonly int ID;
         public readonly TimeSpan Time;
         public readonly string AlarmName;
         public readonly bool IsRepeated;
@@ -20,6 +22,8 @@ namespace AlarmPlus.Core
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDays, bool IsNagging, int[] NaggingSettings)
         {
+            this.ID = IdCount;
+            IdCount++;
             this.Time = Time;
             if (AlarmName == null || AlarmName.Equals(string.Empty))
             {
@@ -36,5 +40,12 @@ namespace AlarmPlus.Core
             this.Interval = NaggingSettings[2];
         }
 
+        public new string ToString
+        {
+            get
+            {
+                return ("Alarm #" + this.ID);
+            }
+        }
     }
 }

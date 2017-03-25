@@ -1,4 +1,5 @@
-﻿using AlarmPlus.GUI.Pages;
+﻿using AlarmPlus.Core;
+using AlarmPlus.GUI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,11 @@ namespace AlarmPlus.GUI.Tabs
         public MyAlarms()
         {
             InitializeComponent();
-            this.AlarmsCount = 0;
+            this.AlarmsCount = Alarm.Alarms.Count;
+            AlarmsCountLabel.Text = "#Alarms = " + AlarmsCount;
         }
 
-        public void UpdateLabelText()
+        public void AddAlarmToUI()
         {
             AlarmsCount++;
             AlarmsCountLabel.Text = "#Alarms = " + AlarmsCount;

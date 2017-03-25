@@ -47,7 +47,7 @@ namespace AlarmPlus.GUI.Pages
             int[] naggingData = IsNagging.On ? Nagging.GetNaggingSettings() : new int[3];
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
             Alarm.Alarms.Add(alarm);
-            MyAlarmsPage.UpdateLabelText();
+            MyAlarmsPage.AddAlarmToUI();
             Navigation.PopAsync(true);
         }
 
