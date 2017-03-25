@@ -39,7 +39,7 @@ namespace AlarmPlus.GUI.Pages
             Nagging.IsVisible = IsNagging.On;
         }
 
-        private void SaveButton_Clicked(object sender, EventArgs e)
+        private async void SaveButton_Clicked(object sender, EventArgs e)
         {
             TimeSpan time = AlarmTime.Time;
             string alarmName = (AlarmName.Text == null || AlarmName.Text.Equals(string.Empty)) ? null : AlarmName.Text;
@@ -48,8 +48,8 @@ namespace AlarmPlus.GUI.Pages
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
             Alarm.Alarms.Add(alarm);
             MyAlarmsPage.AddAlarmToUI();
-
-            Navigation.PopAsync(true);
+            await App.SaveAlarms();
+            await Navigation.PopAsync(true);
         }
 
         private void CancelButton_Clicked(object sender, EventArgs e)
