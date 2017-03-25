@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlarmPlus.GUI.UIElements.DayPicker">
+
+    <Grid ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.85*" />
+            <ColumnDefinition Width="0.85*" />
+            <ColumnDefinition Width="0.85*" />
+            <ColumnDefinition Width="0.85*" />
+            <ColumnDefinition Width="0.85*" />
+            <ColumnDefinition Width="0.85*" />
+            <ColumnDefinition Width="0.85*" />
+        </Grid.ColumnDefinitions>
+        <Button x:Name="Sat" Text="Sat" Grid.Row="0" Grid.Column="0" Clicked="Sat_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+        <Button x:Name="Sun" Text="Sun" Grid.Row="0" Grid.Column="1" Clicked="Sun_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+        <Button x:Name="Mon" Text="Mon" Grid.Row="0" Grid.Column="2" Clicked="Mon_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+        <Button x:Name="Tue" Text="Tue" Grid.Row="0" Grid.Column="3" Clicked="Tue_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+        <Button x:Name="Wed" Text="Wed" Grid.Row="0" Grid.Column="4" Clicked="Wed_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+        <Button x:Name="Thu" Text="Thu" Grid.Row="0" Grid.Column="5" Clicked="Thu_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+        <Button x:Name="Fri" Text="Fri" Grid.Row="0" Grid.Column="6" Clicked="Fri_Clicked" HorizontalOptions="Center" BackgroundColor="Gray"/>
+    </Grid>
+</ContentView>

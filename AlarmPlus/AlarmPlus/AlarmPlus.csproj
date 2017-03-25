@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{831A6F22-CBB0-4AB6-9282-8ACE28C6B4E1}</ProjectGuid>
+    <ProjectGuid>{ACCB6609-D8C7-48F0-8F07-17C371C0D63C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Extended_Alarm</RootNamespace>
-    <AssemblyName>Extended_Alarm</AssemblyName>
+    <RootNamespace>AlarmPlus</RootNamespace>
+    <AssemblyName>AlarmPlus</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
@@ -44,19 +44,21 @@
     <Compile Include="GUI\Tabs\MyAlarms.xaml.cs">
       <DependentUpon>MyAlarms.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Tabs\NewAlarm.xaml.cs">
+    <Compile Include="GUI\Pages\NewAlarm.xaml.cs">
       <DependentUpon>NewAlarm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GUI\Tabs\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\UIElements\DayPicker.xaml.cs">
+      <DependentUpon>DayPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UIElements\NaggingSettings.xaml.cs">
+      <DependentUpon>NaggingSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\Tabs\MyAlarms.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -80,7 +82,23 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\Tabs\NewAlarm.xaml">
+    <EmbeddedResource Include="GUI\Tabs\MyAlarms.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GUI\MainTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UIElements\DayPicker.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GUI\Pages\NewAlarm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -92,7 +110,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="GUI\MainTabbedPage.xaml">
+    <EmbeddedResource Include="GUI\UIElements\NaggingSettings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

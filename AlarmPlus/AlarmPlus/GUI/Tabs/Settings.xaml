@@ -7,5 +7,5 @@
     <StackLayout>
         <Label Text="Show settings here"  HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="5" />
     </StackLayout>
-    
+
 </ContentPage>

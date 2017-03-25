@@ -1,5 +1,4 @@
 ﻿using System;
-using AlarmPlus;
 
 using Android.App;
 using Android.Content.PM;
@@ -7,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms;
 
 namespace AlarmPlus.Droid
 {
@@ -15,12 +16,13 @@ namespace AlarmPlus.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            TabLayoutResource = Resource.Layout.Tabbar;
-            ToolbarResource = Resource.Layout.Toolbar;
+            // set the layout resources first
+            FormsAppCompatActivity.ToolbarResource = Resource.Layout.Toolbar;
+            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
 
+            // then call base.OnCreate and the Xamarin.Forms methods
             base.OnCreate(bundle);
-
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            Forms.Init(this, bundle);
             LoadApplication(new App());
         }
     }

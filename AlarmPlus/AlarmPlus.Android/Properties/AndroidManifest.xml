@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.Lo2ay.AlarmPlus" android:versionCode="0" android:versionName="WIP">
-	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="19" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:installLocation="auto" package="com.lo2ay.AlarmPlus" android:versionCode="0" android:versionName="WIP">
+	<uses-sdk android:minSdkVersion="15" />
 	<uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
-	<application android:label="Alarm+"></application>
+	<application android:label="AlarmPlus" android:theme="@style/MyTheme"></application>
 </manifest>

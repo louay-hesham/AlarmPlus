@@ -8,12 +8,12 @@ using Xamarin.Forms;
 namespace AlarmPlus
 {
     public partial class App : Application
-    {
+    { 
         public App()
         {
             InitializeComponent();
 
-            MainPage = new AlarmPlus.GUI.MainTabbedPage();
+            MainPage = new NavigationPage( new AlarmPlus.GUI.MainTabbedPage() );
         }
 
         protected override void OnStart()

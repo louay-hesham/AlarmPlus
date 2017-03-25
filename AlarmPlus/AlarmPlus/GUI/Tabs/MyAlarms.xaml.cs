@@ -1,11 +1,12 @@
-﻿using System;
+﻿using AlarmPlus.GUI.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 
 namespace AlarmPlus.GUI.Tabs
 {
@@ -15,6 +16,11 @@ namespace AlarmPlus.GUI.Tabs
         public MyAlarms()
         {
             InitializeComponent();
+        }
+
+        async private void NewAlarmsButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewAlarm(), true);
         }
     }
 }
