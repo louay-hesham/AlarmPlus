@@ -20,18 +20,18 @@ namespace AlarmPlus
             await file.WriteAllTextAsync(JsonConvert.SerializeObject(Alarm.Alarms));
         }
 
-        public static async Task LoadAlarms()
+        public static void LoadAlarms()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
-            var x = await rootFolder.CheckExistsAsync("Alarms");
+            var x = rootFolder.CheckExistsAsync("Alarms").Result;
 
             if (x.Equals(PCLStorage.ExistenceCheckResult.FileExists))
             {
-                IFile file = await rootFolder.GetFileAsync("Alarms");
+                IFile file = rootFolder.GetFileAsync("Alarms").Result;
                 Alarm.Alarms.Clear();
                 if (file != null)
                 {
-                    string serializedAlarms = await file.ReadAllTextAsync();
+                    string serializedAlarms = file.ReadAllTextAsync().Result;
                     if (serializedAlarms != null && !serializedAlarms.Equals(string.Empty))
                     {
                         Alarm.Alarms.AddRange(JsonConvert.DeserializeObject<List<Alarm>>(serializedAlarms));
@@ -48,9 +48,9 @@ namespace AlarmPlus
             MainPage = new NavigationPage( new AlarmPlus.GUI.MainTabbedPage() );
         }
 
-        protected async override void OnStart()
+        protected override void OnStart()
         {
-            await LoadAlarms();
+            LoadAlarms();
         }
 
         protected override void OnSleep()
@@ -58,9 +58,9 @@ namespace AlarmPlus
             //await SaveAlarms();
         }
 
-        protected async override void OnResume()
+        protected override void OnResume()
         {
-            await LoadAlarms();
+            LoadAlarms();
         }
     }
 }

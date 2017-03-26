@@ -12,7 +12,7 @@ namespace AlarmPlus.Core
         public static List<Alarm> Alarms = new List<Alarm>();
         private static int IdCount = 0;
 
-        private readonly int ID;
+        public readonly int ID;
         public readonly TimeSpan Time;
         public readonly string AlarmName;
         public readonly bool IsRepeated;
@@ -38,14 +38,6 @@ namespace AlarmPlus.Core
             this.AlarmsBefore = NaggingSettings != null? NaggingSettings[0] : 0;
             this.AlarmsAfter = NaggingSettings != null ? NaggingSettings[1] : 0;
             this.Interval = NaggingSettings != null ? NaggingSettings[2] : 10;
-        }
-
-        public new string ToString
-        {
-            get
-            {
-                return ("Alarm #" + this.ID);
-            }
         }
     }
 }
