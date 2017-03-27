@@ -45,8 +45,10 @@ namespace AlarmPlus.GUI.Pages
             string alarmName = (AlarmName.Text == null || AlarmName.Text.Equals(string.Empty)) ? null : AlarmName.Text;
             bool[] selectedDays = IsRepeated.On ? WeekDay.ButtonsPressed : new bool[7];
             int[] naggingData = IsNagging.On ? Nagging.GetNaggingSettings() : new int[3];
+
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
             Alarm.Alarms.Add(alarm);
+
             MyAlarmsPage.AddAlarmToUI();
             await App.SaveAlarms();
             await Navigation.PopAsync(true);

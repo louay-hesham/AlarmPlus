@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace AlarmPlus.Core
         public static List<Alarm> Alarms = new List<Alarm>();
         private static int IdCount = 0;
 
+        [JsonProperty("ID")]
         public readonly int ID;
         public readonly TimeSpan Time;
         public readonly string AlarmName;
@@ -22,8 +24,8 @@ namespace AlarmPlus.Core
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDays, bool IsNagging, int[] NaggingSettings)
         {
+            IdCount = Alarms.Count != 0 ? Alarms.Last().ID + 1 : 0;
             this.ID = IdCount;
-            IdCount++;
             this.Time = Time;
             if (AlarmName == null || AlarmName.Equals(string.Empty))
             {
