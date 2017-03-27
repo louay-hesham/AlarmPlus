@@ -53,9 +53,9 @@ namespace AlarmPlus
             LoadAlarms();
         }
 
-        protected override void OnSleep()
+        protected async override void OnSleep()
         {
-            //await SaveAlarms();
+            await SaveAlarms();
         }
 
         protected override void OnResume()
