@@ -6,7 +6,14 @@
     
     <StackLayout>
         <Button x:Name="NewAlarmsButton" Text="New alarm" Clicked="NewAlarmsButton_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
-        <Label x:Name="AlarmsCountLabel" Text="0" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="5" />
+        <ListView x:Name="AlarmsListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding AlarmName}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
     </StackLayout>
 
 </ContentPage>
