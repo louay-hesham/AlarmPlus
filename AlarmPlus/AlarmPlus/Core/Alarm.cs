@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +11,43 @@ namespace AlarmPlus.Core
     public class Alarm
     {
         private static int _NewAlarmCount = 0;
-        public static List<Alarm> Alarms = new List<Alarm>();
+        public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
         private static int IdCount = 0;
+
+        private readonly string[] Days = {"Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" };
 
         [JsonProperty("ID")]
         public readonly int ID;
-        public readonly TimeSpan Time;
-        public readonly string AlarmName;
-        public readonly bool IsRepeated;
-        public readonly bool[] SelectedDays;
-        public readonly bool IsNagging;
-        public readonly int AlarmsBefore, AlarmsAfter, Interval;
+        public TimeSpan Time { get; set; }
+        public string AlarmName { get; set; }
+        public bool IsRepeated;
+        public bool[] SelectedDays;
+        public bool IsNagging;
+        public int AlarmsBefore, AlarmsAfter, Interval;
+
+        public string Repeatition
+        {
+            get
+            {
+                if (IsRepeated)
+                {
+                    var sb = new StringBuilder();
+                    for (int i = 0; i < 7; i++)
+                    {
+                        if (SelectedDays[i])
+                        {
+                            sb.Append(Days[i]);
+                            sb.Append(", ");
+                        }
+                    }
+                    return sb.ToString();
+                }
+                else
+                {
+                    return "One time";
+                }
+            }
+        }
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDays, bool IsNagging, int[] NaggingSettings)
         {
