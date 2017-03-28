@@ -9,7 +9,12 @@
         <ListView x:Name="AlarmsListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding AlarmName}" />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="15,0,15,0"> 
+                            <Label Text="{Binding AlarmName}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Repeatition}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
