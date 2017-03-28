@@ -16,5 +16,15 @@ namespace AlarmPlus.GUI.UIElements
         {
             InitializeComponent();
         }
+
+        public int[] GetNaggingSettings()
+        {
+            return new int[]
+            {
+                (Before.Text == null || Before.Text.Equals(string.Empty)) ? 0 : int.Parse(Before.Text),
+                (After.Text == null || After.Text.Equals(string.Empty)) ? 0 : int.Parse(After.Text),
+                (Interval.Text == null || Interval.Text.Equals(string.Empty)) ? 10 : int.Parse(Interval.Text)
+            };
+        }
     }
 }

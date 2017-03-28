@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlarmPlus.GUI.Tabs.MyAlarmsTab"
+             Title="My Alarms">
+    
+    <StackLayout>
+        <Button x:Name="NewAlarmsButton" Text="New alarm" Clicked="NewAlarmsButton_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
+        <Label x:Name="AlarmsCountLabel" Text="0" HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="5" />
+    </StackLayout>
+
+</ContentPage>

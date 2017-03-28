@@ -15,20 +15,13 @@
                 <EntryCell x:Name="AlarmName" Label="Alarm name   " HorizontalTextAlignment="Center"/>
             </TableSection>
             <TableSection Title="Repeat status">
-                <SwitchCell x:Name="AlarmRepeatStatus" Text="Repeat?" OnChanged="RepeatStatusChanged"/>
+                <SwitchCell x:Name="IsRepeated" Text="Repeat?" OnChanged="RepeatStatusChanged"/>
                 <ViewCell>
                     <local:DayPicker x:Name="WeekDay"/>
                 </ViewCell>
-                <!--<ViewCell>
-                    <StackLayout Orientation="Horizontal" x:Name="RepeatitionWeeks" Margin="15,0,15,0">
-                        <Label Text="Repeat every " HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
-                        <Entry x:Name="WeeksOfRepeatition" Keyboard="Numeric" Text="1" Completed="WeekRepeatEntered" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand"/>
-                        <Label x:Name="WeeksLabel" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
-                    </StackLayout>
-                </ViewCell>-->
             </TableSection>
             <TableSection Title="Nagging settings">
-                <SwitchCell x:Name="NaggingStatus" Text="Nag with several alarms?" OnChanged="NaggingStatus_OnChanged"/>
+                <SwitchCell x:Name="IsNagging" Text="Nag with several alarms?" OnChanged="NaggingStatus_OnChanged"/>
                 <ViewCell>
                     <local:NaggingSettings x:Name="Nagging"/>
                 </ViewCell>

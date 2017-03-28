@@ -12,7 +12,7 @@ namespace AlarmPlus.GUI.UIElements
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DayPicker : ContentView
     {
-        private readonly bool[] ButtonsPressed;
+        public readonly bool[] ButtonsPressed;
         private readonly Button[] Buttons;
 
         public DayPicker()
@@ -69,5 +69,6 @@ namespace AlarmPlus.GUI.UIElements
         {
             ButtonPressed(6);
         }
+
     }
 }
