@@ -14,11 +14,19 @@ namespace AlarmPlus.GUI.Tabs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MyAlarmsTab : ContentPage
     {
+        private int AlarmsCount;
 
         public MyAlarmsTab()
         {
             InitializeComponent();
-            AlarmsListView.ItemsSource = Alarm.Alarms;
+            this.AlarmsCount = Alarm.Alarms.Count;
+            AlarmsCountLabel.Text = "#Alarms = " + AlarmsCount;
+        }
+
+        public void AddAlarmToUI()
+        {
+            AlarmsCount++;
+            AlarmsCountLabel.Text = "#Alarms = " + AlarmsCount;
         }
 
         async private void NewAlarmsButton_Clicked(object sender, EventArgs e)

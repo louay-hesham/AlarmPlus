@@ -49,6 +49,7 @@ namespace AlarmPlus.GUI.Pages
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
             Alarm.Alarms.Add(alarm);
 
+            MyAlarmsPage.AddAlarmToUI();
             await App.SaveAlarms();
             await Navigation.PopAsync(true);
         }

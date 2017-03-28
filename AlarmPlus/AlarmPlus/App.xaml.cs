@@ -34,11 +34,7 @@ namespace AlarmPlus
                     string serializedAlarms = file.ReadAllTextAsync().Result;
                     if (serializedAlarms != null && !serializedAlarms.Equals(string.Empty))
                     {
-                        var loadedAlarms = JsonConvert.DeserializeObject<List<Alarm>>(serializedAlarms);
-                        foreach (var alarm in loadedAlarms)
-                        {
-                            Alarm.Alarms.Add(alarm);
-                        }
+                        Alarm.Alarms.AddRange(JsonConvert.DeserializeObject<List<Alarm>>(serializedAlarms));
                     }
                 }
             }
