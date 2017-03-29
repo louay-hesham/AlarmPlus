@@ -6,14 +6,31 @@
     
     <StackLayout>
         <Button x:Name="NewAlarmsButton" Text="New alarm" Clicked="NewAlarmsButton_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
-        <ListView x:Name="AlarmsListView">
+        <ListView x:Name="AlarmsListView" SeparatorVisibility="Default" SeparatorColor="Teal" RowHeight="140" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Margin="15,0,15,0"> 
-                            <Label Text="{Binding AlarmName}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                            <Label Text="{Binding Repeatition}" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        </StackLayout>
+                        <Grid Margin="10,5,10,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding AlarmTimeString}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Scale="2.5" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding AlarmName}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Repeatition}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Nagging}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+                            <Switch Grid.Row="0" Grid.Column="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Button Text="Edit" Grid.Row="1" Grid.Column="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Button Text="Delete" Grid.Row="2" Grid.Column="4" BackgroundColor="Red" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

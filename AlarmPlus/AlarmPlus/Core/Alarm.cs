@@ -40,12 +40,43 @@ namespace AlarmPlus.Core
                             sb.Append(", ");
                         }
                     }
-                    return sb.ToString();
+                    return sb.ToString().TrimEnd( new char[] {',',' '} );
                 }
                 else
                 {
                     return "One time";
                 }
+            }
+        }
+        public string Nagging
+        {
+            get
+            {
+                if (IsNagging)
+                {
+                    var sb = new StringBuilder();
+                    sb.Append("Alarms before = " + AlarmsBefore);
+                    sb.Append(" \nAlarms after = " + AlarmsAfter);
+                    sb.Append(" \nInterval = " + Interval);
+                    return sb.ToString();
+                }
+                else
+                {
+                    return "Will you really wake up?";
+                }
+            }
+        }
+        public string AlarmTimeString
+        {
+            get
+            {
+                int h = Time.Hours;
+                string AmOrPm = "PM";
+                if (h < 12) AmOrPm = "AM";
+                else if (h > 12) h %= 12;
+
+                string m = (Time.Minutes < 10) ? "0" + Time.Minutes : Time.Minutes.ToString();
+                return ((h==0)? "00":h.ToString()) + ":" + m + " " + AmOrPm;
             }
         }
 
