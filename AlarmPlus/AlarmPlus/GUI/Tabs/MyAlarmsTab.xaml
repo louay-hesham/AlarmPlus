@@ -28,8 +28,8 @@
                             <Label Text="{Binding Repeatition}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding Nagging}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
                             <Switch Grid.Row="0" Grid.Column="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                            <Button Text="Edit" Grid.Row="1" Grid.Column="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
-                            <Button Text="Delete" Grid.Row="2" Grid.Column="4" BackgroundColor="Red" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Button Text="Edit" Command="{Binding EditCommand}" Grid.Row="1" Grid.Column="4" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                            <Button Text="Delete" Command="{Binding DeleteCommand}" Grid.Row="2" Grid.Column="4" BackgroundColor="Red" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
