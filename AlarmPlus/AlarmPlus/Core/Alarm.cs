@@ -1,23 +1,26 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AlarmPlus.Core
 {
     public class Alarm
     {
         private static int _NewAlarmCount = 0;
-        public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
-        private static int IdCount = 0;
+        private static int _IdCount = 0;
+        private static readonly string[] _Days = { "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" };
 
-        private readonly string[] Days = { "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" };
+        public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
+
 
         [JsonProperty("ID")]
         public readonly int ID;
+        public bool Enabled;
         public TimeSpan Time { get; set; }
         public string AlarmName { get; set; }
         public bool IsRepeated;
@@ -25,6 +28,7 @@ namespace AlarmPlus.Core
         public bool IsNagging;
         public int AlarmsBefore, AlarmsAfter, Interval;
 
+        [JsonIgnore]
         public string Repeatition
         {
             get
@@ -36,7 +40,7 @@ namespace AlarmPlus.Core
                     {
                         if (SelectedDays[i])
                         {
-                            sb.Append(Days[i]);
+                            sb.Append(_Days[i]);
                             sb.Append(", ");
                         }
                     }
@@ -48,6 +52,8 @@ namespace AlarmPlus.Core
                 }
             }
         }
+
+        [JsonIgnore]
         public string Nagging
         {
             get
@@ -66,6 +72,8 @@ namespace AlarmPlus.Core
                 }
             }
         }
+
+        [JsonIgnore]
         public string AlarmTimeString
         {
             get
@@ -80,11 +88,36 @@ namespace AlarmPlus.Core
             }
         }
 
+        [JsonIgnore]
+        public bool IsEnabled
+        {
+            get
+            {
+                return Enabled;
+            }
+            set
+            {
+                Enabled = value;
+                ToggleAlarm();
+            }
+        }
+
+        [JsonIgnore]
+        public ICommand EditCommand { get; private set; }
+
+        [JsonIgnore]
+        public ICommand DeleteCommand { get; private set; }
+
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDays, bool IsNagging, int[] NaggingSettings)
         {
-            IdCount = Alarms.Count != 0 ? Alarms.Last().ID + 1 : 0;
-            this.ID = IdCount;
+            EditCommand = new Command(EditAlarm);
+            DeleteCommand = new Command(DeleteAlarm);
+
+            _IdCount = Alarms.Count != 0 ? Alarms.Last().ID + 1 : 0;
+            this.ID = _IdCount;
+
+            this.Enabled = true;
             this.Time = Time;
             if (AlarmName == null || AlarmName.Equals(string.Empty))
             {
@@ -99,6 +132,22 @@ namespace AlarmPlus.Core
             this.AlarmsBefore = NaggingSettings != null? NaggingSettings[0] : 0;
             this.AlarmsAfter = NaggingSettings != null ? NaggingSettings[1] : 0;
             this.Interval = NaggingSettings != null ? NaggingSettings[2] : 10;
+        }
+
+        private void EditAlarm()
+        {
+            Debug.WriteLine("Alarm ID to edit is " + ID);
+        }
+
+        private async void DeleteAlarm()
+        {
+            Alarms.Remove(this);
+            await App.SaveAlarms();
+        }
+
+        private void ToggleAlarm()
+        {
+            Debug.WriteLine("Alarm ID to " + (Enabled? "enable":"disable" ) + " is " + ID);
         }
     }
 }
