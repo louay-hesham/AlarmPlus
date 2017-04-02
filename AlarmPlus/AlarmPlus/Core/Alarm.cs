@@ -20,6 +20,7 @@ namespace AlarmPlus.Core
 
         [JsonProperty("ID")]
         public readonly int ID;
+        public bool Enabled;
         public TimeSpan Time { get; set; }
         public string AlarmName { get; set; }
         public bool IsRepeated;
@@ -87,14 +88,19 @@ namespace AlarmPlus.Core
             }
         }
 
-        //[JsonIgnore]
-        //public int id
-        //{
-        //    get
-        //    {
-        //        return ID;
-        //    }
-        //}
+        [JsonIgnore]
+        public bool IsEnabled
+        {
+            get
+            {
+                return Enabled;
+            }
+            set
+            {
+                Enabled = value;
+                ToggleAlarm();
+            }
+        }
 
         [JsonIgnore]
         public ICommand EditCommand { get; private set; }
@@ -102,17 +108,16 @@ namespace AlarmPlus.Core
         [JsonIgnore]
         public ICommand DeleteCommand { get; private set; }
 
-        [JsonIgnore]
-        public ICommand EnableCommand { get; private set; }
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDays, bool IsNagging, int[] NaggingSettings)
         {
             EditCommand = new Command(EditAlarm);
             DeleteCommand = new Command(DeleteAlarm);
-            EnableCommand = new Command(EnableAlarm);
 
             _IdCount = Alarms.Count != 0 ? Alarms.Last().ID + 1 : 0;
             this.ID = _IdCount;
+
+            this.Enabled = true;
             this.Time = Time;
             if (AlarmName == null || AlarmName.Equals(string.Empty))
             {
@@ -140,9 +145,9 @@ namespace AlarmPlus.Core
             await App.SaveAlarms();
         }
 
-        private void EnableAlarm()
+        private void ToggleAlarm()
         {
-            Debug.WriteLine("Alarm ID to enable/disable is " + ID);
+            Debug.WriteLine("Alarm ID to " + (Enabled? "enable":"disable" ) + " is " + ID);
         }
     }
 }

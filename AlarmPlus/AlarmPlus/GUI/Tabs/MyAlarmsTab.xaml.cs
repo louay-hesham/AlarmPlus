@@ -19,6 +19,6 @@ namespace AlarmPlus.GUI.Tabs
         {
             await Navigation.PushAsync(new NewAlarm(this), true);
         }
-        
+
     }
 }
