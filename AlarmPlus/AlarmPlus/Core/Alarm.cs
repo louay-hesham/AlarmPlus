@@ -147,6 +147,14 @@ namespace AlarmPlus.Core
 
         private void ToggleAlarm()
         {
+            if (Enabled)
+            {
+                var alarmSetter = DependencyService.Get<IAlarmSetter>();
+                if (alarmSetter != null)
+                {
+                    alarmSetter.SetAlarm(this);
+                }
+            }
             Debug.WriteLine("Alarm ID to " + (Enabled? "enable":"disable" ) + " is " + ID);
         }
     }
