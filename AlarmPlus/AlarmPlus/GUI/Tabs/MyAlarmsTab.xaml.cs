@@ -23,7 +23,10 @@ namespace AlarmPlus.GUI.Tabs
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await CrossMediaManager.Current.Play("DJ Sona - kinetic.mp3");
+            if (App.RingtoneManager != null)
+            {
+                await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
+            }
         }
     }
 }

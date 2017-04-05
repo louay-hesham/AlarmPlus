@@ -23,7 +23,10 @@ namespace AlarmPlus.GUI.Pages
 
         private async void PlayAlarmSound()
         {
-            await CrossMediaManager.Current.Play("http://www.montemagno.com/sample.mp3");
+            if (App.RingtoneManager != null)
+            {
+                await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
+            }
         }
     }
 }

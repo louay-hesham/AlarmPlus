@@ -3,8 +3,6 @@ using Newtonsoft.Json;
 using PCLStorage;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -14,6 +12,14 @@ namespace AlarmPlus
     {
 
         public static NavigationPage NavPage;
+
+        public static IRingtoneManager RingtoneManager
+        {
+            get
+            {
+                return DependencyService.Get<IRingtoneManager>();
+            }
+        }
 
         public static async Task SaveAlarms()
         {
