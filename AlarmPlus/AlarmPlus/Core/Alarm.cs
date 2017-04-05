@@ -29,6 +29,9 @@ namespace AlarmPlus.Core
         public int AlarmsBefore, AlarmsAfter, Interval;
 
         [JsonIgnore]
+        public DateTime DateAndTime;
+
+        [JsonIgnore]
         public string Repeatition
         {
             get
@@ -132,6 +135,7 @@ namespace AlarmPlus.Core
             this.AlarmsBefore = NaggingSettings != null? NaggingSettings[0] : 0;
             this.AlarmsAfter = NaggingSettings != null ? NaggingSettings[1] : 0;
             this.Interval = NaggingSettings != null ? NaggingSettings[2] : 10;
+            DateAndTime = DateTime.Now.Date.Add(Time);
         }
 
         private void EditAlarm()
