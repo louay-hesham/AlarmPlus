@@ -346,6 +346,16 @@
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "runtimeTargets": {
           "runtimes/debian.8-x64/native/System.Security.Cryptography.Native.OpenSsl.so": {
@@ -2576,6 +2586,16 @@
         "runtime": {
           "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -4877,6 +4897,16 @@
         "runtime": {
           "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -7221,6 +7251,16 @@
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -9529,6 +9569,16 @@
         "runtime": {
           "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -11878,6 +11928,16 @@
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
         }
       },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        }
+      },
       "runtime.any.System.Collections/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
@@ -14186,6 +14246,16 @@
         "runtime": {
           "lib/portable-win8+wpa81/PCLStorage.Abstractions.dll": {},
           "lib/portable-win8+wpa81/PCLStorage.dll": {}
+        }
+      },
+      "Plugin.MediaManager/0.4.0": {
+        "compile": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Plugin.MediaManager.Abstractions.dll": {},
+          "lib/uap10.0/Plugin.MediaManager.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -16610,6 +16680,38 @@
         "lib/wp8/PCLStorage.Abstractions.xml",
         "lib/wp8/PCLStorage.dll",
         "lib/wp8/PCLStorage.xml"
+      ]
+    },
+    "Plugin.MediaManager/0.4.0": {
+      "sha512": "b6LQh2TLu4JRMDKcEMRp2RZ3zrfacLvXgpHljpVUrTraUOBkcWGUMivJIzxxFTfovbzpG9KKh3R8ztDGLWtE+g==",
+      "type": "package",
+      "files": [
+        "Plugin.MediaManager.0.4.0.nupkg.sha512",
+        "Plugin.MediaManager.nuspec",
+        "lib/MonoAndroid/Plugin.MediaManager.Abstractions.dll",
+        "lib/MonoAndroid/Plugin.MediaManager.Abstractions.xml",
+        "lib/MonoAndroid/Plugin.MediaManager.dll",
+        "lib/MonoAndroid/Plugin.MediaManager.xml",
+        "lib/Xamarin.Mac/Plugin.MediaManager.Abstractions.dll",
+        "lib/Xamarin.Mac/Plugin.MediaManager.Abstractions.xml",
+        "lib/Xamarin.Mac/Plugin.MediaManager.dll",
+        "lib/Xamarin.iOS10/Plugin.MediaManager.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.MediaManager.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.MediaManager.dll",
+        "lib/Xamarin.iOS10/Plugin.MediaManager.xml",
+        "lib/Xamarin.tvOS/Plugin.MediaManager.Abstractions.dll",
+        "lib/Xamarin.tvOS/Plugin.MediaManager.Abstractions.xml",
+        "lib/Xamarin.tvOS/Plugin.MediaManager.dll",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.MediaManager.Abstractions.dll",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.MediaManager.Abstractions.xml",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.MediaManager.dll",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Plugin.MediaManager.xml",
+        "lib/uap10.0/Plugin.MediaManager.Abstractions.dll",
+        "lib/uap10.0/Plugin.MediaManager.Abstractions.xml",
+        "lib/uap10.0/Plugin.MediaManager.XML",
+        "lib/uap10.0/Plugin.MediaManager.dll",
+        "lib/uap10.0/Plugin.MediaManager.pdb",
+        "lib/uap10.0/Properties/Plugin.MediaManager.UWP.rd.xml"
       ]
     },
     "runtime.any.System.Collections/4.3.0": {
@@ -22867,6 +22969,7 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2",
       "Newtonsoft.Json >= 10.0.2",
       "PCLStorage >= 1.0.2",
+      "Plugin.MediaManager >= 0.4.0",
       "Xamarin.Forms >= 2.3.3.193"
     ],
     "UAP,Version=v10.0": []
