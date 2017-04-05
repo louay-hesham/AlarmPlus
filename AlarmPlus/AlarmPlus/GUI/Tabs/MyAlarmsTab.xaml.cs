@@ -1,5 +1,6 @@
 ﻿using AlarmPlus.Core;
 using AlarmPlus.GUI.Pages;
+using Plugin.MediaManager;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,5 +21,9 @@ namespace AlarmPlus.GUI.Tabs
             await Navigation.PushAsync(new NewAlarm(this), true);
         }
 
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await CrossMediaManager.Current.Play("DJ Sona - kinetic.mp3");
+        }
     }
 }

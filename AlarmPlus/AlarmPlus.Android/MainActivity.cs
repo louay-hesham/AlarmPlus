@@ -24,6 +24,7 @@ namespace AlarmPlus.Droid
             base.OnCreate(bundle);
             Forms.Init(this, bundle);
             LoadApplication(new App());
+
         }
     }
 }
