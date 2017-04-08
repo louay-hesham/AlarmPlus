@@ -3,8 +3,6 @@ using Newtonsoft.Json;
 using PCLStorage;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -12,6 +10,17 @@ namespace AlarmPlus
 {
     public partial class App : Application
     {
+        public static int FiredAlarmID = -1;
+
+        public static NavigationPage NavPage;
+
+        public static IRingtoneManager RingtoneManager
+        {
+            get
+            {
+                return DependencyService.Get<IRingtoneManager>();
+            }
+        }
 
         public static async Task SaveAlarms()
         {
@@ -50,7 +59,25 @@ namespace AlarmPlus
         {
             LoadAlarms();
             InitializeComponent();
-            MainPage = new NavigationPage( new AlarmPlus.GUI.MainTabbedPage() );
+            if (FiredAlarmID != -1)
+            {
+                Alarm firedAlarm = null;
+                foreach (Alarm alarm in Alarm.Alarms)
+                {
+                    if (alarm.ID == FiredAlarmID)
+                    {
+                        firedAlarm = alarm;
+                    }
+                }
+                NavPage = new NavigationPage(new GUI.Pages.FiredAlarm(firedAlarm));
+                FiredAlarmID = -1;
+            }
+            else
+            {
+                NavPage = new NavigationPage(new GUI.MainTabbedPage());
+            }
+            
+            MainPage = NavPage;
         }
 
         protected override void OnStart()
