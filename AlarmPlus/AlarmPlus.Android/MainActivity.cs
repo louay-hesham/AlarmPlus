@@ -24,7 +24,7 @@ namespace AlarmPlus.Droid
             base.OnCreate(bundle);
             Forms.Init(this, bundle);
             LoadApplication(new App());
-
+            Window.AddFlags(WindowManagerFlags.KeepScreenOn | WindowManagerFlags.DismissKeyguard | WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.TurnScreenOn);
         }
     }
 }

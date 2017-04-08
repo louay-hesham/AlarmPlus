@@ -25,6 +25,8 @@ namespace AlarmPlus.Droid
 
             Intent applicationIntent = new Intent(context, typeof(MainActivity));
             applicationIntent.AddFlags(ActivityFlags.NewTask);
+            applicationIntent.SetFlags(ActivityFlags.ReceiverForeground);
+            //applicationIntent.SetFlags(ActivityFlags.ReorderToFront);
             context.StartActivity(applicationIntent);
         }
     }

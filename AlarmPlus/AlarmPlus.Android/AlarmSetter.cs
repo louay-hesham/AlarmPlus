@@ -19,6 +19,7 @@ namespace AlarmPlus.Droid
         {
             Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
             alarmIntent.PutExtra("AlarmID", alarm.ID);
+            alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
             alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
             
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
