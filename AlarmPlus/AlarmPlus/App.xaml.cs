@@ -10,6 +10,7 @@ namespace AlarmPlus
 {
     public partial class App : Application
     {
+        public static int AlarmFiredID = -1;
 
         public static NavigationPage NavPage;
 
@@ -58,7 +59,16 @@ namespace AlarmPlus
         {
             LoadAlarms();
             InitializeComponent();
-            NavPage = new NavigationPage(new AlarmPlus.GUI.MainTabbedPage());
+            if (AlarmFiredID != -1)
+            {
+                NavPage = new NavigationPage(new GUI.Pages.FiredAlarm(Alarm.Alarms[AlarmFiredID]));
+                AlarmFiredID = -1;
+            }
+            else
+            {
+                NavPage = new NavigationPage(new GUI.MainTabbedPage());
+            }
+            
             MainPage = NavPage;
         }
 
