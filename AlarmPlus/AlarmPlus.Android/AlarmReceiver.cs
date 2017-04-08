@@ -24,8 +24,6 @@ namespace AlarmPlus.Droid
             Intent applicationIntent = new Intent(context, typeof(MainActivity));
             applicationIntent.AddFlags(ActivityFlags.NewTask);
             context.StartActivity(applicationIntent);
-
-            //App.NavPage.Navigation.PushAsync(new FiredAlarm(alarm), true);
         }
     }
 }
