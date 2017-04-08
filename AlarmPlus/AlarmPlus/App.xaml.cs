@@ -22,6 +22,14 @@ namespace AlarmPlus
             }
         }
 
+        public static IAppMinimizer AppMinimizer
+        {
+            get
+            {
+                return DependencyService.Get<IAppMinimizer>();
+            }
+        }
+
         public static async Task SaveAlarms()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -59,6 +67,7 @@ namespace AlarmPlus
         {
             LoadAlarms();
             InitializeComponent();
+            NavPage = new NavigationPage();
             if (FiredAlarmID != -1)
             {
                 Alarm firedAlarm = null;
@@ -69,12 +78,12 @@ namespace AlarmPlus
                         firedAlarm = alarm;
                     }
                 }
-                NavPage = new NavigationPage(new GUI.Pages.FiredAlarm(firedAlarm));
+                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(firedAlarm), true);
                 FiredAlarmID = -1;
             }
             else
             {
-                NavPage = new NavigationPage(new GUI.MainTabbedPage());
+                NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
             }
             
             MainPage = NavPage;

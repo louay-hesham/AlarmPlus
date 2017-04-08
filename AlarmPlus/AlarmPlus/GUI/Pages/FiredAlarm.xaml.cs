@@ -30,19 +30,21 @@ namespace AlarmPlus.GUI.Pages
             }
         }
 
-        private async void SnoozeButton_Clicked(object sender, EventArgs e)
+        private void SnoozeButton_Clicked(object sender, EventArgs e)
         {
-            await CrossMediaManager.Current.Stop();
+            CrossMediaManager.Current.Stop();
             CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
             //insert snooze code here
-            await Navigation.PopAsync(true);
+            Navigation.PopAsync(true);
+            App.AppMinimizer.MinimizeApp();
         }
 
-        private async void CloseButton_Clicked(object sender, EventArgs e)
+        private void CloseButton_Clicked(object sender, EventArgs e)
         {
-            await CrossMediaManager.Current.Stop();
+            CrossMediaManager.Current.Stop();
             CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
-            await Navigation.PopAsync(true);
+            Navigation.PopAsync(true);
+            App.AppMinimizer.MinimizeApp();
         }
     }
 }

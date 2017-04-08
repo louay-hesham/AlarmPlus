@@ -31,13 +31,15 @@ namespace AlarmPlus.Droid
         private void SetOneTimeNonNagging(Alarm alarm, AlarmManager alarmManager, PendingIntent pendingIntent)
         {
             Calendar calendar = (Calendar)Calendar.Instance.Clone();
+            calendar.Set(CalendarField.Second, 0);
+
             long millisecondsToAlarm = (alarm.Time.Hours - DateTime.Now.Hour) * (60 * 60 * 1000);
             millisecondsToAlarm = millisecondsToAlarm + (alarm.Time.Minutes - DateTime.Now.Minute) * (60 * 1000);
             if (millisecondsToAlarm <= 0)
             {
                 millisecondsToAlarm += (24 * 60 * 60 * 1000);
             }
-            calendar.Set(CalendarField.Second, 0);
+            
 
             alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + millisecondsToAlarm, pendingIntent);
         }
