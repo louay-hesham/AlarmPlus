@@ -17,7 +17,7 @@ namespace AlarmPlus.GUI.Pages
         public FiredAlarm(Alarm alarm)
         {
             InitializeComponent();
-            TimeLabel.Text = alarm.AlarmTimeString;
+            this.BindingContext = alarm;
             PlayAlarmSound();
         }
 
@@ -26,7 +26,23 @@ namespace AlarmPlus.GUI.Pages
             if (App.RingtoneManager != null)
             {
                 await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
+                CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
             }
+        }
+
+        private async void SnoozeButton_Clicked(object sender, EventArgs e)
+        {
+            await CrossMediaManager.Current.Stop();
+            CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
+            //insert snooze code here
+            await Navigation.PopAsync(true);
+        }
+
+        private async void CloseButton_Clicked(object sender, EventArgs e)
+        {
+            await CrossMediaManager.Current.Stop();
+            CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
+            await Navigation.PopAsync(true);
         }
     }
 }
