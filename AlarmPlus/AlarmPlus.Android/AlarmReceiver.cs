@@ -14,7 +14,9 @@ namespace AlarmPlus.Droid
         public override void OnReceive(Context context, Intent intent)
         {
             Toast.MakeText(context, "Alarm Fired!!", ToastLength.Long).Show();
-            int alarmID  = int.Parse(intent.GetStringExtra("AlarmID"));
+            
+            var x = (string)intent.Extras.Get("AlarmID");
+            int alarmID  = int.Parse(x);
 
             App.FiredAlarmID = alarmID;
 
