@@ -30,6 +30,14 @@ namespace AlarmPlus
             }
         }
 
+        public static IAlarmSetter AlarmSetter
+        {
+            get
+            {
+                return DependencyService.Get<IAlarmSetter>();
+            }
+        }
+
         public static async Task SaveAlarms()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;

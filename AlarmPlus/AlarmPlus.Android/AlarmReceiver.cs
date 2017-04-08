@@ -19,6 +19,7 @@ namespace AlarmPlus.Droid
             int alarmID  = int.Parse(x);
 
             App.FiredAlarmID = alarmID;
+            App.AlarmSetter.SetAlarm(alarmID);
 
             AudioManager audio = (AudioManager)context.GetSystemService(Context.AudioService);
             audio.SetStreamVolume(Stream.Music, audio.GetStreamMaxVolume(Stream.Music), VolumeNotificationFlags.Vibrate);

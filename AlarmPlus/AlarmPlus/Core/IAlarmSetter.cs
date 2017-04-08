@@ -9,5 +9,7 @@ namespace AlarmPlus.Core
     public interface IAlarmSetter
     {
         void SetAlarm(Alarm alarm);
+
+        void SetAlarm(int AlarmID);
     }
 }

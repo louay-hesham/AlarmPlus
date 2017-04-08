@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -17,6 +18,9 @@ namespace AlarmPlus.Core
 
         public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
 
+        [JsonIgnore]
+        private readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
+
 
         [JsonProperty("ID")]
         public readonly int ID;
@@ -24,12 +28,25 @@ namespace AlarmPlus.Core
         public TimeSpan Time { get; set; }
         public string AlarmName { get; set; }
         public bool IsRepeated;
-        public bool[] SelectedDays;
+        public bool[] SelectedDaysBool;
         public bool IsNagging;
         public int AlarmsBefore, AlarmsAfter, Interval;
+        public int AlarmsCount;
+        
+        [JsonIgnore]
+        private int AlarmsSize;
 
         [JsonIgnore]
-        public DateTime DateAndTime;
+        public List<DayOfWeek> SelectedDays;
+
+        [JsonIgnore]
+        public DateTime? NextDateAndTime
+        {
+            get
+            {
+                return CalculateNextAlarm();
+            }
+        }
 
         [JsonIgnore]
         public string Repeatition
@@ -41,7 +58,7 @@ namespace AlarmPlus.Core
                     var sb = new StringBuilder();
                     for (int i = 0; i < 7; i++)
                     {
-                        if (SelectedDays[i])
+                        if (SelectedDaysBool[i])
                         {
                             sb.Append(_Days[i]);
                             sb.Append(", ");
@@ -112,7 +129,7 @@ namespace AlarmPlus.Core
         public ICommand DeleteCommand { get; private set; }
 
 
-        public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDays, bool IsNagging, int[] NaggingSettings)
+        public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
         {
             EditCommand = new Command(EditAlarm);
             DeleteCommand = new Command(DeleteAlarm);
@@ -130,12 +147,51 @@ namespace AlarmPlus.Core
             }
             else this.AlarmName = AlarmName;
             this.IsRepeated = IsRepeated;
-            this.SelectedDays = SelectedDays;
+            this.SelectedDaysBool = SelectedDaysBool;
             this.IsNagging = IsNagging;
             this.AlarmsBefore = NaggingSettings != null? NaggingSettings[0] : 0;
             this.AlarmsAfter = NaggingSettings != null ? NaggingSettings[1] : 0;
             this.Interval = NaggingSettings != null ? NaggingSettings[2] : 10;
-            DateAndTime = DateTime.Now.Date.Add(Time);
+
+            this.SelectedDays = new List<DayOfWeek>();
+            for (int i = 0; i < 7; i++)
+            {
+                if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
+            }
+            AlarmsCount = 0;
+            AlarmsSize = 0;
+            if (!IsRepeated && !IsNagging) AlarmsSize = 1;
+            else if (!IsRepeated && IsNagging) AlarmsSize = 1 + AlarmsBefore + AlarmsAfter;
+            else
+            {
+                int alarmsPerDay = IsNagging ? 1 + AlarmsBefore + AlarmsAfter : 1;
+                foreach (bool day in SelectedDaysBool)
+                {
+                    if (day)
+                    {
+                        AlarmsSize += alarmsPerDay;
+                    }
+                }
+            }
+        }
+
+        private DateTime? CalculateNextAlarm()
+        {
+            if (!IsRepeated)
+            {
+                if (AlarmsCount == AlarmsSize)
+                {
+                    IsEnabled = false;
+                    return null;
+                }
+                var nextAlarm = DateTime.Now.Date.Add(Time);
+                if (nextAlarm.Hour < DateTime.Now.Hour || nextAlarm.Minute <= DateTime.Now.Minute)
+                    nextAlarm = nextAlarm.AddDays(1);
+                nextAlarm = nextAlarm.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
+                AlarmsCount++;
+                return nextAlarm;   
+            }
+            return null;
         }
 
         private void EditAlarm()
@@ -153,13 +209,11 @@ namespace AlarmPlus.Core
         {
             if (Enabled)
             {
-                var alarmSetter = DependencyService.Get<IAlarmSetter>();
-                if (alarmSetter != null)
+                if (App.AlarmSetter != null)
                 {
-                    alarmSetter.SetAlarm(this);
+                    App.AlarmSetter.SetAlarm(this);
                 }
             }
-            Debug.WriteLine("Alarm ID to " + (Enabled? "enable":"disable" ) + " is " + ID);
         }
     }
 }
