@@ -18,7 +18,7 @@ namespace AlarmPlus.Droid
         public void SetAlarm(Alarm alarm)
         {
             Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
-            alarmIntent.PutExtra("Alarm", JsonConvert.SerializeObject(alarm));
+            alarmIntent.PutExtra("AlarmID", alarm.ID);
             
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
             AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);

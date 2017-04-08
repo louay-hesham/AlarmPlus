@@ -10,7 +10,7 @@ namespace AlarmPlus
 {
     public partial class App : Application
     {
-        public static int AlarmFiredID = -1;
+        public static int FiredAlarmID = -1;
 
         public static NavigationPage NavPage;
 
@@ -59,10 +59,18 @@ namespace AlarmPlus
         {
             LoadAlarms();
             InitializeComponent();
-            if (AlarmFiredID != -1)
+            if (FiredAlarmID != -1)
             {
-                NavPage = new NavigationPage(new GUI.Pages.FiredAlarm(Alarm.Alarms[AlarmFiredID]));
-                AlarmFiredID = -1;
+                Alarm firedAlarm = null;
+                foreach (Alarm alarm in Alarm.Alarms)
+                {
+                    if (alarm.ID == FiredAlarmID)
+                    {
+                        firedAlarm = alarm;
+                    }
+                }
+                NavPage = new NavigationPage(new GUI.Pages.FiredAlarm(firedAlarm));
+                FiredAlarmID = -1;
             }
             else
             {

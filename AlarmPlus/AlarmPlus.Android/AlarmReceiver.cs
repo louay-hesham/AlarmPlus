@@ -13,10 +13,10 @@ namespace AlarmPlus.Droid
     {
         public override void OnReceive(Context context, Intent intent)
         {
-            Toast.MakeText(context, "I'm running", ToastLength.Long).Show();
-            Alarm alarm = JsonConvert.DeserializeObject <Alarm> (intent.GetStringExtra("Alarm"));
+            Toast.MakeText(context, "Alarm Fired!!", ToastLength.Long).Show();
+            int alarmID  = int.Parse(intent.GetStringExtra("AlarmID"));
 
-            App.AlarmFiredID = alarm.ID;
+            App.FiredAlarmID = alarmID;
 
             AudioManager audio = (AudioManager)context.GetSystemService(Context.AudioService);
             audio.SetStreamVolume(Stream.Music, audio.GetStreamMaxVolume(Stream.Music), VolumeNotificationFlags.Vibrate);
