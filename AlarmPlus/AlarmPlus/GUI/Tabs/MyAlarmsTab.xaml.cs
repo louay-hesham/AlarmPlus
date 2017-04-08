@@ -23,10 +23,7 @@ namespace AlarmPlus.GUI.Tabs
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (App.RingtoneManager != null)
-            {
-                await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
-            }
+            await App.NavPage.Navigation.PushAsync(new FiredAlarm(Alarm.Alarms[0]), true);
         }
     }
 }

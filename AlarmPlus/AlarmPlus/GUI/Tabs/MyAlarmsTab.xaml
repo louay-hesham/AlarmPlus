@@ -6,7 +6,7 @@
     
     <StackLayout>
         <Button x:Name="NewAlarmsButton" Text="New alarm" Clicked="NewAlarmsButton_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
-        <Button Text="Play Sound Test" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
+        <Button Text="Fire Alarm Test" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
         <ListView x:Name="AlarmsListView" SeparatorVisibility="Default" SeparatorColor="Teal" RowHeight="140" >
             <ListView.ItemTemplate>
                 <DataTemplate>
