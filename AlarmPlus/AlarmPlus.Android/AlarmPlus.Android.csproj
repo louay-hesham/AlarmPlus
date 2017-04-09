@@ -162,6 +162,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmActivity.cs" />
     <Compile Include="AlarmReceiver.cs" />
     <Compile Include="AlarmSetter.cs" />
     <Compile Include="AppMinimizer.cs" />

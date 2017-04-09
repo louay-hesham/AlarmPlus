@@ -24,7 +24,7 @@ namespace AlarmPlus.Droid
             AudioManager audio = (AudioManager)context.GetSystemService(Context.AudioService);
             audio.SetStreamVolume(Stream.Music, audio.GetStreamMaxVolume(Stream.Music), VolumeNotificationFlags.Vibrate);
 
-            Intent applicationIntent = new Intent(context, typeof(MainActivity));
+            Intent applicationIntent = new Intent(context, typeof(AlarmActivity));
             applicationIntent.AddFlags(ActivityFlags.NewTask);
             applicationIntent.SetFlags(ActivityFlags.ReceiverForeground);
             //applicationIntent.SetFlags(ActivityFlags.ReorderToFront);
