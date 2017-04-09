@@ -6,7 +6,7 @@
     <StackLayout>
         <Label Text="{Binding AlarmTimeString}" Scale="4.0" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
         <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" Margin="20">
-            <Button Text="Snooze" Clicked="SnoozeButton_Clicked" BackgroundColor="Red" HorizontalOptions="FillAndExpand"/>
+            <Button x:Name="SnoozeButton" Text="Snooze" Clicked="SnoozeButton_Clicked" BackgroundColor="Red" HorizontalOptions="FillAndExpand"/>
             <Button Text="Close" Clicked="CloseButton_Clicked" HorizontalOptions="FillAndExpand" />
         </StackLayout>
     </StackLayout>

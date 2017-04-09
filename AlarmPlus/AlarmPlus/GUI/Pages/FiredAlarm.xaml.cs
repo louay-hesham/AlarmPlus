@@ -14,10 +14,14 @@ namespace AlarmPlus.GUI.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FiredAlarm : ContentPage
     {
-        public FiredAlarm(Alarm alarm)
+        private readonly Alarm Alarm;
+
+        public FiredAlarm(Alarm Alarm)
         {
+            this.Alarm = Alarm;
             InitializeComponent();
-            this.BindingContext = alarm;
+            BindingContext = Alarm;
+            SnoozeButton.IsEnabled = !Alarm.IsNagging;
             PlayAlarmSound();
         }
 
@@ -41,6 +45,7 @@ namespace AlarmPlus.GUI.Pages
 
         private void CloseButton_Clicked(object sender, EventArgs e)
         {
+            App.AlarmSetter.SetAlarm(Alarm);
             CrossMediaManager.Current.Stop();
             CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
             Navigation.PopAsync(true);

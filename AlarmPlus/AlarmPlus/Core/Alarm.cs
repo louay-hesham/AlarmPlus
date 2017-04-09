@@ -32,21 +32,13 @@ namespace AlarmPlus.Core
         public bool IsNagging;
         public int AlarmsBefore, AlarmsAfter, Interval;
         public int AlarmsCount;
-        
+        public DateTime? NextDateAndTime;
+
         [JsonIgnore]
         private int AlarmsSize;
 
         [JsonIgnore]
         public List<DayOfWeek> SelectedDays;
-
-        [JsonIgnore]
-        public DateTime? NextDateAndTime
-        {
-            get
-            {
-                return CalculateNextAlarm();
-            }
-        }
 
         [JsonIgnore]
         public string Repeatition
@@ -94,7 +86,7 @@ namespace AlarmPlus.Core
         }
 
         [JsonIgnore]
-        public string AlarmTimeString
+        public string OriginalAlarmTimeString
         {
             get
             {
@@ -105,6 +97,21 @@ namespace AlarmPlus.Core
 
                 string m = (Time.Minutes < 10) ? "0" + Time.Minutes : Time.Minutes.ToString();
                 return ((h==0)? "00":h.ToString()) + ":" + m + " " + AmOrPm;
+            }
+        }
+
+        [JsonIgnore]
+        public string AlarmTimeString
+        {
+            get
+            {
+                int h = NextDateAndTime.Value.Hour;
+                string AmOrPm = "PM";
+                if (h < 12) AmOrPm = "AM";
+                else if (h > 12) h %= 12;
+
+                string m = (NextDateAndTime.Value.Minute < 10) ? "0" + NextDateAndTime.Value.Minute : NextDateAndTime.Value.Minute.ToString();
+                return ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
             }
         }
 
@@ -175,23 +182,26 @@ namespace AlarmPlus.Core
             }
         }
 
-        private DateTime? CalculateNextAlarm()
+        public void CalculateNextAlarm()
         {
             if (!IsRepeated)
             {
                 if (AlarmsCount == AlarmsSize)
                 {
                     IsEnabled = false;
-                    return null;
+                    AlarmsCount = 0;
+                    NextDateAndTime = null;
                 }
-                var nextAlarm = DateTime.Now.Date.Add(Time);
-                if (nextAlarm.Hour < DateTime.Now.Hour || nextAlarm.Minute <= DateTime.Now.Minute)
-                    nextAlarm = nextAlarm.AddDays(1);
-                nextAlarm = nextAlarm.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
-                AlarmsCount++;
-                return nextAlarm;   
+                else
+                {
+                    var nextDateAndTime = DateTime.Now.Date.Add(Time);
+                    if (nextDateAndTime.Hour < DateTime.Now.Hour || nextDateAndTime.Minute <= DateTime.Now.Minute)
+                        nextDateAndTime = nextDateAndTime.AddDays(1);
+                    nextDateAndTime = nextDateAndTime.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
+                    AlarmsCount++;
+                    NextDateAndTime = nextDateAndTime;
+                }
             }
-            return null;
         }
 
         private void EditAlarm()

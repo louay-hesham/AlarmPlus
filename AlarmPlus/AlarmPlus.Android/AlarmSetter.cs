@@ -46,7 +46,8 @@ namespace AlarmPlus.Droid
             calendar.Set(CalendarField.Second, 0);
             if (!alarm.IsRepeated)
             {
-                DateTime? alarmTime = alarm.NextDateAndTime;
+                alarm.CalculateNextAlarm();
+                var alarmTime = alarm.NextDateAndTime;
                 if (alarmTime.HasValue)
                 {
                     long millisecondsToAlarm = (alarmTime.Value.Hour - DateTime.Now.Hour) * (60 * 60 * 1000);
