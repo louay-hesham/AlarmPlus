@@ -35,23 +35,25 @@ namespace AlarmPlus.Droid
             alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
             alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
             
-            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
+            
             AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
-            SetAlarm(alarm, alarmManager, pendingIntent);
+            SetAlarm(alarm, alarmManager, alarmIntent);
         }
 
-        private void SetAlarm(Alarm alarm, AlarmManager alarmManager, PendingIntent pendingIntent)
+        private void SetAlarm(Alarm alarm, AlarmManager alarmManager, Intent alarmIntent)
         {
             Calendar calendar = (Calendar)Calendar.Instance.Clone();
             calendar.Set(CalendarField.Second, 0);
+            var Now = DateTime.Now;
+
             if (!alarm.IsRepeated)
             {
-                alarm.CalculateNextAlarm();
-                var alarmTime = alarm.NextDateAndTime;
-                if (alarmTime.HasValue)
+                for (int i = 0; i < alarm.AllTimes.Count; i++)
                 {
-                    long millisecondsToAlarm = (alarmTime.Value.Hour - DateTime.Now.Hour) * (60 * 60 * 1000);
-                    millisecondsToAlarm = millisecondsToAlarm + (alarmTime.Value.Minute - DateTime.Now.Minute) * (60 * 1000);
+                    PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                    var alarmTime = alarm.AllTimes[i];
+                    long millisecondsToAlarm = (alarmTime.Hour - Now.Hour) * (60 * 60 * 1000);
+                    millisecondsToAlarm = millisecondsToAlarm + (alarmTime.Minute - Now.Minute) * (60 * 1000);
                     if (millisecondsToAlarm <= 0)
                     {
                         millisecondsToAlarm += (24 * 60 * 60 * 1000);

@@ -31,8 +31,9 @@ namespace AlarmPlus.Core
         public bool[] SelectedDaysBool;
         public bool IsNagging;
         public int AlarmsBefore, AlarmsAfter, Interval;
-        public int AlarmsCount;
-        public DateTime? NextDateAndTime;
+
+        [JsonIgnore]
+        public readonly List<DateTime> AllTimes;
 
         [JsonIgnore]
         private int AlarmsSize;
@@ -101,21 +102,6 @@ namespace AlarmPlus.Core
         }
 
         [JsonIgnore]
-        public string AlarmTimeString
-        {
-            get
-            {
-                int h = NextDateAndTime.Value.Hour;
-                string AmOrPm = "PM";
-                if (h < 12) AmOrPm = "AM";
-                else if (h > 12) h %= 12;
-
-                string m = (NextDateAndTime.Value.Minute < 10) ? "0" + NextDateAndTime.Value.Minute : NextDateAndTime.Value.Minute.ToString();
-                return ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
-            }
-        }
-
-        [JsonIgnore]
         public bool IsEnabled
         {
             get
@@ -140,11 +126,12 @@ namespace AlarmPlus.Core
         {
             EditCommand = new Command(EditAlarm);
             DeleteCommand = new Command(DeleteAlarm);
+            AllTimes = new List<DateTime>();
 
             _IdCount = Alarms.Count != 0 ? Alarms.Last().ID + 1 : 0;
-            this.ID = _IdCount;
+            ID = _IdCount;
 
-            this.Enabled = true;
+            Enabled = true;
             this.Time = Time;
             if (AlarmName == null || AlarmName.Equals(string.Empty))
             {
@@ -156,17 +143,17 @@ namespace AlarmPlus.Core
             this.IsRepeated = IsRepeated;
             this.SelectedDaysBool = SelectedDaysBool;
             this.IsNagging = IsNagging;
-            this.AlarmsBefore = NaggingSettings != null? NaggingSettings[0] : 0;
-            this.AlarmsAfter = NaggingSettings != null ? NaggingSettings[1] : 0;
-            this.Interval = NaggingSettings != null ? NaggingSettings[2] : 10;
+            AlarmsBefore = IsNagging? (NaggingSettings != null? NaggingSettings[0] : 2) : 0;
+            AlarmsAfter = IsNagging? (NaggingSettings != null ? NaggingSettings[1] : 1) : 0;
+            Interval = IsNagging? (NaggingSettings != null ? NaggingSettings[2] : 10) : 0;
 
-            this.SelectedDays = new List<DayOfWeek>();
+            SelectedDays = new List<DayOfWeek>();
             for (int i = 0; i < 7; i++)
             {
                 if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
             }
-            AlarmsCount = 0;
             AlarmsSize = 0;
+
             if (!IsRepeated && !IsNagging) AlarmsSize = 1;
             else if (!IsRepeated && IsNagging) AlarmsSize = 1 + AlarmsBefore + AlarmsAfter;
             else
@@ -180,26 +167,22 @@ namespace AlarmPlus.Core
                     }
                 }
             }
+            CalculateAlarms();
         }
 
-        public void CalculateNextAlarm()
+        private void CalculateAlarms()
         {
+            int AlarmsCount = 0;
             if (!IsRepeated)
             {
-                if (AlarmsCount == AlarmsSize)
-                {
-                    IsEnabled = false;
-                    AlarmsCount = 0;
-                    NextDateAndTime = null;
-                }
-                else
+                while (AlarmsCount < AlarmsSize)
                 {
                     var nextDateAndTime = DateTime.Now.Date.Add(Time);
                     if (nextDateAndTime.Hour < DateTime.Now.Hour || nextDateAndTime.Minute <= DateTime.Now.Minute)
                         nextDateAndTime = nextDateAndTime.AddDays(1);
                     nextDateAndTime = nextDateAndTime.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
                     AlarmsCount++;
-                    NextDateAndTime = nextDateAndTime;
+                    AllTimes.Add(nextDateAndTime);
                 }
             }
         }
