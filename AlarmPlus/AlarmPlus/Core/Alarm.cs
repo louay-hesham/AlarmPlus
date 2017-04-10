@@ -19,7 +19,7 @@ namespace AlarmPlus.Core
         public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
 
         [JsonIgnore]
-        private readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
+        private static readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
 
 
         [JsonProperty("ID")]
@@ -36,7 +36,7 @@ namespace AlarmPlus.Core
         public readonly List<DateTime> AllTimes;
 
         [JsonIgnore]
-        private int AlarmsSize;
+        private int AlarmsPerDay;
 
         [JsonIgnore]
         public List<DayOfWeek> SelectedDays;
@@ -152,21 +152,10 @@ namespace AlarmPlus.Core
             {
                 if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
             }
-            AlarmsSize = 0;
+            AlarmsPerDay = 0;
 
-            if (!IsRepeated && !IsNagging) AlarmsSize = 1;
-            else if (!IsRepeated && IsNagging) AlarmsSize = 1 + AlarmsBefore + AlarmsAfter;
-            else
-            {
-                int alarmsPerDay = IsNagging ? 1 + AlarmsBefore + AlarmsAfter : 1;
-                foreach (bool day in SelectedDaysBool)
-                {
-                    if (day)
-                    {
-                        AlarmsSize += alarmsPerDay;
-                    }
-                }
-            }
+            if (!IsNagging) AlarmsPerDay = 1;
+            else AlarmsPerDay = 1 + AlarmsBefore + AlarmsAfter;
             CalculateAlarms();
         }
 
@@ -176,14 +165,35 @@ namespace AlarmPlus.Core
             if (!IsRepeated)
             {
                 var baseTime = DateTime.Now.Date.Add(Time);
-                if (baseTime.Hour < DateTime.Now.Hour || baseTime.Minute <= DateTime.Now.Minute)
+                if (baseTime.Hour < DateTime.Now.Hour || (baseTime.Hour == DateTime.Now.Hour && baseTime.Minute <= DateTime.Now.Minute))
                     baseTime = baseTime.AddDays(1);
 
-                while (AlarmsCount < AlarmsSize)
+                while (AlarmsCount < AlarmsPerDay)
                 {
                     var nextDateAndTime = baseTime.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
                     AlarmsCount++;
                     AllTimes.Add(nextDateAndTime);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    if (SelectedDaysBool[i])
+                    {
+                        AlarmsCount = 0;
+                        int daysUntilSelectedDay = (((int)Days[i] - (int)DateTime.Now.DayOfWeek) + 7) % 7;
+                        var baseTimeOfTheDay = DateTime.Now.Date.AddDays(daysUntilSelectedDay).Add(Time);
+                        if (daysUntilSelectedDay == 0 && (baseTimeOfTheDay.Hour < DateTime.Now.Hour || (baseTimeOfTheDay.Hour == DateTime.Now.Hour && baseTimeOfTheDay.Minute <= DateTime.Now.Minute)))
+                            baseTimeOfTheDay = baseTimeOfTheDay.AddDays(7);
+                        while (AlarmsCount < AlarmsPerDay)
+                        {
+                            var nextDateAndTimeOfTheDay = baseTimeOfTheDay.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
+                            AlarmsCount++;
+                            AllTimes.Add(nextDateAndTimeOfTheDay);
+                        }
+                        
+                    }
                 }
             }
         }

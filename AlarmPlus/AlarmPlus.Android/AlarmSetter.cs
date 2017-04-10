@@ -52,13 +52,19 @@ namespace AlarmPlus.Droid
                 {
                     PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
                     var alarmTime = alarm.AllTimes[i];
-                    long millisecondsToAlarm = (alarmTime.Hour - Now.Hour) * (60 * 60 * 1000);
-                    millisecondsToAlarm = millisecondsToAlarm + (alarmTime.Minute - Now.Minute) * (60 * 1000);
-                    if (millisecondsToAlarm <= 0)
-                    {
-                        millisecondsToAlarm += (24 * 60 * 60 * 1000);
-                    }
-                    alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + millisecondsToAlarm, pendingIntent);
+                    double millisecondsToAlarm = (alarmTime - DateTime.Now).TotalMilliseconds;
+                    alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + (long)millisecondsToAlarm, pendingIntent);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < alarm.AllTimes.Count; i++)
+                {
+                    PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                    var alarmTime = alarm.AllTimes[i];
+                    double millisecondsToAlarm = (alarmTime - DateTime.Now).TotalMilliseconds;
+                    long millisecondsInWeek = 7 * 24 * 60 * 60 * 1000;
+                    alarmManager.SetRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis + (long)millisecondsToAlarm, millisecondsInWeek,pendingIntent);
                 }
             }
         }
