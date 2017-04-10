@@ -28,6 +28,19 @@ namespace AlarmPlus.Droid
             SetAlarm(firedAlarm);
         }
 
+        public void CancelAlarm(int AlarmID)
+        {
+            Alarm firedAlarm = null;
+            foreach (Alarm alarm in Alarm.Alarms)
+            {
+                if (alarm.ID == AlarmID)
+                {
+                    firedAlarm = alarm;
+                }
+            }
+            CancelAlarm(firedAlarm);
+        }
+
         public void SetAlarm(Alarm alarm)
         {
             Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
@@ -38,6 +51,18 @@ namespace AlarmPlus.Droid
             
             AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
             SetAlarm(alarm, alarmManager, alarmIntent);
+        }
+
+        public void CancelAlarm(Alarm alarm)
+        {
+            Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
+            alarmIntent.PutExtra("AlarmID", alarm.ID);
+            alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
+            alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
+
+
+            AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
+            CancelAlarm(alarm, alarmManager, alarmIntent);
         }
 
         private void SetAlarm(Alarm alarm, AlarmManager alarmManager, Intent alarmIntent)
@@ -66,6 +91,16 @@ namespace AlarmPlus.Droid
                     long millisecondsInWeek = 7 * 24 * 60 * 60 * 1000;
                     alarmManager.SetRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis + (long)millisecondsToAlarm, millisecondsInWeek,pendingIntent);
                 }
+            }
+        }
+
+        private void CancelAlarm(Alarm alarm, AlarmManager alarmManager, Intent alarmIntent)
+        {
+            int baseID = GetFirstID(alarm);
+            for (int i = 0; i < alarm.AllTimes.Count; i++)
+            {
+                PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                pendingIntent.Cancel();
             }
         }
 

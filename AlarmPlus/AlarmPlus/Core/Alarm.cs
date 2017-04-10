@@ -207,6 +207,7 @@ namespace AlarmPlus.Core
         {
             Alarms.Remove(this);
             await App.SaveAlarms();
+            App.AlarmSetter.CancelAlarm(this);
         }
 
         private void ToggleAlarm()
@@ -217,6 +218,10 @@ namespace AlarmPlus.Core
                 {
                     App.AlarmSetter.SetAlarm(this);
                 }
+            }
+            else
+            {
+                App.AlarmSetter.CancelAlarm(this);
             }
         }
     }

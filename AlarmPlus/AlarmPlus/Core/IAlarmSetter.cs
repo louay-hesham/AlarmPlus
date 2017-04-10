@@ -11,5 +11,9 @@ namespace AlarmPlus.Core
         void SetAlarm(Alarm alarm);
 
         void SetAlarm(int AlarmID);
+
+        void CancelAlarm(Alarm alarm);
+
+        void CancelAlarm(int AlarmID);
     }
 }
