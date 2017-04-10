@@ -175,12 +175,13 @@ namespace AlarmPlus.Core
             int AlarmsCount = 0;
             if (!IsRepeated)
             {
+                var baseTime = DateTime.Now.Date.Add(Time);
+                if (baseTime.Hour < DateTime.Now.Hour || baseTime.Minute <= DateTime.Now.Minute)
+                    baseTime = baseTime.AddDays(1);
+
                 while (AlarmsCount < AlarmsSize)
                 {
-                    var nextDateAndTime = DateTime.Now.Date.Add(Time);
-                    if (nextDateAndTime.Hour < DateTime.Now.Hour || nextDateAndTime.Minute <= DateTime.Now.Minute)
-                        nextDateAndTime = nextDateAndTime.AddDays(1);
-                    nextDateAndTime = nextDateAndTime.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
+                    var nextDateAndTime = baseTime.AddMinutes((AlarmsCount - AlarmsBefore) * Interval);
                     AlarmsCount++;
                     AllTimes.Add(nextDateAndTime);
                 }

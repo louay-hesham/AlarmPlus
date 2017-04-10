@@ -45,12 +45,12 @@ namespace AlarmPlus.Droid
             Calendar calendar = (Calendar)Calendar.Instance.Clone();
             calendar.Set(CalendarField.Second, 0);
             var Now = DateTime.Now;
-
+            int baseID = GetFirstID(alarm);
             if (!alarm.IsRepeated)
             {
                 for (int i = 0; i < alarm.AllTimes.Count; i++)
                 {
-                    PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                    PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
                     var alarmTime = alarm.AllTimes[i];
                     long millisecondsToAlarm = (alarmTime.Hour - Now.Hour) * (60 * 60 * 1000);
                     millisecondsToAlarm = millisecondsToAlarm + (alarmTime.Minute - Now.Minute) * (60 * 1000);
@@ -61,6 +61,13 @@ namespace AlarmPlus.Droid
                     alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + millisecondsToAlarm, pendingIntent);
                 }
             }
+        }
+
+        private int GetFirstID(Alarm alarm)
+        {
+            int i = 10;
+            while (i < alarm.AllTimes.Count) i *= 10;
+            return (alarm.ID * i);
         }
     }
 }
