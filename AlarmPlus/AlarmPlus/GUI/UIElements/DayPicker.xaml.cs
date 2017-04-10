@@ -44,13 +44,25 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[4] = Wed;
             Buttons[5] = Thu;
             Buttons[6] = Fri;
-            for (int i = 1; i <= 5; i++) ButtonPressed(i);
+            for (int j = 1; j <= 5; j++) ButtonPressed(j);
         }
 
         private void ButtonPressed(int i)
         {
             ButtonsPressed[i] = !ButtonsPressed[i];
             Buttons[i].BackgroundColor = ButtonsPressed[i]? Color.FromRgb(0, 255, 255) : Color.Gray;
+
+            bool stayVisible = false;
+            foreach (bool x in ButtonsPressed) stayVisible = stayVisible | x;
+            if (!stayVisible)
+            {
+                for (int j = 1; j <= 5; j++)
+                {
+                    ButtonsPressed[j] = true;
+                    Buttons[j].BackgroundColor = Color.FromRgb(0, 255, 255);
+                }
+            }
+            IsVisible = stayVisible;
         }
 
         private void Sat_Clicked(object sender, EventArgs e)

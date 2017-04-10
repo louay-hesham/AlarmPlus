@@ -25,18 +25,10 @@ namespace AlarmPlus.GUI.Pages
 
         private void InitializeUIComponents()
         {
-            WeekDay.IsVisible = IsRepeated.On;
-            Nagging.IsVisible = IsNagging.On;
-        }
-
-        private void RepeatStatusChanged(object sender, EventArgs e)
-        {
-            WeekDay.IsVisible = IsRepeated.On;
-        }
-
-        private void NaggingStatus_OnChanged(object sender, ToggledEventArgs e)
-        {
-            Nagging.IsVisible = IsNagging.On;
+            IsRepeated.BindingContext = WeekDay;
+            IsRepeated.On = false;
+            IsNagging.BindingContext = Nagging;
+            IsNagging.On = false;
         }
 
         private async void SaveButton_Clicked(object sender, EventArgs e)
