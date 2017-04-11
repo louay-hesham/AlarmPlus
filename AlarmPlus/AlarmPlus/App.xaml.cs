@@ -104,6 +104,11 @@ namespace AlarmPlus
         protected override void OnResume()
         {
             LoadAlarms();
+            if (FiredAlarmID != -1)
+            {
+                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                alarm.IsEnabled = false;
+            }
         }
     }
 }
