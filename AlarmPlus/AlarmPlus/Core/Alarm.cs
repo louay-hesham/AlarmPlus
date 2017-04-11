@@ -155,9 +155,9 @@ namespace AlarmPlus.Core
             this.IsRepeated = IsRepeated;
             this.SelectedDaysBool = SelectedDaysBool;
             this.IsNagging = IsNagging;
-            AlarmsBefore = IsNagging? (NaggingSettings != null? NaggingSettings[0] : 2) : 0;
-            AlarmsAfter = IsNagging? (NaggingSettings != null ? NaggingSettings[1] : 1) : 0;
-            Interval = IsNagging? (NaggingSettings != null ? NaggingSettings[2] : 10) : 0;
+            AlarmsBefore = IsNagging? (NaggingSettings != null? NaggingSettings[0] : App.AppSettings.AlarmsBefore) : 0;
+            AlarmsAfter = IsNagging? (NaggingSettings != null ? NaggingSettings[1] : App.AppSettings.AlarmsAfter) : 0;
+            Interval = IsNagging? (NaggingSettings != null ? NaggingSettings[2] : App.AppSettings.NaggingInterval) : 0;
 
             SelectedDays = new List<DayOfWeek>();
             for (int i = 0; i < 7; i++)

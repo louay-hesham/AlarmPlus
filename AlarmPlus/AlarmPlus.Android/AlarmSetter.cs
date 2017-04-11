@@ -123,7 +123,7 @@ namespace AlarmPlus.Droid
 
             PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 5555555, alarmIntent, PendingIntentFlags.UpdateCurrent);
             AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
-            alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + (10 * 60 * 1000), pendingIntent);
+            alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + (App.AppSettings.SnoozeInterval * 60 * 1000), pendingIntent);
         }
     }
 }
