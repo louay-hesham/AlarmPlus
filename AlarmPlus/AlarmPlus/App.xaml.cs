@@ -78,15 +78,7 @@ namespace AlarmPlus
             NavPage = new NavigationPage();
             if (FiredAlarmID != -1)
             {
-                Alarm firedAlarm = null;
-                foreach (Alarm alarm in Alarm.Alarms)
-                {
-                    if (alarm.ID == FiredAlarmID)
-                    {
-                        firedAlarm = alarm;
-                    }
-                }
-                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(firedAlarm), true);
+                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(Alarm.GetAlarmByID(FiredAlarmID)), true);
                 FiredAlarmID = -1;
             }
             else

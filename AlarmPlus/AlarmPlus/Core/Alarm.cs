@@ -12,14 +12,26 @@ namespace AlarmPlus.Core
 {
     public class Alarm
     {
+        private static readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
         private static int _NewAlarmCount = 0;
         private static int _IdCount = 0;
         private static readonly string[] _Days = { "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" };
 
         public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
-
-        [JsonIgnore]
-        private static readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
+        
+        public static Alarm GetAlarmByID(int id)
+        {
+            Alarm foundAlarm = null;
+            foreach (Alarm alarm in Alarm.Alarms)
+            {
+                if (alarm.ID == id)
+                {
+                    foundAlarm = alarm;
+                    break;
+                }
+            }
+            return foundAlarm;
+        }
 
 
         [JsonProperty("ID")]
