@@ -31,7 +31,7 @@ namespace AlarmPlus.GUI.Pages
 
             string m = (Now.Minute < 10) ? "0" + Now.Minute : Now.Minute.ToString();
             TimeLabel.Text = ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
-
+            if (!Alarm.IsRepeated) Alarm.IsEnabled = false;
             PlayAlarmSound();
         }
 
@@ -55,7 +55,6 @@ namespace AlarmPlus.GUI.Pages
 
         private void CloseButton_Clicked(object sender, EventArgs e)
         {
-            App.AlarmSetter.SetAlarm(Alarm);
             CrossMediaManager.Current.Stop();
             CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
             Navigation.PopAsync(true);
