@@ -14,6 +14,8 @@ namespace AlarmPlus
 
         public static NavigationPage NavPage;
 
+        public static Settings AppSettings;
+
         public static IRingtoneManager RingtoneManager
         {
             get
@@ -71,8 +73,42 @@ namespace AlarmPlus
             
         }
 
+        public static async Task SaveAppSettings()
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFile file = await rootFolder.CreateFileAsync("Settings", CreationCollisionOption.ReplaceExisting);
+            await file.WriteAllTextAsync(JsonConvert.SerializeObject(AppSettings));
+        }
+
+        public static void LoadAppSettings()
+        {
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            var x = rootFolder.CheckExistsAsync("Settings").Result;
+            if (x.Equals(ExistenceCheckResult.FileExists))
+            {
+                IFile file = rootFolder.GetFileAsync("Settings").Result;
+                if (file != null)
+                {
+                    string serializedSettings = file.ReadAllTextAsync().Result;
+                    if (serializedSettings != null && !serializedSettings.Equals(string.Empty))
+                    {
+                        AppSettings = JsonConvert.DeserializeObject<Settings>(serializedSettings);
+                    }
+                    else
+                    {
+                        AppSettings = new Settings("2", "1", "10", "10");
+                    }
+                }
+            }
+            else
+            {
+                AppSettings = new Settings("2", "1", "10", "10");
+            }
+        }
+
         public App()
         {
+            LoadAppSettings();
             LoadAlarms();
             InitializeComponent();
             NavPage = new NavigationPage();
@@ -88,7 +124,8 @@ namespace AlarmPlus
 
         protected override void OnStart()
         {
-            LoadAlarms();
+            //LoadAlarms();
+            //LoadAppSettings();
             if (FiredAlarmID != -1)
             {
                 Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
@@ -99,10 +136,12 @@ namespace AlarmPlus
         protected async override void OnSleep()
         {
             await SaveAlarms();
+            await SaveAppSettings();
         }
 
         protected override void OnResume()
         {
+            LoadAppSettings();
             LoadAlarms();
             if (FiredAlarmID != -1)
             {
