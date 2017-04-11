@@ -26,6 +26,9 @@ namespace AlarmPlus.GUI.Pages
             IsRepeated.On = AlarmToEdit.IsRepeated;
             IsNagging.On = AlarmToEdit.IsNagging;
 
+            WeekDay.SelectDays(AlarmToEdit.SelectedDaysBool);
+            Nagging.SetNaggingSettings(AlarmToEdit.AlarmsBefore, AlarmToEdit.AlarmsAfter, AlarmToEdit.Interval);
+
             Title = "Edit " + AlarmToEdit.AlarmName;
         }
 

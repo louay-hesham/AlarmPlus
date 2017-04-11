@@ -12,7 +12,7 @@ namespace AlarmPlus.GUI.UIElements
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DayPicker : ContentView
     {
-        public readonly bool[] ButtonsPressed;
+        public bool[] ButtonsPressed;
         public List<DayOfWeek> SelectedDays
         {
             get
@@ -45,6 +45,23 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[5] = Thu;
             Buttons[6] = Fri;
             for (int j = 1; j <= 5; j++) ButtonPressed(j);
+        }
+
+        public void SelectDays(bool[] SelectedDays)
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                ButtonsPressed[i] = false;
+                Buttons[i].BackgroundColor = Color.Gray;
+            }
+
+            for (int j = 0; j < 7; j++)
+            {
+                if (SelectedDays[j])
+                {
+                    ButtonPressed(j);
+                }
+            }
         }
 
         private void ButtonPressed(int i)

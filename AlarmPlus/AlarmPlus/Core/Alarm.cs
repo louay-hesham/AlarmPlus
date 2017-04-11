@@ -174,6 +174,8 @@ namespace AlarmPlus.Core
 
         public void SetAlarmProperties(Alarm alarm)
         {
+            App.AlarmSetter.CancelAlarm(this);
+
             Time = alarm.Time;
             AlarmName = alarm.AlarmName;
             IsRepeated = alarm.IsRepeated;
@@ -188,6 +190,8 @@ namespace AlarmPlus.Core
 
             Alarms.Remove(this);
             Alarms.Add(this);
+
+            App.AlarmSetter.SetAlarm(this);
         }
 
         private void CalculateAlarms()
