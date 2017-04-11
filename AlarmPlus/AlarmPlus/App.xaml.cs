@@ -14,8 +14,6 @@ namespace AlarmPlus
 
         public static NavigationPage NavPage;
 
-        public static App Instance = null;
-
         public static IRingtoneManager RingtoneManager
         {
             get
@@ -86,7 +84,6 @@ namespace AlarmPlus
                 NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(alarm), true);
                 FiredAlarmID = -1;
             }
-            Instance = this;
         }
 
         protected override void OnStart()
