@@ -15,5 +15,7 @@ namespace AlarmPlus.Core
         void CancelAlarm(Alarm alarm);
 
         void CancelAlarm(int AlarmID);
+
+        void Snooze(Alarm BaseAlarm);
     }
 }

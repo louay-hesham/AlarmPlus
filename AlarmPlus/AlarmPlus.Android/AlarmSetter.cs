@@ -110,5 +110,20 @@ namespace AlarmPlus.Droid
             while (i < alarm.AllTimes.Count) i *= 10;
             return (alarm.ID * i);
         }
+
+        public void Snooze(Alarm BaseAlarm)
+        {
+            Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
+            alarmIntent.PutExtra("AlarmID", BaseAlarm.ID);
+            alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
+            alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
+
+            Calendar calendar = (Calendar)Calendar.Instance.Clone();
+            calendar.Set(CalendarField.Second, 0);
+
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 5555555, alarmIntent, PendingIntentFlags.UpdateCurrent);
+            AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
+            alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + (10 * 60 * 1000), pendingIntent);
+        }
     }
 }
