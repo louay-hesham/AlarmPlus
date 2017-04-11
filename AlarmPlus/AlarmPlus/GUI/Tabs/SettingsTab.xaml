@@ -4,8 +4,17 @@
              x:Class="AlarmPlus.GUI.Tabs.SettingsTab"
              Title="Settings">
 
-    <StackLayout>
-        <Label Text="Show settings here"  HorizontalTextAlignment="Center" HorizontalOptions="Center" Margin="5" />
-    </StackLayout>
+    <TableView Intent="Form" Margin="10">
+        <TableRoot>
+            <TableSection Title="Default Nagging Settings">
+                <EntryCell Label="Alarms Before" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                <EntryCell Label="Alarms After" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                <EntryCell Label="Interval (minutes)" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+            </TableSection>
+            <TableSection Title="Default Snooze Settings">
+                <EntryCell Label="Default Interval (minutes)" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+            </TableSection>
+        </TableRoot>
+    </TableView>
 
 </ContentPage>
