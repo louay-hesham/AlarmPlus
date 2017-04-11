@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms;
+using AlarmPlus.Core;
 
 namespace AlarmPlus.Droid
 {
@@ -33,8 +34,15 @@ namespace AlarmPlus.Droid
 
             // Create your application here
             Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            if (App.Instance != null)
+            {
+                App.NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(Alarm.GetAlarmByID(App.FiredAlarmID)), true);
+                LoadApplication(App.Instance);
+            }
+            else LoadApplication(new App());
+
             Window.AddFlags(WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.TurnScreenOn);
+            Instance = this;
         }
     }
 }

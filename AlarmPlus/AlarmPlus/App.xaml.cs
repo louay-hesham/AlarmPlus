@@ -14,6 +14,8 @@ namespace AlarmPlus
 
         public static NavigationPage NavPage;
 
+        public static App Instance = null;
+
         public static IRingtoneManager RingtoneManager
         {
             get
@@ -76,22 +78,25 @@ namespace AlarmPlus
             LoadAlarms();
             InitializeComponent();
             NavPage = new NavigationPage();
+            MainPage = NavPage;
+            NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
             if (FiredAlarmID != -1)
             {
-                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(Alarm.GetAlarmByID(FiredAlarmID)), true);
+                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(alarm), true);
                 FiredAlarmID = -1;
             }
-            else
-            {
-                NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
-            }
-            
-            MainPage = NavPage;
+            Instance = this;
         }
 
         protected override void OnStart()
         {
             LoadAlarms();
+            if (FiredAlarmID != -1)
+            {
+                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                alarm.IsEnabled = false;
+            }
         }
 
         protected async override void OnSleep()
