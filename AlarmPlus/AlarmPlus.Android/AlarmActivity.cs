@@ -17,6 +17,16 @@ namespace AlarmPlus.Droid
     [Activity(Label = "AlarmActivity", MainLauncher = false)]
     public class AlarmActivity : FormsAppCompatActivity
     {
+        public static AlarmActivity Instance = null;
+
+        public static void Minimize()
+        {
+            Intent startMain = new Intent(Intent.ActionMain);
+            startMain.AddCategory(Intent.CategoryHome);
+            startMain.SetFlags(ActivityFlags.NewTask);
+            Instance.StartActivity(startMain);
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

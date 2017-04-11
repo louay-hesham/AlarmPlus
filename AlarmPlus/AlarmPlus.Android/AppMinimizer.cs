@@ -20,7 +20,7 @@ namespace AlarmPlus.Droid
     {
         public void MinimizeApp()
         {
-            Process.KillProcess(Process.MyPid());
+            AlarmActivity.Minimize();
         }
     }
 }
