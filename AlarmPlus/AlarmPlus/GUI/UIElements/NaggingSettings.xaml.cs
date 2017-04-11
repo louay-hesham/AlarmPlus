@@ -17,6 +17,13 @@ namespace AlarmPlus.GUI.UIElements
             InitializeComponent();
         }
 
+        public void SetNaggingSettings(int Before, int After, int Interval)
+        {
+            this.Before.Text = Before.ToString();
+            this.After.Text = After.ToString();
+            this.Interval.Text = Interval.ToString();
+        }
+
         public int[] GetNaggingSettings()
         {
             return new int[]

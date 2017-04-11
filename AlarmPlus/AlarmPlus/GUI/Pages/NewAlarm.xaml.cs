@@ -14,13 +14,29 @@ namespace AlarmPlus.GUI.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewAlarm : ContentPage
     {
-        private readonly MyAlarmsTab MyAlarmsPage;
+        private Alarm AlarmToEdit;
 
-        public NewAlarm(MyAlarmsTab MyAlarmsPage)
+        public NewAlarm(Alarm AlarmToEdit)
+        {
+            this.AlarmToEdit = AlarmToEdit;
+            InitializeComponent();
+            InitializeUIComponents();
+            AlarmTime.Time = AlarmToEdit.Time;
+            AlarmName.Text = AlarmToEdit.AlarmName;
+            IsRepeated.On = AlarmToEdit.IsRepeated;
+            IsNagging.On = AlarmToEdit.IsNagging;
+
+            WeekDay.SelectDays(AlarmToEdit.SelectedDaysBool);
+            Nagging.SetNaggingSettings(AlarmToEdit.AlarmsBefore, AlarmToEdit.AlarmsAfter, AlarmToEdit.Interval);
+
+            Title = "Edit " + AlarmToEdit.AlarmName;
+        }
+
+        public NewAlarm()
         {
             InitializeComponent();
             InitializeUIComponents();
-            this.MyAlarmsPage = MyAlarmsPage;
+            AlarmToEdit = null;
         }
 
         private void InitializeUIComponents()
@@ -39,7 +55,8 @@ namespace AlarmPlus.GUI.Pages
             int[] naggingData = IsNagging.On ? Nagging.GetNaggingSettings() : new int[3];
 
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
-            Alarm.Alarms.Add(alarm);
+            if (AlarmToEdit == null) Alarm.Alarms.Add(alarm);
+            else AlarmToEdit.SetAlarmProperties(alarm);
 
             await App.SaveAlarms();
             await Navigation.PopAsync(true);

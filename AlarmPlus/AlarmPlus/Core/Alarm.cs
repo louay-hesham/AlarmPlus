@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AlarmPlus.GUI.Pages;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -171,6 +172,28 @@ namespace AlarmPlus.Core
             CalculateAlarms();
         }
 
+        public void SetAlarmProperties(Alarm alarm)
+        {
+            App.AlarmSetter.CancelAlarm(this);
+
+            Time = alarm.Time;
+            AlarmName = alarm.AlarmName;
+            IsRepeated = alarm.IsRepeated;
+            IsNagging = alarm.IsNagging;
+            SelectedDaysBool = alarm.SelectedDaysBool;
+            AlarmsBefore = alarm.AlarmsBefore;
+            AlarmsAfter = alarm.AlarmsAfter;
+            Interval = alarm.Interval;
+
+            AlarmsPerDay = alarm.AlarmsPerDay;
+            SelectedDays = alarm.SelectedDays;
+
+            Alarms.Remove(this);
+            Alarms.Add(this);
+
+            App.AlarmSetter.SetAlarm(this);
+        }
+
         private void CalculateAlarms()
         {
             int AlarmsCount = 0;
@@ -210,9 +233,9 @@ namespace AlarmPlus.Core
             }
         }
 
-        private void EditAlarm()
+        private async void EditAlarm()
         {
-            Debug.WriteLine("Alarm ID to edit is " + ID);
+            await App.NavPage.Navigation.PushAsync(new NewAlarm(this), true);
         }
 
         private async void DeleteAlarm()
