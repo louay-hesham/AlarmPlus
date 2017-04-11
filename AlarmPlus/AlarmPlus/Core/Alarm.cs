@@ -212,7 +212,7 @@ namespace AlarmPlus.Core
 
         private void EditAlarm()
         {
-            Debug.WriteLine("Alarm ID to edit is " + ID);
+            
         }
 
         private async void DeleteAlarm()

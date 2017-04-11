@@ -14,13 +14,10 @@ namespace AlarmPlus.GUI.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewAlarm : ContentPage
     {
-        private readonly MyAlarmsTab MyAlarmsPage;
-
-        public NewAlarm(MyAlarmsTab MyAlarmsPage)
+        public NewAlarm()
         {
             InitializeComponent();
             InitializeUIComponents();
-            this.MyAlarmsPage = MyAlarmsPage;
         }
 
         private void InitializeUIComponents()
