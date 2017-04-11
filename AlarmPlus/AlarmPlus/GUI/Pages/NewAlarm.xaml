@@ -15,13 +15,13 @@
                 <EntryCell x:Name="AlarmName" Label="Alarm name   " HorizontalTextAlignment="Center"/>
             </TableSection>
             <TableSection Title="Repeat status">
-                <SwitchCell x:Name="IsRepeated" Text="Repeat?" OnChanged="RepeatStatusChanged"/>
+                <SwitchCell x:Name="IsRepeated" Text="Repeat?" On="{Binding IsVisible, Mode=TwoWay}"/>
                 <ViewCell>
                     <local:DayPicker x:Name="WeekDay"/>
                 </ViewCell>
             </TableSection>
             <TableSection Title="Nagging settings">
-                <SwitchCell x:Name="IsNagging" Text="Nag with several alarms?" OnChanged="NaggingStatus_OnChanged"/>
+                <SwitchCell x:Name="IsNagging" Text="Nag with several alarms?" On="{Binding IsVisible, Mode=TwoWay}"/>
                 <ViewCell>
                     <local:NaggingSettings x:Name="Nagging"/>
                 </ViewCell>

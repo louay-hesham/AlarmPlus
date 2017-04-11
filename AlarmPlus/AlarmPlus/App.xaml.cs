@@ -22,6 +22,22 @@ namespace AlarmPlus
             }
         }
 
+        public static IAppMinimizer AppMinimizer
+        {
+            get
+            {
+                return DependencyService.Get<IAppMinimizer>();
+            }
+        }
+
+        public static IAlarmSetter AlarmSetter
+        {
+            get
+            {
+                return DependencyService.Get<IAlarmSetter>();
+            }
+        }
+
         public static async Task SaveAlarms()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
@@ -59,30 +75,25 @@ namespace AlarmPlus
         {
             LoadAlarms();
             InitializeComponent();
+            NavPage = new NavigationPage();
+            MainPage = NavPage;
+            NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
             if (FiredAlarmID != -1)
             {
-                Alarm firedAlarm = null;
-                foreach (Alarm alarm in Alarm.Alarms)
-                {
-                    if (alarm.ID == FiredAlarmID)
-                    {
-                        firedAlarm = alarm;
-                    }
-                }
-                NavPage = new NavigationPage(new GUI.Pages.FiredAlarm(firedAlarm));
+                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(alarm), true);
                 FiredAlarmID = -1;
             }
-            else
-            {
-                NavPage = new NavigationPage(new GUI.MainTabbedPage());
-            }
-            
-            MainPage = NavPage;
         }
 
         protected override void OnStart()
         {
             LoadAlarms();
+            if (FiredAlarmID != -1)
+            {
+                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                alarm.IsEnabled = false;
+            }
         }
 
         protected async override void OnSleep()
@@ -93,6 +104,11 @@ namespace AlarmPlus
         protected override void OnResume()
         {
             LoadAlarms();
+            if (FiredAlarmID != -1)
+            {
+                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                alarm.IsEnabled = false;
+            }
         }
     }
 }

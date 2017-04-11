@@ -15,31 +15,115 @@ namespace AlarmPlus.Droid
 {
     class AlarmSetter : IAlarmSetter
     {
+        public void SetAlarm(int AlarmID)
+        {
+            Alarm firedAlarm = null;
+            foreach (Alarm alarm in Alarm.Alarms)
+            {
+                if (alarm.ID == AlarmID)
+                {
+                    firedAlarm = alarm;
+                }
+            }
+            SetAlarm(firedAlarm);
+        }
+
+        public void CancelAlarm(int AlarmID)
+        {
+            Alarm firedAlarm = null;
+            foreach (Alarm alarm in Alarm.Alarms)
+            {
+                if (alarm.ID == AlarmID)
+                {
+                    firedAlarm = alarm;
+                }
+            }
+            CancelAlarm(firedAlarm);
+        }
+
         public void SetAlarm(Alarm alarm)
         {
             Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
             alarmIntent.PutExtra("AlarmID", alarm.ID);
+            alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
+            alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
             
-            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 0, alarmIntent, PendingIntentFlags.UpdateCurrent);
+            
             AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
-            if (!alarm.IsRepeated && !alarm.IsNagging)
+            SetAlarm(alarm, alarmManager, alarmIntent);
+        }
+
+        public void CancelAlarm(Alarm alarm)
+        {
+            Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
+            alarmIntent.PutExtra("AlarmID", alarm.ID);
+            alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
+            alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
+
+
+            AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
+            CancelAlarm(alarm, alarmManager, alarmIntent);
+        }
+
+        private void SetAlarm(Alarm alarm, AlarmManager alarmManager, Intent alarmIntent)
+        {
+            Calendar calendar = (Calendar)Calendar.Instance.Clone();
+            //calendar.Set(CalendarField.Second, 0);
+            var Now = DateTime.Now;
+            int baseID = GetFirstID(alarm);
+            if (!alarm.IsRepeated)
             {
-                SetOneTimeNonNagging(alarm, alarmManager, pendingIntent);
+                for (int i = 0; i < alarm.AllTimes.Count; i++)
+                {
+                    PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                    var alarmTime = alarm.AllTimes[i];
+                    double millisecondsToAlarm = (alarmTime - DateTime.Now).TotalMilliseconds;
+                    alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + (long)millisecondsToAlarm, pendingIntent);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < alarm.AllTimes.Count; i++)
+                {
+                    PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                    var alarmTime = alarm.AllTimes[i];
+                    double millisecondsToAlarm = (alarmTime - DateTime.Now).TotalMilliseconds;
+                    long millisecondsInWeek = 7 * 24 * 60 * 60 * 1000;
+                    alarmManager.SetRepeating(AlarmType.RtcWakeup, calendar.TimeInMillis + (long)millisecondsToAlarm, millisecondsInWeek,pendingIntent);
+                }
             }
         }
 
-        private void SetOneTimeNonNagging(Alarm alarm, AlarmManager alarmManager, PendingIntent pendingIntent)
+        private void CancelAlarm(Alarm alarm, AlarmManager alarmManager, Intent alarmIntent)
         {
-            Calendar calendar = (Calendar)Calendar.Instance.Clone();
-            long millisecondsToAlarm = (alarm.Time.Hours - DateTime.Now.Hour) * (60 * 60 * 1000);
-            millisecondsToAlarm = millisecondsToAlarm + (alarm.Time.Minutes - DateTime.Now.Minute) * (60 * 1000);
-            if (millisecondsToAlarm <= 0)
+            int baseID = GetFirstID(alarm);
+            for (int i = 0; i < alarm.AllTimes.Count; i++)
             {
-                millisecondsToAlarm += (24 * 60 * 60 * 1000);
+                PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, baseID + i, alarmIntent, PendingIntentFlags.UpdateCurrent);
+                pendingIntent.Cancel();
             }
+        }
+
+        private int GetFirstID(Alarm alarm)
+        {
+            int i = 10;
+            while (i < alarm.AllTimes.Count) i *= 10;
+            return (alarm.ID * i);
+        }
+
+        public void Snooze(Alarm BaseAlarm)
+        {
+            Intent alarmIntent = new Intent(Android.App.Application.Context, typeof(AlarmReceiver));
+            alarmIntent.PutExtra("AlarmID", BaseAlarm.ID);
+            alarmIntent.SetPackage("com.lo2ay.AlarmPlus");
+            alarmIntent.SetFlags(ActivityFlags.IncludeStoppedPackages);
+
+            Calendar calendar = (Calendar)Calendar.Instance.Clone();
             calendar.Set(CalendarField.Second, 0);
 
-            alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + millisecondsToAlarm, pendingIntent);
+            PendingIntent pendingIntent = PendingIntent.GetBroadcast(Android.App.Application.Context, 5555555, alarmIntent, PendingIntentFlags.UpdateCurrent);
+            AlarmManager alarmManager = (AlarmManager)Android.App.Application.Context.GetSystemService(Context.AlarmService);
+            alarmManager.Set(AlarmType.RtcWakeup, calendar.TimeInMillis + (10 * 60 * 1000), pendingIntent);
         }
     }
 }

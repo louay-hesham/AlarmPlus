@@ -9,5 +9,13 @@ namespace AlarmPlus.Core
     public interface IAlarmSetter
     {
         void SetAlarm(Alarm alarm);
+
+        void SetAlarm(int AlarmID);
+
+        void CancelAlarm(Alarm alarm);
+
+        void CancelAlarm(int AlarmID);
+
+        void Snooze(Alarm BaseAlarm);
     }
 }

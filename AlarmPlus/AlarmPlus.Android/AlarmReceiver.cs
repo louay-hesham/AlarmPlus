@@ -5,6 +5,7 @@ using AlarmPlus.Core;
 using Newtonsoft.Json;
 using Android.Media;
 using static Android.Provider.MediaStore.Audio;
+using AlarmPlus.GUI.Pages;
 
 namespace AlarmPlus.Droid
 {
@@ -14,15 +15,18 @@ namespace AlarmPlus.Droid
         public override void OnReceive(Context context, Intent intent)
         {
             Toast.MakeText(context, "Alarm Fired!!", ToastLength.Long).Show();
-            int alarmID  = int.Parse(intent.GetStringExtra("AlarmID"));
+            
+            var x = (string)intent.Extras.Get("AlarmID");
+            int alarmID  = int.Parse(x);
 
             App.FiredAlarmID = alarmID;
 
             AudioManager audio = (AudioManager)context.GetSystemService(Context.AudioService);
             audio.SetStreamVolume(Stream.Music, audio.GetStreamMaxVolume(Stream.Music), VolumeNotificationFlags.Vibrate);
 
-            Intent applicationIntent = new Intent(context, typeof(MainActivity));
+            Intent applicationIntent = new Intent(context, typeof(AlarmActivity));
             applicationIntent.AddFlags(ActivityFlags.NewTask);
+            applicationIntent.SetFlags(ActivityFlags.ReceiverForeground);
             context.StartActivity(applicationIntent);
         }
     }

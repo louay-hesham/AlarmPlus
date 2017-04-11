@@ -6,7 +6,6 @@
     
     <StackLayout>
         <Button x:Name="NewAlarmsButton" Text="New alarm" Clicked="NewAlarmsButton_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
-        <Button Text="Fire Alarm Test" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand" Margin="5" />
         <ListView x:Name="AlarmsListView" SeparatorVisibility="Default" SeparatorColor="Teal" RowHeight="140" >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -24,7 +23,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding AlarmTimeString}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Scale="2.5" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding OriginalAlarmTimeString}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Scale="2.5" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding AlarmName}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding Repeatition}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Label Text="{Binding Nagging}" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>

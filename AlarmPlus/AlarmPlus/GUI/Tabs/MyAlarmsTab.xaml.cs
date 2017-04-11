@@ -20,10 +20,5 @@ namespace AlarmPlus.GUI.Tabs
         {
             await Navigation.PushAsync(new NewAlarm(this), true);
         }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-            await App.NavPage.Navigation.PushAsync(new FiredAlarm(Alarm.Alarms[0]), true);
-        }
     }
 }

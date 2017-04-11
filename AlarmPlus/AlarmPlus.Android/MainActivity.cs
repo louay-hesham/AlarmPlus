@@ -12,19 +12,18 @@ using Xamarin.Forms;
 namespace AlarmPlus.Droid
 {
     [Activity(Label = "Alarm+", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             // set the layout resources first
-            FormsAppCompatActivity.ToolbarResource = Resource.Layout.Toolbar;
-            FormsAppCompatActivity.TabLayoutResource = Resource.Layout.tabs;
+            ToolbarResource = Resource.Layout.Toolbar;
+            TabLayoutResource = Resource.Layout.tabs;
 
             // then call base.OnCreate and the Xamarin.Forms methods
             base.OnCreate(bundle);
             Forms.Init(this, bundle);
             LoadApplication(new App());
-
         }
     }
 }
