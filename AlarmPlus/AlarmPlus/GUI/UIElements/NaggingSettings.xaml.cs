@@ -21,9 +21,9 @@ namespace AlarmPlus.GUI.UIElements
         {
             return new int[]
             {
-                (Before.Text == null || Before.Text.Equals(string.Empty)) ? 0 : int.Parse(Before.Text),
-                (After.Text == null || After.Text.Equals(string.Empty)) ? 0 : int.Parse(After.Text),
-                (Interval.Text == null || Interval.Text.Equals(string.Empty)) ? 10 : int.Parse(Interval.Text)
+                (Before.Text == null || Before.Text.Equals(string.Empty)) ? App.AppSettings.AlarmsBefore : int.Parse(Before.Text),
+                (After.Text == null || After.Text.Equals(string.Empty)) ? App.AppSettings.AlarmsAfter : int.Parse(After.Text),
+                (Interval.Text == null || Interval.Text.Equals(string.Empty)) ? App.AppSettings.NaggingInterval : int.Parse(Interval.Text)
             };
         }
     }
