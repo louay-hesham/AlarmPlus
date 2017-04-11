@@ -23,7 +23,7 @@ namespace AlarmPlus.Droid
 
         public string GetRingtone()
         {
-            return ExternalStorage.AbsolutePath + File.Separator + "DJ Sona - kinetic.mp3";
+            return ExternalStorage.AbsolutePath + File.Separator + "sample.mp3";
         }
     }
 }
