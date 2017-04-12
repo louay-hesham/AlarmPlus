@@ -145,3 +145,12 @@ I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\zh-Hans\System.Spatial.reso
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\zh-Hant\System.Spatial.resources.dll
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.dll
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.pdb
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Microsoft.WindowsAzure.Mobile.dll
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Microsoft.WindowsAzure.Mobile.Ext.dll
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\System.Net.Http.Extensions.dll
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\System.Net.Http.Primitives.dll
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Microsoft.WindowsAzure.Mobile.xml
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Microsoft.WindowsAzure.Mobile.Ext.xml
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\System.Net.Http.Extensions.xml
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\System.Net.Http.Primitives.xml
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.csproj.App.config
