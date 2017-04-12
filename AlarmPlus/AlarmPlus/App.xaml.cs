@@ -1,4 +1,6 @@
-﻿using AlarmPlus.Core;
+﻿using AlarmPlus.Abstractions;
+using AlarmPlus.Core;
+using AlarmPlus.Services;
 using Newtonsoft.Json;
 using PCLStorage;
 using System;
@@ -15,6 +17,8 @@ namespace AlarmPlus
         public static NavigationPage NavPage;
 
         public static Settings AppSettings;
+
+        public static ICloudService CloudService { get; set; }
 
         public static IRingtoneManager RingtoneManager
         {
@@ -108,6 +112,7 @@ namespace AlarmPlus
 
         public App()
         {
+            CloudService = new AzureCloudService();
             LoadAppSettings();
             LoadAlarms();
             InitializeComponent();
