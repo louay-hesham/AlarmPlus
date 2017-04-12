@@ -34,7 +34,5 @@ namespace AlarmPlus.Backend.Models
                 new AttributeToColumnAnnotationConvention<TableColumnAttribute, string>(
                     "ServiceTableColumn", (property, attributes) => attributes.Single().ColumnType.ToString()));
         }
-
-        public System.Data.Entity.DbSet<AlarmPlus.Backend.DataObjects.Alarm> Alarms { get; set; }
     }
 }

@@ -9,7 +9,6 @@ using Microsoft.Azure.Mobile.Server.Config;
 using AlarmPlus.Backend.DataObjects;
 using AlarmPlus.Backend.Models;
 using Owin;
-using System.Data.Entity.Migrations;
 
 namespace AlarmPlus.Backend
 {
@@ -17,18 +16,31 @@ namespace AlarmPlus.Backend
     {
         public static void ConfigureMobileApp(IAppBuilder app)
         {
-            var httpConfig = new HttpConfiguration();
-            var mobileConfig = new MobileAppConfiguration();
+            HttpConfiguration config = new HttpConfiguration();
 
-            mobileConfig
-                .AddTablesWithEntityFramework()
-                .ApplyTo(httpConfig);
+            new MobileAppConfiguration()
+                .UseDefaultConfiguration()
+                .ApplyTo(config);
 
-            // Automatic Code First Migrations
-            var migrator = new DbMigrator(new Migrations.Configuration());
-            migrator.Update();
+            // Use Entity Framework Code First to create database tables based on your DbContext
+            Database.SetInitializer(new MobileServiceInitializer());
 
-            app.UseWebApi(httpConfig);
+            MobileAppSettingsDictionary settings = config.GetMobileAppSettingsProvider().GetMobileAppSettings();
+
+            if (string.IsNullOrEmpty(settings.HostName))
+            {
+                app.UseAppServiceAuthentication(new AppServiceAuthenticationOptions
+                {
+                    // This middleware is intended to be used locally for debugging. By default, HostName will
+                    // only have a value when running in an App Service application.
+                    SigningKey = ConfigurationManager.AppSettings["SigningKey"],
+                    ValidAudiences = new[] { ConfigurationManager.AppSettings["ValidAudience"] },
+                    ValidIssuers = new[] { ConfigurationManager.AppSettings["ValidIssuer"] },
+                    TokenHandler = config.GetAppServiceTokenHandler()
+                });
+            }
+
+            app.UseWebApi(config);
         }
     }
 
