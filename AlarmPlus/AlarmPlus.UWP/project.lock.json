@@ -2281,6 +2281,16 @@
           }
         }
       },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -4589,6 +4599,16 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.193": {
@@ -6940,6 +6960,16 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -9257,6 +9287,16 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.193": {
@@ -11617,6 +11657,16 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.193": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -13934,6 +13984,16 @@
         },
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.193": {
@@ -16292,6 +16352,16 @@
         },
         "runtime": {
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.FilePicker/1.1.0": {
+        "compile": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.FilePicker.Abstractions.dll": {},
+          "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.193": {
@@ -22801,6 +22871,56 @@
         "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
+    "Xam.Plugin.FilePicker/1.1.0": {
+      "sha512": "K+JeyEKor8YJ+KIfBCZhrQg/UqJ/mfriwzL1spW+BH6e3/boCmv/YNYWO34gysVkuzGDJfZTemibK13IcLhORQ==",
+      "type": "package",
+      "path": "Xam.Plugin.FilePicker/1.1.0",
+      "files": [
+        "Xam.Plugin.FilePicker.1.1.0.nupkg.sha512",
+        "Xam.Plugin.FilePicker.nuspec",
+        "lib/MonoAndroid10/Plugin.FilePicker.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.FilePicker.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.FilePicker.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.FilePicker.dll",
+        "lib/MonoAndroid10/Plugin.FilePicker.pdb",
+        "lib/MonoAndroid10/Plugin.FilePicker.xml",
+        "lib/MonoTouch10/Plugin.FilePicker.Abstractions.dll",
+        "lib/MonoTouch10/Plugin.FilePicker.Abstractions.xml",
+        "lib/MonoTouch10/Plugin.FilePicker.dll",
+        "lib/MonoTouch10/Plugin.FilePicker.xml",
+        "lib/UAP10/Plugin.FilePicker.Abstractions.dll",
+        "lib/UAP10/Plugin.FilePicker.Abstractions.pdb",
+        "lib/UAP10/Plugin.FilePicker.Abstractions.xml",
+        "lib/UAP10/Plugin.FilePicker.dll",
+        "lib/UAP10/Plugin.FilePicker.pdb",
+        "lib/UAP10/Plugin.FilePicker.xml",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.FilePicker.Abstractions.dll",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.FilePicker.Abstractions.pdb",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.FilePicker.Abstractions.xml",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.FilePicker.dll",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.FilePicker.pdb",
+        "lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.FilePicker.xml",
+        "lib/win8/Plugin.FilePicker.Abstractions.dll",
+        "lib/win8/Plugin.FilePicker.Abstractions.pdb",
+        "lib/win8/Plugin.FilePicker.Abstractions.xml",
+        "lib/win8/Plugin.FilePicker.dll",
+        "lib/win8/Plugin.FilePicker.pdb",
+        "lib/win8/Plugin.FilePicker.xml",
+        "lib/wp8/Plugin.FilePicker.Abstractions.dll",
+        "lib/wp8/Plugin.FilePicker.Abstractions.pdb",
+        "lib/wp8/Plugin.FilePicker.Abstractions.xml",
+        "lib/wp8/Plugin.FilePicker.dll",
+        "lib/wp8/Plugin.FilePicker.pdb",
+        "lib/wp8/Plugin.FilePicker.xml",
+        "lib/wpa81/Plugin.FilePicker.Abstractions.dll",
+        "lib/wpa81/Plugin.FilePicker.Abstractions.pdb",
+        "lib/wpa81/Plugin.FilePicker.Abstractions.xml",
+        "lib/wpa81/Plugin.FilePicker.dll",
+        "lib/wpa81/Plugin.FilePicker.pdb",
+        "lib/wpa81/Plugin.FilePicker.xml",
+        "readme.txt"
+      ]
+    },
     "Xamarin.Forms/2.3.3.193": {
       "sha512": "RnZGA4K1MoN5qDKBvBd0BTkWcXQ42p4qCP6VYBoGD/PIlPMyLTUcRnfcPg+jPOjSy7mlNoCMZc+6KL38/wVE5g==",
       "type": "package",
@@ -22970,6 +23090,7 @@
       "Newtonsoft.Json >= 10.0.2",
       "PCLStorage >= 1.0.2",
       "Plugin.MediaManager >= 0.4.0",
+      "Xam.Plugin.FilePicker >= 1.1.0",
       "Xamarin.Forms >= 2.3.3.193"
     ],
     "UAP,Version=v10.0": []
