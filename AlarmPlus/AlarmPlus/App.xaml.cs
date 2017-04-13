@@ -14,7 +14,7 @@ namespace AlarmPlus
 
         public static NavigationPage NavPage;
 
-        public static Settings AppSettings;
+        public static Settings AppSettings { get; set; }
 
         public static IRingtoneManager RingtoneManager
         {
@@ -124,8 +124,6 @@ namespace AlarmPlus
 
         protected override void OnStart()
         {
-            //LoadAlarms();
-            //LoadAppSettings();
             if (FiredAlarmID != -1)
             {
                 Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
@@ -141,8 +139,6 @@ namespace AlarmPlus
 
         protected override void OnResume()
         {
-            LoadAppSettings();
-            LoadAlarms();
             if (FiredAlarmID != -1)
             {
                 Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);

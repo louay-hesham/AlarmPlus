@@ -4,6 +4,7 @@
     "Newtonsoft.Json": "10.0.2",
     "PCLStorage": "1.0.2",
     "Plugin.MediaManager": "0.4.0",
+    "Xam.Plugin.FilePicker": "1.1.0",
     "Xamarin.Forms": "2.3.3.193"
   },
   "frameworks": {

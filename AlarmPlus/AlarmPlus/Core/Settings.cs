@@ -9,7 +9,11 @@ namespace AlarmPlus.Core
 {
     public class Settings
     {
-        public string AlarmsAfterString, AlarmsBeforeString, NaggingIntervalString, SnoozeIntervalString;
+        public string AlarmsAfterString { get; set; }
+        public string AlarmsBeforeString { get; set; }
+        public string NaggingIntervalString { get; set; }
+        public string SnoozeIntervalString { get; set; }
+        public string RingtoneName { get; set; }
 
         [JsonIgnore]
         public int AlarmsAfter

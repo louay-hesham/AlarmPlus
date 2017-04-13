@@ -8,16 +8,71 @@
         <TableView Intent="Settings">
             <TableRoot>
                 <TableSection Title="Default Nagging Settings">
-                    <EntryCell x:Name="AlarmsBeforeEntry" Label="Alarms Before" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
-                    <EntryCell x:Name="AlarmsAfterEntry" Label="Alarms After" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
-                    <EntryCell x:Name="NaggingIntervalEntry" Label="Interval (minutes)" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <ViewCell>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Alarms Before" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                            <Entry Text="{Binding AlarmsBeforeString, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Keyboard="Numeric" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Alarms After" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                            <Entry Text="{Binding AlarmsAfterString, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Keyboard="Numeric" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Interval (minutes)" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                            <Entry Text="{Binding NaggingIntervalString, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Keyboard="Numeric" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+                    </ViewCell>
                 </TableSection>
                 <TableSection Title="Default Snooze Settings">
-                    <EntryCell x:Name="SnoozeIntervalEntry" Label="Default Interval (minutes)" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <ViewCell>
+                        <Grid Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Default Interval (minutes)" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Start"/>
+                            <Entry Text="{Binding SnoozeIntervalString, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Keyboard="Numeric" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"/>
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="Ringtone">
+                    <ViewCell>
+                        <Button x:Name="RingtoneButton" Text="{Binding RingtoneName, Mode=OneWay}" Clicked="RingtoneChooserButton_Clicked" Margin="10,0,10,0"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Button Text="Test Ringtone" Clicked="Button_Clicked" Margin="10,0,10,0"/>
+                    </ViewCell>
                 </TableSection>
             </TableRoot>
         </TableView>
-        <Button Text="Save Settings" Clicked="SaveButton_Clicked" />
     </StackLayout>
     
 
