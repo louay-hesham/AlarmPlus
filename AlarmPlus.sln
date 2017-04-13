@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmPlus", "AlarmPlus\Alar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmPlus.UWP", "AlarmPlus\AlarmPlus.UWP\AlarmPlus.UWP.csproj", "{5816DD7F-7876-4BD6-A18B-4C465E0783B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmPlus.iOS", "AlarmPlus\AlarmPlus.iOS\AlarmPlus.iOS.csproj", "{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmPlus.Win8", "AlarmPlus\AlarmPlus.Win8\AlarmPlus.Win8.csproj", "{5CF8B4FE-8EE5-48DA-BBF7-52B85856997D}"
 EndProject
 Global
@@ -223,38 +221,6 @@ Global
 		{5816DD7F-7876-4BD6-A18B-4C465E0783B1}.Release|x86.ActiveCfg = Release|x86
 		{5816DD7F-7876-4BD6-A18B-4C465E0783B1}.Release|x86.Build.0 = Release|x86
 		{5816DD7F-7876-4BD6-A18B-4C465E0783B1}.Release|x86.Deploy.0 = Release|x86
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|Any CPU.ActiveCfg = Ad-Hoc|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|ARM.ActiveCfg = Ad-Hoc|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|x64.ActiveCfg = Ad-Hoc|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Ad-Hoc|x86.ActiveCfg = Ad-Hoc|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|Any CPU.ActiveCfg = AppStore|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|ARM.ActiveCfg = AppStore|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|x64.ActiveCfg = AppStore|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.AppStore|x86.ActiveCfg = AppStore|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|Any CPU.ActiveCfg = Debug|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|ARM.ActiveCfg = Debug|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|iPhone.Build.0 = Debug|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|x64.ActiveCfg = Debug|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Debug|x86.ActiveCfg = Debug|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|Any CPU.ActiveCfg = Release|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|ARM.ActiveCfg = Release|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|iPhone.ActiveCfg = Release|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|iPhone.Build.0 = Release|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|x64.ActiveCfg = Release|iPhone
-		{CABFDB6A-D03A-432C-BFA0-86EF0A244B1E}.Release|x86.ActiveCfg = Release|iPhone
 		{5CF8B4FE-8EE5-48DA-BBF7-52B85856997D}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
 		{5CF8B4FE-8EE5-48DA-BBF7-52B85856997D}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
 		{5CF8B4FE-8EE5-48DA-BBF7-52B85856997D}.Ad-Hoc|Any CPU.Deploy.0 = Release|Any CPU
