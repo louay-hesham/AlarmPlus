@@ -10,11 +10,22 @@ namespace AlarmPlus
 {
     public partial class App : Application
     {
+        private static App Instance = null;
+
         public static int FiredAlarmID = -1;
 
         public static NavigationPage NavPage;
 
         public static Settings AppSettings { get; set; }
+
+        public static new App Current
+        {
+            get
+            {
+                if (Instance == null) Instance = new App();
+                return Instance;
+            }
+        }
 
         public static IRingtoneManager RingtoneManager
         {
@@ -127,7 +138,9 @@ namespace AlarmPlus
             if (FiredAlarmID != -1)
             {
                 Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
+                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(alarm), true);
                 alarm.IsEnabled = false;
+                FiredAlarmID = -1;
             }
         }
 

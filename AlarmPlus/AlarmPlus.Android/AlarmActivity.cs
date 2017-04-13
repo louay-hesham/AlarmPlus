@@ -20,21 +20,13 @@ namespace AlarmPlus.Droid
     {
         public static AlarmActivity Instance = null;
 
-        public static void Minimize()
-        {
-            Intent startMain = new Intent(Intent.ActionMain);
-            startMain.AddCategory(Intent.CategoryHome);
-            startMain.SetFlags(ActivityFlags.NewTask);
-            Instance.StartActivity(startMain);
-        }
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             // Create your application here
             Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            LoadApplication(App.Current);
 
             Window.AddFlags(WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.TurnScreenOn);
             Instance = this;

@@ -191,7 +191,8 @@ namespace AlarmPlus.Core
             Alarms.Remove(this);
             Alarms.Add(this);
 
-            App.AlarmSetter.SetAlarm(this);
+            if (IsEnabled)
+                App.AlarmSetter.SetAlarm(this);
         }
 
         private void CalculateAlarms()
