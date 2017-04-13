@@ -154,3 +154,6 @@ I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Microsoft.WindowsAzure.Mobi
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\System.Net.Http.Extensions.xml
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\System.Net.Http.Primitives.xml
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.csproj.App.config
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.Migrations.Initial.resources
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.csproj.GenerateResource.Cache
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Debug\AlarmPlus.Backend.Migrations.AlarmTable.resources
