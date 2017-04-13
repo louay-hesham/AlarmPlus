@@ -52,6 +52,7 @@ namespace AlarmPlus.Droid
                 await fos.WriteAsync(filedata.DataArray);
                 fos.Close();
             }
+            else App.AppSettings.RingtoneName = filedata.FileName;
         }
     }
 }

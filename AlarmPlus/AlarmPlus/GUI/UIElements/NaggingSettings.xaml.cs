@@ -15,6 +15,9 @@ namespace AlarmPlus.GUI.UIElements
         public NaggingSettings()
         {
             InitializeComponent();
+            Before.Text = App.AppSettings.AlarmsBeforeString;
+            After.Text = App.AppSettings.AlarmsAfterString;
+            Interval.Text = App.AppSettings.NaggingIntervalString;
         }
 
         public void SetNaggingSettings(int Before, int After, int Interval)

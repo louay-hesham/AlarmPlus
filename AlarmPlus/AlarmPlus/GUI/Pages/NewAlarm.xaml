@@ -5,36 +5,34 @@
              xmlns:local="clr-namespace:AlarmPlus.GUI.UIElements"
              Title="New Alarm">
 
-    
-    <TableView Intent="Form" Margin="5">
-        <TableRoot>
-            <TableSection Title="Basic alarm settings">
-                <ViewCell>
-                    <TimePicker x:Name="AlarmTime" HorizontalOptions="CenterAndExpand" Scale="2" Margin="2"/>
-                </ViewCell>
-                <EntryCell x:Name="AlarmName" Label="Alarm name   " HorizontalTextAlignment="Center"/>
-            </TableSection>
-            <TableSection Title="Repeat status">
-                <SwitchCell x:Name="IsRepeated" Text="Repeat?" On="{Binding IsVisible, Mode=TwoWay}"/>
-                <ViewCell>
-                    <local:DayPicker x:Name="WeekDay"/>
-                </ViewCell>
-            </TableSection>
-            <TableSection Title="Nagging settings">
-                <SwitchCell x:Name="IsNagging" Text="Nag with several alarms?" On="{Binding IsVisible, Mode=TwoWay}"/>
-                <ViewCell>
-                    <local:NaggingSettings x:Name="Nagging"/>
-                </ViewCell>
-            </TableSection>
-            <TableSection>
-                <ViewCell>
-                    <StackLayout Orientation="Horizontal" Margin="15,0,15,0">
-                        <Button x:Name="SaveButton" Clicked="SaveButton_Clicked" Text="Save" HorizontalOptions="FillAndExpand" />
-                        <Button x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="Cancel" HorizontalOptions="FillAndExpand" />
-                    </StackLayout>
-                </ViewCell>
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <StackLayout>
+        <TableView Intent="Form" Margin="5" HasUnevenRows="True">
+            <TableRoot>
+                <TableSection Title="Basic alarm settings">
+                    <ViewCell>
+                        <TimePicker x:Name="AlarmTime" HorizontalOptions="CenterAndExpand" Scale="2" Margin="2"/>
+                    </ViewCell>
+                    <EntryCell x:Name="AlarmName" Label="Alarm name   " HorizontalTextAlignment="Center"/>
+                </TableSection>
+                <TableSection Title="Repeat status">
+                    <SwitchCell x:Name="IsRepeated" Text="Repeat?" On="{Binding IsVisible, Mode=TwoWay}"/>
+                    <ViewCell>
+                        <local:DayPicker x:Name="WeekDay"/>
+                    </ViewCell>
+                </TableSection>
+                <TableSection Title="Nagging settings">
+                    <SwitchCell x:Name="IsNagging" Text="Nag with several alarms?" On="{Binding IsVisible, Mode=TwoWay}"/>
+                    <ViewCell>
+                        <local:NaggingSettings x:Name="Nagging"/>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <StackLayout Orientation="Horizontal" Margin="10">
+            <Button x:Name="SaveButton" Clicked="SaveButton_Clicked" Text="Save" HorizontalOptions="FillAndExpand" />
+            <Button x:Name="CancelButton" Clicked="CancelButton_Clicked" Text="Cancel" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </StackLayout>
+
 
 </ContentPage>
