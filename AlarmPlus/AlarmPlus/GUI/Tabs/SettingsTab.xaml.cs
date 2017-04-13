@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
+using Plugin.MediaManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +19,18 @@ namespace AlarmPlus.GUI.Tabs
         {
             InitializeComponent();
             BindingContext = App.AppSettings;
+        }
+
+        private async void RingtoneChooserButton_Clicked(object sender, EventArgs e)
+        {
+            FileData fileData = await CrossFilePicker.Current.PickFile();
+            await App.RingtoneManager.SetRingtone(fileData);
+            RingtoneButton.Text = App.AppSettings.RingtoneName;
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
         }
     }
 }

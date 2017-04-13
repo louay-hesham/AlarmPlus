@@ -63,6 +63,14 @@
                         </Grid>
                     </ViewCell>
                 </TableSection>
+                <TableSection Title="Ringtone">
+                    <ViewCell>
+                        <Button x:Name="RingtoneButton" Text="{Binding RingtoneName, Mode=OneWay}" Clicked="RingtoneChooserButton_Clicked" Margin="10,0,10,0"/>
+                    </ViewCell>
+                    <ViewCell>
+                        <Button Text="Test Ringtone" Clicked="Button_Clicked" Margin="10,0,10,0"/>
+                    </ViewCell>
+                </TableSection>
             </TableRoot>
         </TableView>
     </StackLayout>
