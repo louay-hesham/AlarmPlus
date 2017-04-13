@@ -16,6 +16,16 @@ namespace AlarmPlus.Core
         public string RingtoneName { get; set; }
 
         [JsonIgnore]
+        public string RingtoneNameDetailed
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(RingtoneName)) return "No ringtone selected!";
+                else return RingtoneName;
+            }
+        }
+
+        [JsonIgnore]
         public int AlarmsAfter
         {
             get
