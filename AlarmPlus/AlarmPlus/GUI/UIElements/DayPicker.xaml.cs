@@ -29,6 +29,7 @@ namespace AlarmPlus.GUI.UIElements
 
             }
         }
+        public bool IsFromSettingsTab;
         private readonly Button[] Buttons;
         private readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
 
@@ -44,7 +45,9 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[4] = Wed;
             Buttons[5] = Thu;
             Buttons[6] = Fri;
-            for (int j = 1; j <= 5; j++) ButtonPressed(j);
+            IsFromSettingsTab = false;
+            //for (int j = 1; j <= 5; j++) ButtonPressed(j);
+            SelectDays(App.AppSettings.DefaultSelectedDays);
         }
 
         public void SelectDays(bool[] SelectedDays)
@@ -79,7 +82,7 @@ namespace AlarmPlus.GUI.UIElements
                     Buttons[j].BackgroundColor = Color.FromRgb(0, 255, 255);
                 }
             }
-            IsVisible = stayVisible;
+            IsVisible = stayVisible || IsFromSettingsTab;
         }
 
         private void Sat_Clicked(object sender, EventArgs e)

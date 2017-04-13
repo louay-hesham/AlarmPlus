@@ -14,6 +14,7 @@ namespace AlarmPlus.Core
         public string NaggingIntervalString { get; set; }
         public string SnoozeIntervalString { get; set; }
         public string RingtoneName { get; set; }
+        public bool[] DefaultSelectedDays { get; set; }
 
         [JsonIgnore]
         public string RingtoneNameDetailed
@@ -67,6 +68,7 @@ namespace AlarmPlus.Core
             this.AlarmsAfterString = AlarmsAfter;
             this.NaggingIntervalString = NaggingInterval;
             this.SnoozeIntervalString = SnoozeInterval;
+            DefaultSelectedDays = new bool[] { false, true, true, true, true, true, false };
         }
     }
 }
