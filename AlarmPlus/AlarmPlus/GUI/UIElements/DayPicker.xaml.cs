@@ -46,7 +46,6 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[5] = Thu;
             Buttons[6] = Fri;
             IsFromSettingsTab = false;
-            //for (int j = 1; j <= 5; j++) ButtonPressed(j);
             SelectDays(App.AppSettings.DefaultSelectedDays);
         }
 
