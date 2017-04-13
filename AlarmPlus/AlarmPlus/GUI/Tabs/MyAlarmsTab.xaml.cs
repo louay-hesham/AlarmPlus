@@ -20,5 +20,10 @@ namespace AlarmPlus.GUI.Tabs
         {
             await Navigation.PushAsync(new NewAlarm(), true);
         }
+
+        private void AlarmsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            AlarmsListView.SelectedItem = null;
+        }
     }
 }
