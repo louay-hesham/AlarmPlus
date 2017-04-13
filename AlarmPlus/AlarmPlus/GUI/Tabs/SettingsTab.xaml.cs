@@ -19,6 +19,10 @@ namespace AlarmPlus.GUI.Tabs
         {
             InitializeComponent();
             BindingContext = App.AppSettings;
+            WeekDay.IsVisible = true;
+            WeekDay.IsFromSettingsTab = true;
+            WeekDay.SelectDays(App.AppSettings.DefaultSelectedDays);
+            Disappearing += new EventHandler(SaveSelectedDays);
         }
 
         private async void RingtoneChooserButton_Clicked(object sender, EventArgs e)
@@ -31,6 +35,11 @@ namespace AlarmPlus.GUI.Tabs
         private async void Button_Clicked(object sender, EventArgs e)
         {
             await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
+        }
+
+        private void SaveSelectedDays(object sender, EventArgs e)
+        {
+            App.AppSettings.DefaultSelectedDays = WeekDay.ButtonsPressed;
         }
     }
 }

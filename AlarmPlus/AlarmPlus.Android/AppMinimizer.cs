@@ -20,7 +20,7 @@ namespace AlarmPlus.Droid
     {
         public void MinimizeApp()
         {
-            AlarmActivity.Minimize();
+            AlarmActivity.Instance.Finish();
         }
     }
 }
