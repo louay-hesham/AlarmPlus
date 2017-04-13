@@ -8,7 +8,6 @@ namespace AlarmPlus.Backend.DataObjects
 {
     public class Alarm : EntityData
     {
-        public string UserId { get; set; }
         public int LocalID { get; set; }
         public bool Enabled { get; set; }
         public TimeSpan Time { get; set; }
