@@ -15,19 +15,7 @@ namespace AlarmPlus.GUI.Tabs
         public SettingsTab()
         {
             InitializeComponent();
-            AlarmsBeforeEntry.Text = App.AppSettings.AlarmsBeforeString;
-            AlarmsAfterEntry.Text = App.AppSettings.AlarmsAfterString;
-            NaggingIntervalEntry.Text = App.AppSettings.NaggingIntervalString;
-            SnoozeIntervalEntry.Text = App.AppSettings.SnoozeIntervalString;
-        }
-
-        private async void SaveButton_Clicked(object sender, EventArgs e)
-        {
-            App.AppSettings.AlarmsBeforeString = AlarmsBeforeEntry.Text;
-            App.AppSettings.AlarmsAfterString = AlarmsAfterEntry.Text;
-            App.AppSettings.NaggingIntervalString = NaggingIntervalEntry.Text;
-            App.AppSettings.SnoozeIntervalString = SnoozeIntervalEntry.Text;
-            await App.SaveAppSettings();
+            BindingContext = App.AppSettings;
         }
     }
 }

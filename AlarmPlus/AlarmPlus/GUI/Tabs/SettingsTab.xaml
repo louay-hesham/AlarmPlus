@@ -8,16 +8,15 @@
         <TableView Intent="Settings">
             <TableRoot>
                 <TableSection Title="Default Nagging Settings">
-                    <EntryCell x:Name="AlarmsBeforeEntry" Label="Alarms Before" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
-                    <EntryCell x:Name="AlarmsAfterEntry" Label="Alarms After" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
-                    <EntryCell x:Name="NaggingIntervalEntry" Label="Interval (minutes)" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <EntryCell Label="Alarms Before" Text="{Binding AlarmsBeforeString, Mode=TwoWay}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <EntryCell Label="Alarms After" Text="{Binding AlarmsAfterString, Mode=TwoWay}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <EntryCell Label="Interval (minutes)" Text="{Binding NaggingIntervalString, Mode=TwoWay}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
                 </TableSection>
                 <TableSection Title="Default Snooze Settings">
-                    <EntryCell x:Name="SnoozeIntervalEntry" Label="Default Interval (minutes)" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
+                    <EntryCell Label="Default Interval (minutes)" Text="{Binding SnoozeIntervalString, Mode=TwoWay}" Keyboard="Numeric" HorizontalTextAlignment="Center"/>
                 </TableSection>
             </TableRoot>
         </TableView>
-        <Button Text="Save Settings" Clicked="SaveButton_Clicked" />
     </StackLayout>
     
 

@@ -14,7 +14,7 @@ namespace AlarmPlus
 
         public static NavigationPage NavPage;
 
-        public static Settings AppSettings;
+        public static Settings AppSettings { get; set; }
 
         public static IRingtoneManager RingtoneManager
         {
