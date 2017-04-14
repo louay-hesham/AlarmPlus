@@ -1,4 +1,5 @@
 ﻿using AlarmPlus.GUI.Pages;
+using AlarmPlus.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -100,22 +101,6 @@ namespace AlarmPlus.Core
         }
 
         [JsonIgnore]
-        public string AlarmTimeWithOffset
-        {
-            get
-            {
-                int h = Time.Hours;
-                string AmOrPm = "PM";
-                if (h < 12) AmOrPm = "AM";
-                else if (h > 12) h %= 12;
-
-                string m = (Time.Minutes < 10) ? "0" + Time.Minutes : Time.Minutes.ToString();
-                string time = ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
-                return time + GetAlarmOffset();
-            }
-        }
-
-        [JsonIgnore]
         public string OriginalAlarmTimeString
         {
             get
@@ -211,24 +196,21 @@ namespace AlarmPlus.Core
                 App.AlarmSetter.SetAlarm(this);
         }
 
-        private string GetAlarmOffset()
+        public AlarmModel GetAlarmModel()
         {
-            var minutesToOriginal = DateTime.Now.Subtract(DateTime.Now.Date).Subtract(Time).TotalMinutes;
-            var minutesFraction = minutesToOriginal % 1;
-            int integerMinutesToOriginal = (int)minutesToOriginal + (minutesFraction >= 0.5 ? 1 : (minutesFraction <= -0.5 ? -1 : 0));
-            if (!IsRepeated)
+            return new AlarmModel
             {
-                if (!IsNagging)
-                    IsEnabled = false;
-                else
-                {
-                    if (integerMinutesToOriginal == AlarmsAfter * Interval)
-                        IsEnabled = false;
-                }
-            }
-            if (integerMinutesToOriginal > 0) return " (+" + integerMinutesToOriginal.ToString() + ")";
-            else if (integerMinutesToOriginal < 0) return " (" + integerMinutesToOriginal.ToString() + ")";
-            else return "";
+                LocalID = ID,
+                Enabled = IsEnabled,
+                Time = this.Time,
+                AlarmName = this.AlarmName,
+                IsRepeated = this.IsRepeated,
+                SelectedDaysBool = this.SelectedDaysBool,
+                IsNagging = this.IsNagging,
+                AlarmsAfter = this.AlarmsAfter,
+                AlarmsBefore = this.AlarmsBefore,
+                Interval = this.Interval
+            };
         }
 
         private void CalculateAlarms()
