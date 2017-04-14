@@ -29,6 +29,8 @@ namespace AlarmPlus
 
         public static ICloudService CloudService { get; set; }
 
+        public static ICloudService CloudService { get; set; }
+
         public static IRingtoneManager RingtoneManager
         {
             get
