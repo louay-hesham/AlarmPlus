@@ -75,11 +75,7 @@ namespace AlarmPlus.GUI.UIElements
             foreach (bool x in ButtonsPressed) stayVisible = stayVisible | x;
             if (!stayVisible)
             {
-                for (int j = 1; j <= 5; j++)
-                {
-                    ButtonsPressed[j] = true;
-                    Buttons[j].BackgroundColor = Color.FromRgb(0, 255, 255);
-                }
+                SelectDays(App.AppSettings.DefaultSelectedDays);
             }
             IsVisible = stayVisible || IsFromSettingsTab;
         }
