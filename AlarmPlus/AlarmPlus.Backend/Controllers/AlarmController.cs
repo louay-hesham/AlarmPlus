@@ -33,7 +33,7 @@ namespace AlarmPlus.Backend.Controllers
         // GET tables/Alarm
         public IQueryable<Alarm> GetAllAlarm()
         {
-            return Query().PerUserFilter(UserId); 
+            return Query();//.PerUserFilter(UserId); 
         }
 
         // GET tables/Alarm/48D68C86-6EA6-4C25-AA33-223FC9A27959
@@ -45,7 +45,7 @@ namespace AlarmPlus.Backend.Controllers
         // PATCH tables/Alarm/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task<Alarm> PatchAlarm(string id, Delta<Alarm> patch)
         {
-            ValidateOwner(id);
+            //ValidateOwner(id);
             return UpdateAsync(id, patch);
         }
 
@@ -60,7 +60,7 @@ namespace AlarmPlus.Backend.Controllers
         // DELETE tables/Alarm/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task DeleteAlarm(string id)
         {
-            ValidateOwner(id);
+            //ValidateOwner(id);
             return DeleteAsync(id);
         }
 
