@@ -26,7 +26,7 @@ namespace AlarmPlus.Droid
 
             // Create your application here
             Forms.Init(this, savedInstanceState);
-            LoadApplication(App.Current);
+            LoadApplication(new AlarmFired());
 
             Window.AddFlags(WindowManagerFlags.ShowWhenLocked | WindowManagerFlags.TurnScreenOn);
             Instance = this;
