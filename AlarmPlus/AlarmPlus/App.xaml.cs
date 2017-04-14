@@ -12,8 +12,6 @@ namespace AlarmPlus
     {
         private static App Instance = null;
 
-        public static int FiredAlarmID = -1;
-
         public static NavigationPage NavPage;
 
         public static Settings AppSettings { get; set; }
@@ -125,23 +123,11 @@ namespace AlarmPlus
             NavPage = new NavigationPage();
             MainPage = NavPage;
             NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
-            if (FiredAlarmID != -1)
-            {
-                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
-                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(alarm), true);
-                FiredAlarmID = -1;
-            }
         }
 
         protected override void OnStart()
         {
-            if (FiredAlarmID != -1)
-            {
-                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
-                NavPage.Navigation.PushAsync(new GUI.Pages.FiredAlarm(alarm), true);
-                alarm.IsEnabled = false;
-                FiredAlarmID = -1;
-            }
+
         }
 
         protected async override void OnSleep()
@@ -152,11 +138,7 @@ namespace AlarmPlus
 
         protected override void OnResume()
         {
-            if (FiredAlarmID != -1)
-            {
-                Alarm alarm = Alarm.GetAlarmByID(FiredAlarmID);
-                alarm.IsEnabled = false;
-            }
+            
         }
     }
 }
