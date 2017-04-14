@@ -157,3 +157,10 @@ I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Release\AlarmPlus.Backend.c
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Release\AlarmPlus.Backend.Migrations.Initial.resources
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Release\AlarmPlus.Backend.csproj.GenerateResource.Cache
 I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Release\AlarmPlus.Backend.Migrations.AlarmTable.resources
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Plugin.FilePicker.Abstractions.dll
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Plugin.FilePicker.dll
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Plugin.FilePicker.pdb
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Plugin.FilePicker.xml
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Plugin.FilePicker.Abstractions.pdb
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\bin\Plugin.FilePicker.Abstractions.xml
+I:\Xamarin\AlarmPlus\AlarmPlus\AlarmPlus.Backend\obj\Release\AlarmPlus.Backend.Migrations.Initial1.resources

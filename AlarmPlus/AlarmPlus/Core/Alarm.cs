@@ -1,4 +1,5 @@
 ﻿using AlarmPlus.GUI.Pages;
+using AlarmPlus.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -193,6 +194,23 @@ namespace AlarmPlus.Core
 
             if (IsEnabled)
                 App.AlarmSetter.SetAlarm(this);
+        }
+
+        public AlarmModel GetAlarmModel()
+        {
+            return new AlarmModel
+            {
+                LocalID = ID,
+                Enabled = IsEnabled,
+                Time = this.Time,
+                AlarmName = this.AlarmName,
+                IsRepeated = this.IsRepeated,
+                SelectedDaysBool = this.SelectedDaysBool,
+                IsNagging = this.IsNagging,
+                AlarmsAfter = this.AlarmsAfter,
+                AlarmsBefore = this.AlarmsBefore,
+                Interval = this.Interval
+            };
         }
 
         private void CalculateAlarms()

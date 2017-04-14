@@ -1,5 +1,6 @@
 ﻿using AlarmPlus.Abstractions;
 using AlarmPlus.Core;
+using AlarmPlus.Models;
 using AlarmPlus.Services;
 using Newtonsoft.Json;
 using PCLStorage;
@@ -26,8 +27,6 @@ namespace AlarmPlus
                 return Instance;
             }
         }
-
-        public static ICloudService CloudService { get; set; }
 
         public static ICloudService CloudService { get; set; }
 
@@ -60,6 +59,28 @@ namespace AlarmPlus
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFile file = await rootFolder.CreateFileAsync("Alarms", CreationCollisionOption.ReplaceExisting);
             await file.WriteAllTextAsync(JsonConvert.SerializeObject(Alarm.Alarms));
+            var table = CloudService.GetTable<AlarmModel>();
+            var alarmsOnCloud = await table.ReadAllItemsAsync();
+            foreach (Alarm alarm in Alarm.Alarms)
+            {
+                bool foundOnCloud = false; 
+                foreach (AlarmModel model in alarmsOnCloud)
+                {
+                    if (model.LocalID == alarm.ID)
+                    {
+                        foundOnCloud = true;
+                        break;
+                    }
+                }
+                if (foundOnCloud)
+                {
+                    await table.UpdateItemAsync(alarm.GetAlarmModel());
+                }
+                else
+                {
+                    await table.CreateItemAsync(alarm.GetAlarmModel());
+                }
+            }
         }
 
         public static void LoadAlarms()

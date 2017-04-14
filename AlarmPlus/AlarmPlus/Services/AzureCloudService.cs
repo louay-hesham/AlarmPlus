@@ -14,7 +14,7 @@ namespace AlarmPlus.Services
 
         public AzureCloudService()
         {
-            client = new MobileServiceClient("https://alarmplus.azurewebsites.net");
+            client = new MobileServiceClient("https://alarmplus-1525.azurewebsites.net");
         }
 
         public ICloudTable<T> GetTable<T>() where T : TableData
