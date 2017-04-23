@@ -18,7 +18,9 @@ namespace AlarmPlus
 
         public AlarmFired()
         {
-            App.LoadAlarms();
+            if (Alarm.Alarms.Count == 0)
+                App.LoadAlarms();
+
             InitializeComponent();
             Alarm alarm = Alarm.GetAlarmByID(AlarmID);
             MainPage = new FiredAlarm(alarm);
