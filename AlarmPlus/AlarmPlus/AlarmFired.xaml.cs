@@ -28,10 +28,9 @@ namespace AlarmPlus
 
         }
 
-        protected async override void OnSleep()
+        protected override void OnSleep()
         {
-            await App.SaveAlarms();
-            await App.SaveAppSettings();
+            
         }
 
         protected override void OnResume()
