@@ -1,4 +1,5 @@
 ﻿using AlarmPlus.Core;
+using AlarmPlus.GUI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,10 +18,12 @@ namespace AlarmPlus
 
         public AlarmFired()
         {
+            if (Alarm.Alarms.Count == 0)
+                App.LoadAlarms();
+
             InitializeComponent();
             Alarm alarm = Alarm.GetAlarmByID(AlarmID);
-            MainPage = new GUI.Pages.FiredAlarm(alarm);
-            alarm.IsEnabled = false;
+            MainPage = new FiredAlarm(alarm);
         }
 
         protected override void OnStart()
@@ -31,7 +34,6 @@ namespace AlarmPlus
         protected async override void OnSleep()
         {
             await App.SaveAlarms();
-            await App.SaveAppSettings();
         }
 
         protected override void OnResume()
