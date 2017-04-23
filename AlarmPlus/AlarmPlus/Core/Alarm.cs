@@ -100,6 +100,22 @@ namespace AlarmPlus.Core
         }
 
         [JsonIgnore]
+        public string AlarmTimeWithOffset
+        {
+            get
+            {
+                int h = Time.Hours;
+                string AmOrPm = "PM";
+                if (h < 12) AmOrPm = "AM";
+                else if (h > 12) h %= 12;
+
+                string m = (Time.Minutes < 10) ? "0" + Time.Minutes : Time.Minutes.ToString();
+                string time = ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
+                return time + " (" + GetAlarmOffset() + ")";
+            }
+        }
+
+        [JsonIgnore]
         public string OriginalAlarmTimeString
         {
             get
@@ -193,6 +209,25 @@ namespace AlarmPlus.Core
 
             if (IsEnabled)
                 App.AlarmSetter.SetAlarm(this);
+        }
+
+        private string GetAlarmOffset()
+        {
+            if (!IsEnabled)
+                return "Snoozed";
+
+            int minutesToOriginal = (int)DateTime.Now.Subtract(DateTime.Now.Date).Subtract(Time).TotalMinutes;
+            if (!IsRepeated)
+            {
+                if (!IsNagging)
+                    IsEnabled = false;
+                else
+                {
+                    if (minutesToOriginal == AlarmsAfter * Interval)
+                        IsEnabled = false;
+                }
+            }
+            return minutesToOriginal.ToString();
         }
 
         private void CalculateAlarms()

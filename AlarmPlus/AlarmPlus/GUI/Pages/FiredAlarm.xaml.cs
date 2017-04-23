@@ -23,16 +23,6 @@ namespace AlarmPlus.GUI.Pages
             BindingContext = Alarm;
             SnoozeButton.IsEnabled = !Alarm.IsNagging;
 
-            var Now = DateTime.Now;
-            int h = Now.Hour;
-            string AmOrPm = "PM";
-            if (h < 12) AmOrPm = "AM";
-            else if (h > 12) h %= 12;
-
-            string m = (Now.Minute < 10) ? "0" + Now.Minute : Now.Minute.ToString();
-            TimeLabel.Text = ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
-            if (!Alarm.IsRepeated)
-                Alarm.IsEnabled = false;
             PlayAlarmSound();
         }
 
