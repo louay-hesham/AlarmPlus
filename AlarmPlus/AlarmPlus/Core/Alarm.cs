@@ -111,7 +111,7 @@ namespace AlarmPlus.Core
 
                 string m = (Time.Minutes < 10) ? "0" + Time.Minutes : Time.Minutes.ToString();
                 string time = ((h == 0) ? "00" : h.ToString()) + ":" + m + " " + AmOrPm;
-                return time + " (" + GetAlarmOffset() + ")";
+                return time + GetAlarmOffset();
             }
         }
 
@@ -213,21 +213,22 @@ namespace AlarmPlus.Core
 
         private string GetAlarmOffset()
         {
-            if (!IsEnabled)
-                return "Snoozed";
-
-            int minutesToOriginal = (int)DateTime.Now.Subtract(DateTime.Now.Date).Subtract(Time).TotalMinutes;
+            var minutesToOriginal = DateTime.Now.Subtract(DateTime.Now.Date).Subtract(Time).TotalMinutes;
+            var minutesFraction = minutesToOriginal % 1;
+            int integerMinutesToOriginal = (int)minutesToOriginal + (minutesFraction >= 0.5 ? 1 : (minutesFraction <= -0.5 ? -1 : 0));
             if (!IsRepeated)
             {
                 if (!IsNagging)
                     IsEnabled = false;
                 else
                 {
-                    if (minutesToOriginal == AlarmsAfter * Interval)
+                    if (integerMinutesToOriginal == AlarmsAfter * Interval)
                         IsEnabled = false;
                 }
             }
-            return minutesToOriginal.ToString();
+            if (integerMinutesToOriginal > 0) return " (+" + integerMinutesToOriginal.ToString() + ")";
+            else if (integerMinutesToOriginal < 0) return " (" + integerMinutesToOriginal.ToString() + ")";
+            else return "";
         }
 
         private void CalculateAlarms()
