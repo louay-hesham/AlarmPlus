@@ -4,7 +4,7 @@
              x:Class="AlarmPlus.GUI.Pages.FiredAlarm"
              Title="{Binding AlarmName}">
     <StackLayout>
-        <Label x:Name="TimeLabel" Scale="4.0" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+        <Label Scale="4.0" Text="{Binding AlarmTimeWithOffset}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
         <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" Margin="20">
             <Button x:Name="SnoozeButton" Text="Snooze" Clicked="SnoozeButton_Clicked" BackgroundColor="Red" HorizontalOptions="FillAndExpand"/>
             <Button Text="Close" Clicked="CloseButton_Clicked" HorizontalOptions="FillAndExpand" />

@@ -2291,7 +2291,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -4611,7 +4611,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -6970,7 +6970,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -9299,7 +9299,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -11667,7 +11667,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -13996,7 +13996,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -16364,7 +16364,7 @@
           "lib/UAP10/Plugin.FilePicker.dll": {}
         }
       },
-      "Xamarin.Forms/2.3.3.193": {
+      "Xamarin.Forms/2.3.4.231": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
           "lib/uap10.0/Xamarin.Forms.Platform.UAP.dll": {},
@@ -22921,17 +22921,13 @@
         "readme.txt"
       ]
     },
-    "Xamarin.Forms/2.3.3.193": {
-      "sha512": "RnZGA4K1MoN5qDKBvBd0BTkWcXQ42p4qCP6VYBoGD/PIlPMyLTUcRnfcPg+jPOjSy7mlNoCMZc+6KL38/wVE5g==",
+    "Xamarin.Forms/2.3.4.231": {
+      "sha512": "Tar4nHke8Rl0Mz2Y1MdNAMvo8wKc/wVVW2rN7loXMc+2R1ex3n/fzs7eD2F7gDw3TceGLQku52kyc5LuN8Hlgw==",
       "type": "package",
+      "path": "Xamarin.Forms/2.3.4.231",
       "files": [
-        "Xamarin.Forms.2.3.3.193.nupkg.sha512",
+        "Xamarin.Forms.2.3.4.231.nupkg.sha512",
         "Xamarin.Forms.nuspec",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.Decompiler.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.CSharp.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.Cecil.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.Xml.dll",
-        "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/ICSharpCode.NRefactory.dll",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Mono.Cecil.Mdb.dll",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Mono.Cecil.Pdb.dll",
         "build/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20/Mono.Cecil.Rocks.dll",
@@ -23091,7 +23087,7 @@
       "PCLStorage >= 1.0.2",
       "Plugin.MediaManager >= 0.4.0",
       "Xam.Plugin.FilePicker >= 1.1.0",
-      "Xamarin.Forms >= 2.3.3.193"
+      "Xamarin.Forms >= 2.3.4.231"
     ],
     "UAP,Version=v10.0": []
   }

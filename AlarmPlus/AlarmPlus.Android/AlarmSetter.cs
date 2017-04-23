@@ -68,7 +68,6 @@ namespace AlarmPlus.Droid
         private void SetAlarm(Alarm alarm, AlarmManager alarmManager, Intent alarmIntent)
         {
             Calendar calendar = (Calendar)Calendar.Instance.Clone();
-            //calendar.Set(CalendarField.Second, 0);
             var Now = DateTime.Now;
             int baseID = GetFirstID(alarm);
             if (!alarm.IsRepeated)
