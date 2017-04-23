@@ -40,9 +40,8 @@ namespace AlarmPlus.GUI.Pages
             CrossMediaManager.Current.Stop();
             CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
             App.AlarmSetter.Snooze(Alarm);
-            Navigation.PopAsync(true);
+            App.NavPage.Navigation.PopAsync(true);
             App.AppMinimizer.MinimizeApp();
-            Alarm.IsEnabled = false;
         }
 
         private void CloseButton_Clicked(object sender, EventArgs e)
@@ -51,7 +50,6 @@ namespace AlarmPlus.GUI.Pages
             CrossMediaManager.Current.MediaNotificationManager.StopNotifications();
             App.NavPage.Navigation.PopAsync(true);
             App.AppMinimizer.MinimizeApp();
-            Alarm.IsEnabled = false;
         }
     }
 }
