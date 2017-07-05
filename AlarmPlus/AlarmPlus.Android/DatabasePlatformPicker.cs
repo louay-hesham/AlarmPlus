@@ -17,7 +17,7 @@ namespace AlarmPlus.Droid
 {
     class DatabasePlatformPicker : IDatabasePlatformPicker
     {
-        public ISQLitePlatform getPlatform()
+        public ISQLitePlatform GetPlatform()
         {
             return new SQLitePlatformAndroid();
         }

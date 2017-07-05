@@ -1,6 +1,7 @@
 ﻿using AlarmPlus.Core;
 using Newtonsoft.Json;
 using PCLStorage;
+using SQLite.Net.Interop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -22,6 +23,14 @@ namespace AlarmPlus
             {
                 if (Instance == null) Instance = new App();
                 return Instance;
+            }
+        }
+
+        public static ISQLitePlatform DatabasePlatform
+        {
+            get
+            {
+                return DependencyService.Get<IDatabasePlatformPicker>().GetPlatform();
             }
         }
 
