@@ -11,44 +11,39 @@ namespace AlarmPlus.Core
     class AlarmDatabase
     {
 
-        private static SQLiteConnection database;
+        private static SQLiteConnection AlarmsDatabase;
 
         public static void InitializeDatabase()
         {
-            database = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("AlarmDatabase.db3"));
-            database.CreateTable<Alarm>();
+            AlarmsDatabase = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("AlarmDatabase.db3"));
+            AlarmsDatabase.CreateTable<Alarm>();
         }
 
-        public static List<Alarm> GetItems()
+        public static List<Alarm> GetAlarms()
         {
-            return database.Table<Alarm>().ToList();
+            return AlarmsDatabase.Table<Alarm>().ToList();
         }
 
-        public static List<Alarm> GetItemsNotDone()
+        public static Alarm GetAlarm(int id)
         {
-            return database.Query<Alarm>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+            return AlarmsDatabase.Table<Alarm>().Where(i => i.ID == id).FirstOrDefault();
         }
 
-        public static Alarm GetItem(int id)
-        {
-            return database.Table<Alarm>().Where(i => i.ID == id).FirstOrDefault();
-        }
-
-        public static int SaveItem(Alarm item)
+        public static int SaveAlarm(Alarm item)
         {
             if (item.ID != 0)
             {
-                return database.Update(item);
+                return AlarmsDatabase.Update(item);
             }
             else
             {
-                return database.Insert(item);
+                return AlarmsDatabase.Insert(item);
             }
         }
 
-        public static int DeleteItem(Alarm item)
+        public static int DeleteAlarm(Alarm item)
         {
-            return database.Delete(item);
+            return AlarmsDatabase.Delete(item);
         }
     }
 }
