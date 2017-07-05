@@ -42,6 +42,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Alarm.cs" />
+    <Compile Include="Core\AlarmDatabase.cs" />
     <Compile Include="Core\IAlarmSetter.cs" />
     <Compile Include="Core\IAppMinimizer.cs" />
     <Compile Include="Core\IFileHelper.cs" />
