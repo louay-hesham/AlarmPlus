@@ -58,7 +58,7 @@ namespace AlarmPlus.GUI.Pages
             if (AlarmToEdit == null) Alarm.Alarms.Add(alarm);
             else AlarmToEdit.SetAlarmProperties(alarm);
 
-            await App.SaveAlarms();
+            App.SaveAlarms();
             await Navigation.PopAsync(true);
         }
 

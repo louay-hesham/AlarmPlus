@@ -260,10 +260,10 @@ namespace AlarmPlus.Core
             await App.NavPage.Navigation.PushAsync(new NewAlarm(this), true);
         }
 
-        private async void DeleteAlarm()
+        private void DeleteAlarm()
         {
             Alarms.Remove(this);
-            await App.SaveAlarms();
+            App.SaveAlarms();
             App.AlarmSetter.CancelAlarm(this);
         }
 
