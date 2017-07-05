@@ -11,39 +11,39 @@ namespace AlarmPlus.Core
     class AlarmDatabase
     {
 
-        private static SQLiteConnection AlarmsDatabase;
+        private static SQLiteConnection database;
 
         public static void InitializeDatabase()
         {
-            AlarmsDatabase = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("AlarmDatabase.db3"));
-            AlarmsDatabase.CreateTable<Alarm>();
+            database = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("AlarmDatabase.db3"));
+            database.CreateTable<Alarm>();
         }
 
         public static List<Alarm> GetAlarms()
         {
-            return AlarmsDatabase.Table<Alarm>().ToList();
+            return database.Table<Alarm>().ToList();
         }
 
         public static Alarm GetAlarm(int id)
         {
-            return AlarmsDatabase.Table<Alarm>().Where(i => i.ID == id).FirstOrDefault();
+            return database.Table<Alarm>().Where(i => i.ID == id).FirstOrDefault();
         }
 
         public static int SaveAlarm(Alarm item)
         {
             if (item.ID != 0)
             {
-                return AlarmsDatabase.Update(item);
+                return database.Update(item);
             }
             else
             {
-                return AlarmsDatabase.Insert(item);
+                return database.Insert(item);
             }
         }
 
         public static int DeleteAlarm(Alarm item)
         {
-            return AlarmsDatabase.Delete(item);
+            return database.Delete(item);
         }
     }
 }
