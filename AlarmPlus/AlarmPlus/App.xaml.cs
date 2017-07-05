@@ -58,37 +58,21 @@ namespace AlarmPlus
             }
         }
 
-        public static async Task SaveAlarms()
+        public static void SaveAlarms()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFile file = await rootFolder.CreateFileAsync("Alarms", CreationCollisionOption.ReplaceExisting);
-            await file.WriteAllTextAsync(JsonConvert.SerializeObject(Alarm.Alarms));
+            foreach (Alarm alarm in Alarm.Alarms)
+            {
+                AlarmDatabase.SaveAlarm(alarm);
+            }
         }
 
         public static void LoadAlarms()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            var x = rootFolder.CheckExistsAsync("Alarms").Result;
-
-            if (x.Equals(PCLStorage.ExistenceCheckResult.FileExists))
+            var loadedAlarms = AlarmDatabase.GetAlarms();
+            foreach (Alarm alarm in loadedAlarms)
             {
-                IFile file = rootFolder.GetFileAsync("Alarms").Result;
-                Alarm.Alarms.Clear();
-                if (file != null)
-                {
-                    string serializedAlarms = file.ReadAllTextAsync().Result;
-                    if (serializedAlarms != null && !serializedAlarms.Equals(string.Empty))
-                    {
-                        var loadedAlarms = JsonConvert.DeserializeObject<List<Alarm>>(serializedAlarms);
-                        foreach (var alarm in loadedAlarms)
-                        {
-                            Alarm.Alarms.Add(alarm);
-                        }
-
-                    }
-                }
-            }
-            
+                Alarm.Alarms.Add(alarm);
+            }   
         }
 
         public static async Task SaveAppSettings()
@@ -126,6 +110,7 @@ namespace AlarmPlus
 
         public App()
         {
+            AlarmDatabase.InitializeDatabase();
             LoadAppSettings();
             LoadAlarms();
             InitializeComponent();
@@ -141,7 +126,7 @@ namespace AlarmPlus
 
         protected async override void OnSleep()
         {
-            await SaveAlarms();
+            SaveAlarms();
             await SaveAppSettings();
         }
 
