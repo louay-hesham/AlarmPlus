@@ -1,5 +1,6 @@
 ﻿using AlarmPlus.GUI.Pages;
 using Newtonsoft.Json;
+using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,6 @@ namespace AlarmPlus.Core
     {
         private static readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
         private static int _NewAlarmCount = 0;
-        private static int _IdCount = 0;
         private static readonly string[] _Days = { "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri" };
 
         public static ObservableCollection<Alarm> Alarms = new ObservableCollection<Alarm>();
@@ -34,9 +34,8 @@ namespace AlarmPlus.Core
             return foundAlarm;
         }
 
-
-        [JsonProperty("ID")]
-        public readonly int ID;
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public bool Enabled;
         public TimeSpan Time { get; set; }
         public string AlarmName { get; set; }
@@ -45,16 +44,12 @@ namespace AlarmPlus.Core
         public bool IsNagging;
         public int AlarmsBefore, AlarmsAfter, Interval;
 
-        [JsonIgnore]
         public readonly List<DateTime> AllTimes;
 
-        [JsonIgnore]
         private int AlarmsPerDay;
 
-        [JsonIgnore]
         public List<DayOfWeek> SelectedDays;
 
-        [JsonIgnore]
         public string Repeatition
         {
             get
@@ -79,7 +74,6 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
         public string Nagging
         {
             get
@@ -99,7 +93,6 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
         public string AlarmTimeWithOffset
         {
             get
@@ -115,7 +108,6 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
         public string OriginalAlarmTimeString
         {
             get
@@ -130,7 +122,6 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
         public bool IsEnabled
         {
             get
@@ -144,21 +135,15 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
         public ICommand EditCommand { get; private set; }
 
-        [JsonIgnore]
         public ICommand DeleteCommand { get; private set; }
-
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
         {
             EditCommand = new Command(EditAlarm);
             DeleteCommand = new Command(DeleteAlarm);
             AllTimes = new List<DateTime>();
-
-            _IdCount = Alarms.Count != 0 ? Alarms.Last().ID + 1 : 0;
-            ID = _IdCount;
 
             Enabled = true;
             this.Time = Time;
