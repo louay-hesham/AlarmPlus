@@ -51,10 +51,12 @@ namespace AlarmPlus.GUI.Pages
         {
             TimeSpan time = AlarmTime.Time;
             string alarmName = (AlarmName.Text == null || AlarmName.Text.Equals(string.Empty)) ? null : AlarmName.Text;
-            bool[] selectedDays = IsRepeated.On ? WeekDay.ButtonsPressed : new bool[7];
             int[] naggingData = IsNagging.On ? Nagging.GetNaggingSettings() : new int[3];
 
-            Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, selectedDays, IsNagging.On, naggingData);
+            SelectedDays days = WeekDay.Days;
+            Database.SaveSelectedDays(days);
+
+            Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, days, IsNagging.On, naggingData);
             if (AlarmToEdit == null) Alarm.Alarms.Add(alarm);
             else AlarmToEdit.SetAlarmProperties(alarm);
 

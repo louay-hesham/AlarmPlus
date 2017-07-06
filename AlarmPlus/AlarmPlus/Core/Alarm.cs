@@ -1,11 +1,8 @@
 ﻿using AlarmPlus.GUI.Pages;
-using Newtonsoft.Json;
 using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -40,11 +37,14 @@ namespace AlarmPlus.Core
         public TimeSpan Time { get; set; }
         public string AlarmName { get; set; }
         public bool IsRepeated { get; set; }
-        public bool[] SelectedDaysBool { get; set; }
         public bool IsNagging { get; set; }
         public int AlarmsBefore { get; set; }
         public int AlarmsAfter { get; set; }
         public int Interval { get; set; }
+        private int SelectedDaysID { get; set; }
+
+        [Ignore]
+        public bool[] SelectedDaysBool { get; set; }
 
         [Ignore]
         public List<DateTime> AllTimes { get; }
@@ -151,7 +151,7 @@ namespace AlarmPlus.Core
         [Ignore]
         public ICommand DeleteCommand { get; private set; }
 
-        public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
+        public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, SelectedDays SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
         {
             EditCommand = new Command(EditAlarm);
             DeleteCommand = new Command(DeleteAlarm);
@@ -167,7 +167,8 @@ namespace AlarmPlus.Core
             }
             else this.AlarmName = AlarmName;
             this.IsRepeated = IsRepeated;
-            this.SelectedDaysBool = SelectedDaysBool;
+            this.SelectedDaysBool = SelectedDaysBool.ToArray();
+            this.SelectedDaysID = SelectedDaysBool.ID;
             this.IsNagging = IsNagging;
             AlarmsBefore = IsNagging? (NaggingSettings != null? NaggingSettings[0] : App.AppSettings.AlarmsBefore) : 0;
             AlarmsAfter = IsNagging? (NaggingSettings != null ? NaggingSettings[1] : App.AppSettings.AlarmsAfter) : 0;
@@ -176,7 +177,7 @@ namespace AlarmPlus.Core
             SelectedDays = new List<DayOfWeek>();
             for (int i = 0; i < 7; i++)
             {
-                if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
+                if (SelectedDaysBool.ToArray()[i]) SelectedDays.Add(Days[i]);
             }
             AlarmsPerDay = 0;
 
