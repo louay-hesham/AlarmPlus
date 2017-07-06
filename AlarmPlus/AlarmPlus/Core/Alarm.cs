@@ -36,20 +36,26 @@ namespace AlarmPlus.Core
 
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public bool Enabled;
+        public bool Enabled { get; set; }
         public TimeSpan Time { get; set; }
         public string AlarmName { get; set; }
-        public bool IsRepeated;
-        public bool[] SelectedDaysBool;
-        public bool IsNagging;
-        public int AlarmsBefore, AlarmsAfter, Interval;
+        public bool IsRepeated { get; set; }
+        public bool[] SelectedDaysBool { get; set; }
+        public bool IsNagging { get; set; }
+        public int AlarmsBefore { get; set; }
+        public int AlarmsAfter { get; set; }
+        public int Interval { get; set; }
 
-        public readonly List<DateTime> AllTimes;
+        [Ignore]
+        public List<DateTime> AllTimes { get; }
 
-        private int AlarmsPerDay;
+        [Ignore]
+        private int AlarmsPerDay { get; set; }
 
-        public List<DayOfWeek> SelectedDays;
+        [Ignore]
+        public List<DayOfWeek> SelectedDays { get; set; }
 
+        [Ignore]
         public string Repeatition
         {
             get
@@ -74,6 +80,7 @@ namespace AlarmPlus.Core
             }
         }
 
+        [Ignore]
         public string Nagging
         {
             get
@@ -93,6 +100,7 @@ namespace AlarmPlus.Core
             }
         }
 
+        [Ignore]
         public string AlarmTimeWithOffset
         {
             get
@@ -108,6 +116,7 @@ namespace AlarmPlus.Core
             }
         }
 
+        [Ignore]
         public string OriginalAlarmTimeString
         {
             get
@@ -122,6 +131,7 @@ namespace AlarmPlus.Core
             }
         }
 
+        [Ignore]
         public bool IsEnabled
         {
             get
@@ -135,8 +145,10 @@ namespace AlarmPlus.Core
             }
         }
 
+        [Ignore]
         public ICommand EditCommand { get; private set; }
 
+        [Ignore]
         public ICommand DeleteCommand { get; private set; }
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, bool[] SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
