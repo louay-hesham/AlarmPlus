@@ -39,7 +39,7 @@ namespace AlarmPlus.GUI.Tabs
 
         private void SaveSelectedDays(object sender, EventArgs e)
         {
-            App.AppSettings.DefaultSelectedDays = WeekDay.ButtonsPressed;
+            App.AppSettings.DefaultSelectedDays = WeekDay.Days.ToArray();
         }
     }
 }

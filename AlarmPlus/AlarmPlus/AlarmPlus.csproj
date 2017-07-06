@@ -42,12 +42,13 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\Alarm.cs" />
-    <Compile Include="Core\AlarmDatabase.cs" />
+    <Compile Include="Core\Database.cs" />
     <Compile Include="Core\IAlarmSetter.cs" />
     <Compile Include="Core\IAppMinimizer.cs" />
     <Compile Include="Core\IFileHelper.cs" />
     <Compile Include="Core\IDatabasePlatformPicker.cs" />
     <Compile Include="Core\IRingtoneManager.cs" />
+    <Compile Include="Core\SelectedDays.cs" />
     <Compile Include="Core\Settings.cs" />
     <Compile Include="GUI\MainTabbedPage.xaml.cs">
       <DependentUpon>MainTabbedPage.xaml</DependentUpon>
