@@ -62,13 +62,13 @@ namespace AlarmPlus
         {
             foreach (Alarm alarm in Alarm.Alarms)
             {
-                AlarmDatabase.SaveAlarm(alarm);
+                Database.SaveAlarm(alarm);
             }
         }
 
         public static void LoadAlarms()
         {
-            var loadedAlarms = AlarmDatabase.GetAlarms();
+            var loadedAlarms = Database.GetAlarms();
             foreach (Alarm alarm in loadedAlarms)
             {
                 Alarm.Alarms.Add(alarm);
@@ -110,7 +110,7 @@ namespace AlarmPlus
 
         public App()
         {
-            AlarmDatabase.InitializeDatabase();
+            Database.InitializeDatabase();
             LoadAppSettings();
             LoadAlarms();
             InitializeComponent();
