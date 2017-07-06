@@ -12,7 +12,10 @@ using Android.Widget;
 using AlarmPlus.Core;
 using SQLite.Net.Platform.XamarinAndroid;
 using SQLite.Net.Interop;
+using Xamarin.Forms;
+using AlarmPlus.Droid;
 
+[assembly: Dependency(typeof(DatabasePlatformPicker))]
 namespace AlarmPlus.Droid
 {
     class DatabasePlatformPicker : IDatabasePlatformPicker

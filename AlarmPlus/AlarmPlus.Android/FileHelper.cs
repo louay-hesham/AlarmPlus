@@ -1,7 +1,10 @@
 using System;
 using AlarmPlus.Core;
 using System.IO;
+using Xamarin.Forms;
+using AlarmPlus.Droid;
 
+[assembly: Dependency(typeof(FileHelper))]
 namespace AlarmPlus.Droid
 {
     public class FileHelper : IFileHelper
