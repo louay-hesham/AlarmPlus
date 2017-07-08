@@ -68,11 +68,14 @@ namespace AlarmPlus
 
         public static void LoadAlarms()
         {
-            var loadedAlarms = Database.GetAlarms();
-            foreach (Alarm alarm in loadedAlarms)
+            if (Alarm.Alarms.Count == 0)
             {
-                Alarm.Alarms.Add(alarm);
-            }   
+                var loadedAlarms = Database.GetAlarms();
+                foreach (Alarm alarm in loadedAlarms)
+                {
+                    Alarm.Alarms.Add(alarm);
+                }
+            }
         }
 
         public static async Task SaveAppSettings()

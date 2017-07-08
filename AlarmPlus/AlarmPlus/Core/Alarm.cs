@@ -151,6 +151,31 @@ namespace AlarmPlus.Core
         [Ignore]
         public ICommand DeleteCommand { get; private set; }
 
+        public Alarm()
+        {
+            EditCommand = new Command(EditAlarm);
+            DeleteCommand = new Command(DeleteAlarm);
+            AllTimes = new List<DateTime>();
+
+            if (AlarmName == null || AlarmName.Equals(string.Empty))
+            {
+                if (_NewAlarmCount == 0) this.AlarmName = "New alarm";
+                else this.AlarmName = "New alarm " + _NewAlarmCount;
+                _NewAlarmCount++;
+            }
+            this.SelectedDaysBool = Database.GetSelectedDays(SelectedDaysID).ToArray();
+            SelectedDays = new List<DayOfWeek>();
+            for (int i = 0; i < 7; i++)
+            {
+                if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
+            }
+            AlarmsPerDay = 0;
+
+            if (!IsNagging) AlarmsPerDay = 1;
+            else AlarmsPerDay = 1 + AlarmsBefore + AlarmsAfter;
+            CalculateAlarms();
+        }
+
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, SelectedDays SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
         {
             EditCommand = new Command(EditAlarm);
