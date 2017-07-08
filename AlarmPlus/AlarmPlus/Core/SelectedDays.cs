@@ -9,9 +9,9 @@ namespace AlarmPlus.Core
 {
     public class SelectedDays
     {
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement, Column(name: "SelectedDaysId")]
         public int ID { get; set; }
-
+        
         public bool sat { get; set; }
         public bool sun { get; set; }
         public bool mon { get; set; }

@@ -11,64 +11,64 @@ namespace AlarmPlus.Core
     public class Database
     {
 
-        private static SQLiteConnection database;
+        private static SQLiteConnection connection;
 
         public static void InitializeDatabase()
         {
-            database = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("Database.db3"));
-            database.CreateTable<Alarm>();
-            database.CreateTable<SelectedDays>();
+            connection = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("Database.db3"));
+            connection.CreateTable<Alarm>();
+            connection.CreateTable<SelectedDays>();
         }
 
         //Alarms operations
         public static List<Alarm> GetAlarms()
         {
-            return database.Table<Alarm>().ToList();
+            return connection.Table<Alarm>().ToList();
         }
 
         public static Alarm GetAlarm(int id)
         {
-            return database.Table<Alarm>().Where(i => i.ID == id).FirstOrDefault();
+            return connection.Table<Alarm>().Where(i => i.ID == id).FirstOrDefault();
         }
 
         public static int SaveAlarm(Alarm item)
         {
             if (item.ID != 0)
             {
-                return database.Update(item);
+                return connection.Update(item);
             }
             else
             {
-                return database.Insert(item);
+                return connection.Insert(item);
             }
         }
 
         public static int DeleteAlarm(Alarm item)
         {
-            return database.Delete(item);
+            return connection.Delete(item);
         }
 
         //SelectedDays operations
         public static SelectedDays GetSelectedDays(int id)
         {
-            return database.Table<SelectedDays>().Where(i => i.ID == id).FirstOrDefault();
+            return connection.Table<SelectedDays>().Where(i => i.ID == id).FirstOrDefault();
         }
 
         public static int SaveSelectedDays(SelectedDays item)
         {
             if (item.ID != 0)
             {
-                return database.Update(item);
+                return connection.Update(item);
             }
             else
             {
-                return database.Insert(item);
+                return connection.Insert(item);
             }
         }
 
         public static int DeleteSelectedDays(SelectedDays item)
         {
-            return database.Delete(item);
+            return connection.Delete(item);
         }
     }
 }

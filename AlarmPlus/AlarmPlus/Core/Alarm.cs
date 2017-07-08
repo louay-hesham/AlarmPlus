@@ -31,16 +31,25 @@ namespace AlarmPlus.Core
             return foundAlarm;
         }
 
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement, Column(name: "AlarmId")]
         public int ID { get; set; }
+        [Column(name: "IsEnabled")]
         public bool Enabled { get; set; }
+        [Column(name:"Time")]
         public TimeSpan Time { get; set; }
+        [Column(name: "AlarmName")]
         public string AlarmName { get; set; }
+        [Column(name: "IsRepeated")]
         public bool IsRepeated { get; set; }
+        [Column(name: "IsNagging")]
         public bool IsNagging { get; set; }
+        [Column(name: "AlarmsBefore")]
         public int AlarmsBefore { get; set; }
+        [Column(name: "AlarmsAfter")]
         public int AlarmsAfter { get; set; }
+        [Column(name: "Interval")]
         public int Interval { get; set; }
+        [Column(name: "SelectedDaysIdFK")]
         private int SelectedDaysID { get; set; }
 
         [Ignore]
