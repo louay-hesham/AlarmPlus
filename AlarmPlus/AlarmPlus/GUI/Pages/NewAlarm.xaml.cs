@@ -54,10 +54,9 @@ namespace AlarmPlus.GUI.Pages
             int[] naggingData = IsNagging.On ? Nagging.GetNaggingSettings() : new int[3];
             SelectedDays days = WeekDay.Days;
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, days, IsNagging.On, naggingData);
-            if (AlarmToEdit == null) Alarm.Alarms.Add(alarm);
+            if (AlarmToEdit == null)
+                Alarm.Alarms.Add(alarm);
             else AlarmToEdit.SetAlarmProperties(alarm);
-
-            App.SaveAlarms();
             await Navigation.PopAsync(true);
         }
 

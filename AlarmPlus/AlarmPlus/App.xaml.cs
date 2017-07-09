@@ -58,14 +58,6 @@ namespace AlarmPlus
             }
         }
 
-        public static void SaveAlarms()
-        {
-            foreach (Alarm alarm in Alarm.Alarms)
-            {
-                Database.SaveAlarm(alarm);
-            }
-        }
-
         public static void LoadAlarms()
         {
             if (Alarm.Alarms.Count == 0)
@@ -129,7 +121,6 @@ namespace AlarmPlus
 
         protected async override void OnSleep()
         {
-            SaveAlarms();
             await SaveAppSettings();
         }
 

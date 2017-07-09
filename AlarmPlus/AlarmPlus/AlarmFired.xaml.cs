@@ -33,7 +33,7 @@ namespace AlarmPlus
 
         protected override void OnSleep()
         {
-            App.SaveAlarms();
+            
         }
 
         protected override void OnResume()

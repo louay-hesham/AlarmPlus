@@ -255,7 +255,6 @@ namespace AlarmPlus.Core
         private void DeleteAlarm()
         {
             Alarms.Remove(this);
-            App.SaveAlarms();
             App.AlarmSetter.CancelAlarm(this);
         }
 
