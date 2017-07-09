@@ -1,6 +1,4 @@
 ﻿using AlarmPlus.Core;
-using Newtonsoft.Json;
-using PCLStorage;
 using SQLite.Net.Interop;
 using System;
 using System.Collections.Generic;
