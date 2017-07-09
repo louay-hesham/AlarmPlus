@@ -70,37 +70,15 @@ namespace AlarmPlus
             }
         }
 
-        public static async Task SaveAppSettings()
-        {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFile file = await rootFolder.CreateFileAsync("Settings", CreationCollisionOption.ReplaceExisting);
-            await file.WriteAllTextAsync(JsonConvert.SerializeObject(AppSettings));
-        }
-
         public static void LoadAppSettings()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            var x = rootFolder.CheckExistsAsync("Settings").Result;
-            if (x.Equals(ExistenceCheckResult.FileExists))
-            {
-                IFile file = rootFolder.GetFileAsync("Settings").Result;
-                if (file != null)
-                {
-                    string serializedSettings = file.ReadAllTextAsync().Result;
-                    if (serializedSettings != null && !serializedSettings.Equals(string.Empty))
-                    {
-                        AppSettings = JsonConvert.DeserializeObject<Settings>(serializedSettings);
-                    }
-                    else
-                    {
-                        AppSettings = new Settings("2", "1", "10", "10");
-                    }
-                }
-            }
-            else
+            AppSettings = Database.GetSettings();
+            if (AppSettings == null || AppSettings.ID == 0)
             {
                 AppSettings = new Settings("2", "1", "10", "10");
+                Database.SaveSettings(AppSettings);
             }
+            else AppSettings.InitializeSettings();
         }
 
         public App()
@@ -114,19 +92,10 @@ namespace AlarmPlus
             NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
         }
 
-        protected override void OnStart()
-        {
+        protected override void OnStart() { }
 
-        }
+        protected override void OnSleep() { }
 
-        protected async override void OnSleep()
-        {
-            await SaveAppSettings();
-        }
-
-        protected override void OnResume()
-        {
-            
-        }
+        protected override void OnResume() { }
     }
 }

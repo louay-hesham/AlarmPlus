@@ -18,6 +18,7 @@ namespace AlarmPlus.Core
             connection = new SQLiteConnection(App.DatabasePlatform, DependencyService.Get<IFileHelper>().GetLocalFilePath("Database.db3"));
             connection.CreateTable<Alarm>();
             connection.CreateTable<SelectedDays>();
+            connection.CreateTable<Settings>();
         }
 
         //Alarms operations
@@ -74,6 +75,25 @@ namespace AlarmPlus.Core
         public static int DeleteSelectedDays(SelectedDays item)
         {
             return connection.Delete(item);
+        }
+
+        //App Settings operations
+        public static Settings GetSettings()
+        {
+            return connection.Table<Settings>().FirstOrDefault();
+        }
+
+        public static int SaveSettings(Settings item)
+        {
+            SaveSelectedDays(item.DefaultSelectedDaysObject);
+            if (item.ID != 0)
+            {
+                return connection.Update(item);
+            }
+            else
+            {
+                return connection.Insert(item);
+            }
         }
     }
 }

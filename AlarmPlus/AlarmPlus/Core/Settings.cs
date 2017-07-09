@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,28 @@ namespace AlarmPlus.Core
 {
     public class Settings
     {
+        [PrimaryKey, Column(name:"SettingsID")]
+        public int ID { get; set; }
+        [Column(name: "DefaultAlarmsAfter")]
         public string AlarmsAfterString { get; set; }
+        [Column(name: "DefaultAlarmsBefore")]
         public string AlarmsBeforeString { get; set; }
+        [Column(name: "DefaultNaggingInterval")]
         public string NaggingIntervalString { get; set; }
+        [Column(name: "DefaultSnoozeInterval")]
         public string SnoozeIntervalString { get; set; }
+        [Column(name: "Ringtone")]
         public string RingtoneName { get; set; }
+        [Column(name: "DefaultSelectedDaysID")]
+        public int DefaultSelectedDaysID { get; set; }
+
+        [Ignore]
         public bool[] DefaultSelectedDays { get; set; }
 
-        [JsonIgnore]
+        [Ignore]
+        public SelectedDays DefaultSelectedDaysObject { get; set; }
+
+        [Ignore]
         public string RingtoneNameDetailed
         {
             get
@@ -26,7 +40,7 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
+        [Ignore]
         public int AlarmsAfter
         {
             get
@@ -35,7 +49,7 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
+        [Ignore]
         public int AlarmsBefore
         {
             get
@@ -44,7 +58,7 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
+        [Ignore]
         public int NaggingInterval
         {
             get
@@ -53,7 +67,7 @@ namespace AlarmPlus.Core
             }
         }
 
-        [JsonIgnore]
+        [Ignore]
         public int SnoozeInterval
         {
             get
@@ -62,13 +76,24 @@ namespace AlarmPlus.Core
             }
         }
 
+        public Settings() { }
+
         public Settings(string AlarmsBefore, string AlarmsAfter, string NaggingInterval, string SnoozeInterval)
         {
             this.AlarmsBeforeString = AlarmsBefore;
             this.AlarmsAfterString = AlarmsAfter;
             this.NaggingIntervalString = NaggingInterval;
             this.SnoozeIntervalString = SnoozeInterval;
-            DefaultSelectedDays = new bool[] { false, true, true, true, true, true, false };
+            this.DefaultSelectedDaysObject = new SelectedDays(new bool[] { false, true, true, true, true, true, false });
+            Database.SaveSelectedDays(DefaultSelectedDaysObject);
+            this.DefaultSelectedDaysID = DefaultSelectedDaysObject.ID;
+            DefaultSelectedDays = DefaultSelectedDaysObject.ToArray();
+        }
+
+        public void InitializeSettings()
+        {
+            DefaultSelectedDaysObject = Database.GetSelectedDays(DefaultSelectedDaysID);
+            DefaultSelectedDays = DefaultSelectedDaysObject.ToArray();
         }
     }
 }
