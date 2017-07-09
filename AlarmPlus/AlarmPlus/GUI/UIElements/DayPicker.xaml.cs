@@ -40,6 +40,7 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[6] = Fri;
             IsFromSettingsTab = false;
             SelectDays(App.AppSettings.DefaultSelectedDays);
+            IsVisible = false;
         }
 
         public void SelectDays(bool[] SelectedDays)
@@ -65,12 +66,12 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[i].BackgroundColor = ButtonsPressed[i]? Color.FromRgb(0, 255, 255) : Color.Gray;
 
             bool stayVisible = false;
-            foreach (bool x in ButtonsPressed) stayVisible = stayVisible | x;
-            if (!stayVisible)
+            foreach (bool x in ButtonsPressed) stayVisible = (stayVisible | x) & IsVisible;
+            if (!stayVisible & IsVisible)
             {
                 SelectDays(App.AppSettings.DefaultSelectedDays);
             }
-            IsVisible = stayVisible || IsFromSettingsTab;
+            IsVisible = stayVisible | IsFromSettingsTab;
         }
 
         private void Sat_Clicked(object sender, EventArgs e)

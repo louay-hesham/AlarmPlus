@@ -60,9 +60,9 @@ namespace AlarmPlus.GUI.Pages
             await Navigation.PopAsync(true);
         }
 
-        private void CancelButton_Clicked(object sender, EventArgs e)
+        private async void CancelButton_Clicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync(true);
+            await Navigation.PopAsync(true);
         }
     }
 }
