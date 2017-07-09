@@ -20,6 +20,8 @@ namespace AlarmPlus.Core
         public bool thu { get; set; }
         public bool fri { get; set; }
 
+        public SelectedDays() { }
+
         public SelectedDays(bool[] selectedDays)
         {
             sat = selectedDays[0];

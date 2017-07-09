@@ -52,10 +52,7 @@ namespace AlarmPlus.GUI.Pages
             TimeSpan time = AlarmTime.Time;
             string alarmName = (AlarmName.Text == null || AlarmName.Text.Equals(string.Empty)) ? null : AlarmName.Text;
             int[] naggingData = IsNagging.On ? Nagging.GetNaggingSettings() : new int[3];
-
             SelectedDays days = WeekDay.Days;
-            Database.SaveSelectedDays(days);
-
             Alarm alarm = new Alarm(time, alarmName, IsRepeated.On, days, IsNagging.On, naggingData);
             if (AlarmToEdit == null) Alarm.Alarms.Add(alarm);
             else AlarmToEdit.SetAlarmProperties(alarm);

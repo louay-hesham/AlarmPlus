@@ -50,13 +50,16 @@ namespace AlarmPlus.Core
         [Column(name: "Interval")]
         public int Interval { get; set; }
         [Column(name: "SelectedDaysIdFK")]
-        private int SelectedDaysID { get; set; }
+        public int SelectedDaysID { get; set; }
+
+        [Ignore]
+        private SelectedDays SelectedDaysObject { get; set; }
 
         [Ignore]
         public bool[] SelectedDaysBool { get; set; }
 
         [Ignore]
-        public List<DateTime> AllTimes { get; }
+        public List<DateTime> AllTimes { get; set; }
 
         [Ignore]
         private int AlarmsPerDay { get; set; }
@@ -160,37 +163,12 @@ namespace AlarmPlus.Core
         [Ignore]
         public ICommand DeleteCommand { get; private set; }
 
-        public Alarm()
-        {
-            EditCommand = new Command(EditAlarm);
-            DeleteCommand = new Command(DeleteAlarm);
-            AllTimes = new List<DateTime>();
-
-            if (AlarmName == null || AlarmName.Equals(string.Empty))
-            {
-                if (_NewAlarmCount == 0) this.AlarmName = "New alarm";
-                else this.AlarmName = "New alarm " + _NewAlarmCount;
-                _NewAlarmCount++;
-            }
-            this.SelectedDaysBool = Database.GetSelectedDays(SelectedDaysID).ToArray();
-            SelectedDays = new List<DayOfWeek>();
-            for (int i = 0; i < 7; i++)
-            {
-                if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
-            }
-            AlarmsPerDay = 0;
-
-            if (!IsNagging) AlarmsPerDay = 1;
-            else AlarmsPerDay = 1 + AlarmsBefore + AlarmsAfter;
-            CalculateAlarms();
-        }
+        public Alarm() { }
 
         public Alarm(TimeSpan Time, string AlarmName, bool IsRepeated, SelectedDays SelectedDaysBool, bool IsNagging, int[] NaggingSettings)
         {
-            EditCommand = new Command(EditAlarm);
-            DeleteCommand = new Command(DeleteAlarm);
-            AllTimes = new List<DateTime>();
-
+            Database.SaveSelectedDays(SelectedDaysBool);
+            this.SelectedDaysObject = SelectedDaysBool;
             Enabled = true;
             this.Time = Time;
             if (AlarmName == null || AlarmName.Equals(string.Empty))
@@ -207,40 +185,7 @@ namespace AlarmPlus.Core
             AlarmsBefore = IsNagging? (NaggingSettings != null? NaggingSettings[0] : App.AppSettings.AlarmsBefore) : 0;
             AlarmsAfter = IsNagging? (NaggingSettings != null ? NaggingSettings[1] : App.AppSettings.AlarmsAfter) : 0;
             Interval = IsNagging? (NaggingSettings != null ? NaggingSettings[2] : App.AppSettings.NaggingInterval) : 0;
-
-            SelectedDays = new List<DayOfWeek>();
-            for (int i = 0; i < 7; i++)
-            {
-                if (SelectedDaysBool.ToArray()[i]) SelectedDays.Add(Days[i]);
-            }
-            AlarmsPerDay = 0;
-
-            if (!IsNagging) AlarmsPerDay = 1;
-            else AlarmsPerDay = 1 + AlarmsBefore + AlarmsAfter;
-            CalculateAlarms();
-        }
-
-        public void SetAlarmProperties(Alarm alarm)
-        {
-            App.AlarmSetter.CancelAlarm(this);
-
-            Time = alarm.Time;
-            AlarmName = alarm.AlarmName;
-            IsRepeated = alarm.IsRepeated;
-            IsNagging = alarm.IsNagging;
-            SelectedDaysBool = alarm.SelectedDaysBool;
-            AlarmsBefore = alarm.AlarmsBefore;
-            AlarmsAfter = alarm.AlarmsAfter;
-            Interval = alarm.Interval;
-
-            AlarmsPerDay = alarm.AlarmsPerDay;
-            SelectedDays = alarm.SelectedDays;
-
-            Alarms.Remove(this);
-            Alarms.Add(this);
-
-            if (IsEnabled)
-                App.AlarmSetter.SetAlarm(this);
+            this.InitAlarm();
         }
 
         private string GetAlarmOffset()
@@ -327,6 +272,58 @@ namespace AlarmPlus.Core
             {
                 App.AlarmSetter.CancelAlarm(this);
             }
+        }
+
+        public void InitAlarm()
+        {
+            EditCommand = new Command(EditAlarm);
+            DeleteCommand = new Command(DeleteAlarm);
+            AllTimes = new List<DateTime>();
+
+            if (AlarmName == null || AlarmName.Equals(string.Empty))
+            {
+                if (_NewAlarmCount == 0) this.AlarmName = "New alarm";
+                else this.AlarmName = "New alarm " + _NewAlarmCount;
+                _NewAlarmCount++;
+            }
+            if (SelectedDaysObject == null)
+            {
+                this.SelectedDaysObject = Database.GetSelectedDays(SelectedDaysID);
+                this.SelectedDaysBool = this.SelectedDaysObject.ToArray();
+            }
+            SelectedDays = new List<DayOfWeek>();
+            for (int i = 0; i < 7; i++)
+            {
+                if (SelectedDaysBool[i]) SelectedDays.Add(Days[i]);
+            }
+            AlarmsPerDay = 0;
+
+            if (!IsNagging) AlarmsPerDay = 1;
+            else AlarmsPerDay = 1 + AlarmsBefore + AlarmsAfter;
+            CalculateAlarms();
+        }
+
+        public void SetAlarmProperties(Alarm alarm)
+        {
+            App.AlarmSetter.CancelAlarm(this);
+
+            Time = alarm.Time;
+            AlarmName = alarm.AlarmName;
+            IsRepeated = alarm.IsRepeated;
+            IsNagging = alarm.IsNagging;
+            SelectedDaysBool = alarm.SelectedDaysBool;
+            AlarmsBefore = alarm.AlarmsBefore;
+            AlarmsAfter = alarm.AlarmsAfter;
+            Interval = alarm.Interval;
+
+            AlarmsPerDay = alarm.AlarmsPerDay;
+            SelectedDays = alarm.SelectedDays;
+
+            Alarms.Remove(this);
+            Alarms.Add(this);
+
+            if (IsEnabled)
+                App.AlarmSetter.SetAlarm(this);
         }
     }
 }

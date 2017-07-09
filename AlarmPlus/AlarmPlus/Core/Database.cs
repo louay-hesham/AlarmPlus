@@ -23,7 +23,12 @@ namespace AlarmPlus.Core
         //Alarms operations
         public static List<Alarm> GetAlarms()
         {
-            return connection.Table<Alarm>().ToList();
+            var alarms = connection.Table<Alarm>().ToList();
+            foreach (Alarm alarm in alarms)
+            {
+                alarm.InitAlarm();
+            }
+            return alarms;
         }
 
         public static Alarm GetAlarm(int id)
