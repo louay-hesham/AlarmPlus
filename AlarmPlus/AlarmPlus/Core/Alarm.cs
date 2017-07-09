@@ -255,6 +255,8 @@ namespace AlarmPlus.Core
         private void DeleteAlarm()
         {
             Alarms.Remove(this);
+            Database.DeleteSelectedDays(SelectedDaysObject);
+            Database.DeleteAlarm(this);
             App.AlarmSetter.CancelAlarm(this);
         }
 
@@ -271,6 +273,7 @@ namespace AlarmPlus.Core
             {
                 App.AlarmSetter.CancelAlarm(this);
             }
+            Database.SaveAlarm(this);
         }
 
         public void InitAlarm()
@@ -311,10 +314,11 @@ namespace AlarmPlus.Core
             IsRepeated = alarm.IsRepeated;
             IsNagging = alarm.IsNagging;
             SelectedDaysBool = alarm.SelectedDaysBool;
+            SelectedDaysObject = alarm.SelectedDaysObject;
             AlarmsBefore = alarm.AlarmsBefore;
             AlarmsAfter = alarm.AlarmsAfter;
             Interval = alarm.Interval;
-
+            SelectedDaysID = alarm.SelectedDaysID;
             AlarmsPerDay = alarm.AlarmsPerDay;
             SelectedDays = alarm.SelectedDays;
 
@@ -323,6 +327,9 @@ namespace AlarmPlus.Core
 
             if (IsEnabled)
                 App.AlarmSetter.SetAlarm(this);
+
+            Database.SaveSelectedDays(SelectedDaysObject);
+            Database.SaveAlarm(this);
         }
     }
 }
