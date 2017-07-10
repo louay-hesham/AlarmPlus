@@ -6,9 +6,8 @@ using Android.Content;
 using AlarmPlus.Core;
 using Xamarin.Forms;
 using AlarmPlus.Droid;
-using Android.Icu.Util;
 using System.Diagnostics;
-using Newtonsoft.Json;
+using Java.Util;
 
 [assembly: Dependency(typeof(AlarmSetter))]
 namespace AlarmPlus.Droid

@@ -1,6 +1,5 @@
 ﻿using AlarmPlus.Core;
-using Newtonsoft.Json;
-using PCLStorage;
+using SQLite.Net.Interop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -22,6 +21,14 @@ namespace AlarmPlus
             {
                 if (Instance == null) Instance = new App();
                 return Instance;
+            }
+        }
+
+        public static ISQLitePlatform DatabasePlatform
+        {
+            get
+            {
+                return DependencyService.Get<IDatabasePlatformPicker>().GetPlatform();
             }
         }
 
@@ -49,74 +56,32 @@ namespace AlarmPlus
             }
         }
 
-        public static async Task SaveAlarms()
-        {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFile file = await rootFolder.CreateFileAsync("Alarms", CreationCollisionOption.ReplaceExisting);
-            await file.WriteAllTextAsync(JsonConvert.SerializeObject(Alarm.Alarms));
-        }
-
         public static void LoadAlarms()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            var x = rootFolder.CheckExistsAsync("Alarms").Result;
-
-            if (x.Equals(PCLStorage.ExistenceCheckResult.FileExists))
+            if (Alarm.Alarms.Count == 0)
             {
-                IFile file = rootFolder.GetFileAsync("Alarms").Result;
-                Alarm.Alarms.Clear();
-                if (file != null)
+                var loadedAlarms = Database.GetAlarms();
+                foreach (Alarm alarm in loadedAlarms)
                 {
-                    string serializedAlarms = file.ReadAllTextAsync().Result;
-                    if (serializedAlarms != null && !serializedAlarms.Equals(string.Empty))
-                    {
-                        var loadedAlarms = JsonConvert.DeserializeObject<List<Alarm>>(serializedAlarms);
-                        foreach (var alarm in loadedAlarms)
-                        {
-                            Alarm.Alarms.Add(alarm);
-                        }
-
-                    }
+                    Alarm.Alarms.Add(alarm);
                 }
             }
-            
-        }
-
-        public static async Task SaveAppSettings()
-        {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFile file = await rootFolder.CreateFileAsync("Settings", CreationCollisionOption.ReplaceExisting);
-            await file.WriteAllTextAsync(JsonConvert.SerializeObject(AppSettings));
         }
 
         public static void LoadAppSettings()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            var x = rootFolder.CheckExistsAsync("Settings").Result;
-            if (x.Equals(ExistenceCheckResult.FileExists))
-            {
-                IFile file = rootFolder.GetFileAsync("Settings").Result;
-                if (file != null)
-                {
-                    string serializedSettings = file.ReadAllTextAsync().Result;
-                    if (serializedSettings != null && !serializedSettings.Equals(string.Empty))
-                    {
-                        AppSettings = JsonConvert.DeserializeObject<Settings>(serializedSettings);
-                    }
-                    else
-                    {
-                        AppSettings = new Settings("2", "1", "10", "10");
-                    }
-                }
-            }
-            else
+            AppSettings = Database.GetSettings();
+            if (AppSettings == null)
             {
                 AppSettings = new Settings("2", "1", "10", "10");
+                Database.SaveSettings(AppSettings);
             }
+            else AppSettings.InitializeSettings();
         }
 
         public App()
         {
+            Database.InitializeDatabase();
             LoadAppSettings();
             LoadAlarms();
             InitializeComponent();
@@ -125,20 +90,10 @@ namespace AlarmPlus
             NavPage.Navigation.PushAsync(new GUI.MainTabbedPage(), true);
         }
 
-        protected override void OnStart()
-        {
+        protected override void OnStart() { }
 
-        }
+        protected override void OnSleep() { }
 
-        protected async override void OnSleep()
-        {
-            await SaveAlarms();
-            await SaveAppSettings();
-        }
-
-        protected override void OnResume()
-        {
-            
-        }
+        protected override void OnResume() { }
     }
 }

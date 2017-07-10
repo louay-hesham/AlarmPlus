@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlarmPlus.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,26 +13,18 @@ namespace AlarmPlus.GUI.UIElements
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DayPicker : ContentView
     {
-        public bool[] ButtonsPressed;
-        public List<DayOfWeek> SelectedDays
+        private bool[] ButtonsPressed;
+
+        public SelectedDays Days
         {
             get
             {
-                SelectedDays = new List<DayOfWeek>();
-                for(int i = 0; i < 7; i++)
-                {
-                    if (ButtonsPressed[i]) SelectedDays.Add(Days[i]);
-                }
-                return SelectedDays;
-            }
-            private set
-            {
-
+                return new SelectedDays(ButtonsPressed);
             }
         }
+       
         public bool IsFromSettingsTab;
         private readonly Button[] Buttons;
-        private readonly DayOfWeek[] Days = { DayOfWeek.Saturday, DayOfWeek.Sunday, DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday };
 
         public DayPicker()
         {
@@ -47,6 +40,7 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[6] = Fri;
             IsFromSettingsTab = false;
             SelectDays(App.AppSettings.DefaultSelectedDays);
+            IsVisible = false;
         }
 
         public void SelectDays(bool[] SelectedDays)
@@ -72,12 +66,12 @@ namespace AlarmPlus.GUI.UIElements
             Buttons[i].BackgroundColor = ButtonsPressed[i]? Color.FromRgb(0, 255, 255) : Color.Gray;
 
             bool stayVisible = false;
-            foreach (bool x in ButtonsPressed) stayVisible = stayVisible | x;
-            if (!stayVisible)
+            foreach (bool x in ButtonsPressed) stayVisible = (stayVisible | x) & IsVisible;
+            if (!stayVisible & IsVisible)
             {
                 SelectDays(App.AppSettings.DefaultSelectedDays);
             }
-            IsVisible = stayVisible || IsFromSettingsTab;
+            IsVisible = stayVisible | IsFromSettingsTab;
         }
 
         private void Sat_Clicked(object sender, EventArgs e)

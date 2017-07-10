@@ -1,12 +1,8 @@
-﻿using Plugin.FilePicker;
+﻿using AlarmPlus.Core;
+using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.MediaManager;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,7 +18,7 @@ namespace AlarmPlus.GUI.Tabs
             WeekDay.IsVisible = true;
             WeekDay.IsFromSettingsTab = true;
             WeekDay.SelectDays(App.AppSettings.DefaultSelectedDays);
-            Disappearing += new EventHandler(SaveSelectedDays);
+            Disappearing += new EventHandler(SaveSettingsOnSwipeLeft);
         }
 
         private async void RingtoneChooserButton_Clicked(object sender, EventArgs e)
@@ -37,9 +33,11 @@ namespace AlarmPlus.GUI.Tabs
             await CrossMediaManager.Current.Play(App.RingtoneManager.GetRingtone());
         }
 
-        private void SaveSelectedDays(object sender, EventArgs e)
+        private void SaveSettingsOnSwipeLeft(object sender, EventArgs e)
         {
-            App.AppSettings.DefaultSelectedDays = WeekDay.ButtonsPressed;
+            App.AppSettings.DefaultSelectedDaysObject.SetDays(WeekDay.Days);
+            App.AppSettings.DefaultSelectedDays = WeekDay.Days.ToArray();
+            Database.SaveSettings(App.AppSettings);
         }
     }
 }
