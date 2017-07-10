@@ -86,14 +86,7 @@ namespace AlarmPlus.Core
         public static int SaveSettings(Settings item)
         {
             SaveSelectedDays(item.DefaultSelectedDaysObject);
-            if (item.ID != 0)
-            {
-                return connection.Update(item);
-            }
-            else
-            {
-                return connection.Insert(item);
-            }
+            return connection.InsertOrReplace(item);
         }
     }
 }

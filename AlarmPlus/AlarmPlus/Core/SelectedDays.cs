@@ -37,5 +37,16 @@ namespace AlarmPlus.Core
         {
             return new bool[] { sat, sun, mon, tue, wed, thu, fri };
         }
+
+        public void SetDays(SelectedDays newDays)
+        {
+            this.sat = newDays.sat;
+            this.sun = newDays.sun;
+            this.mon = newDays.mon;
+            this.tue = newDays.tue;
+            this.wed = newDays.wed;
+            this.thu = newDays.thu;
+            this.fri = newDays.fri;
+        }
     }
 }

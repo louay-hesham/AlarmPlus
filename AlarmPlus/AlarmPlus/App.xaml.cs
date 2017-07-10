@@ -71,7 +71,7 @@ namespace AlarmPlus
         public static void LoadAppSettings()
         {
             AppSettings = Database.GetSettings();
-            if (AppSettings == null || AppSettings.ID == 0)
+            if (AppSettings == null)
             {
                 AppSettings = new Settings("2", "1", "10", "10");
                 Database.SaveSettings(AppSettings);

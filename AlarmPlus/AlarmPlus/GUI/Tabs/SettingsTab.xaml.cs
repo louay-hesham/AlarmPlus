@@ -3,11 +3,6 @@ using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.MediaManager;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -40,6 +35,7 @@ namespace AlarmPlus.GUI.Tabs
 
         private void SaveSettingsOnSwipeLeft(object sender, EventArgs e)
         {
+            App.AppSettings.DefaultSelectedDaysObject.SetDays(WeekDay.Days);
             App.AppSettings.DefaultSelectedDays = WeekDay.Days.ToArray();
             Database.SaveSettings(App.AppSettings);
         }

@@ -185,6 +185,7 @@ namespace AlarmPlus.Core
             AlarmsBefore = IsNagging? (NaggingSettings != null? NaggingSettings[0] : App.AppSettings.AlarmsBefore) : 0;
             AlarmsAfter = IsNagging? (NaggingSettings != null ? NaggingSettings[1] : App.AppSettings.AlarmsAfter) : 0;
             Interval = IsNagging? (NaggingSettings != null ? NaggingSettings[2] : App.AppSettings.NaggingInterval) : 0;
+            Database.SaveAlarm(this);
             this.InitAlarm();
         }
 
